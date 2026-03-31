@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sin conexión — WeboNada.Studio</title>
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400;font-display:block;src:url('fonts/1774666731235_outfit-v15-latin-regular.woff2') format('woff2')}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:700;font-display:block;src:url('fonts/1774666731233_outfit-v15-latin-700.woff2') format('woff2')}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:900;font-display:block;src:url('fonts/1774666731234_outfit-v15-latin-900.woff2') format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:300;font-display:block;src:url('fonts/1774666731238_plus-jakarta-sans-v12-latin-300.woff2') format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400;font-display:block;src:url('fonts/1774666731244_plus-jakarta-sans-v12-latin-regular.woff2') format('woff2')}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#050d1a;
+  --navy-mid:#0a1628;
+  --blue:#1a6fff;
+  --electric:#3d9bff;
+  --neon:#00d4ff;
+  --violet:#7c3aed;
+  --white:#f0f6ff;
+  --muted:#8ba3c0;
+  --glass-border:rgba(255,255,255,0.08);
+}
+
+html,body{
+  height:100%;
+  background:var(--navy);
+  color:var(--white);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  overflow:hidden;
+}
+
+body{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  text-align:center;
+  min-height:100vh;
+  position:relative;
+}
+
+/* Radial glow background */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 45%, rgba(26,111,255,.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+/* Estrellas decorativas */
+.star{
+  position:fixed;
+  border-radius:50%;
+  background:#fff;
+  opacity:.12;
+  animation:starBlink 3s ease-in-out infinite;
+}
+@keyframes starBlink{0%,100%{opacity:.08}50%{opacity:.22}}
+
+/* Logo */
+.logo{
+  font-family:'Outfit',sans-serif;
+  font-size:1.6rem;
+  font-weight:900;
+  letter-spacing:-1px;
+  color:#ccd6f6;
+  display:flex;
+  align-items:baseline;
+  gap:0;
+  margin-bottom:3rem;
+  opacity:0;
+  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .1s forwards;
+}
+.logo-o{
+  font-weight:200;
+  color:rgba(255,255,255,.2);
+  margin:0 3px;
+}
+.logo-sub{
+  font-size:.52rem;
+  font-weight:400;
+  letter-spacing:5px;
+  color:rgba(204,214,246,.25);
+  display:block;
+  text-align:center;
+  margin-top:2px;
+}
+
+/* Icono de sin conexión */
+.icon-wrap{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--glass-border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 1.8rem;
+  opacity:0;
+  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .2s forwards;
+}
+
+/* Línea decorativa */
+.deco-line{
+  width:40px;
+  height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--neon));
+  border-radius:2px;
+  margin:0 auto 1.5rem;
+  opacity:0;
+  animation:fadeUp .5s ease .35s forwards;
+}
+
+.title{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(1.6rem,5vw,2.4rem);
+  font-weight:900;
+  letter-spacing:-1px;
+  line-height:1.15;
+  margin-bottom:.9rem;
+  opacity:0;
+  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+.title span{
+  background:linear-gradient(135deg,var(--electric),var(--neon),#a855f7);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.body{
+  font-size:clamp(.88rem,1.5vw,1rem);
+  color:var(--muted);
+  line-height:1.75;
+  font-weight:300;
+  max-width:400px;
+  margin:0 auto 2.2rem;
+  opacity:0;
+  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .5s forwards;
+}
+
+.btn-retry{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.85rem 2rem;
+  border-radius:50px;
+  background:linear-gradient(135deg,var(--blue),var(--violet));
+  color:#fff;
+  font-family:'Outfit',sans-serif;
+  font-size:.95rem;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 4px 30px rgba(26,111,255,.4);
+  transition:transform .3s,box-shadow .3s;
+  opacity:0;
+  animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .6s forwards;
+}
+.btn-retry:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 40px rgba(26,111,255,.6);
+}
+
+.status{
+  margin-top:1.2rem;
+  font-size:.78rem;
+  color:rgba(139,163,192,.4);
+  opacity:0;
+  animation:fadeUp .5s ease .7s forwards;
+  min-height:1.2em;
+  transition:color .3s;
+}
+.status.checking{color:rgba(61,155,255,.6)}
+.status.online{color:rgba(0,200,100,.7)}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<!-- Estrellas de fondo -->
+<div class="star" style="left:8%;top:15%;width:2px;height:2px;animation-delay:.4s"></div>
+<div class="star" style="left:25%;top:72%;width:1.5px;height:1.5px;animation-delay:1.1s"></div>
+<div class="star" style="left:55%;top:10%;width:2px;height:2px;animation-delay:.7s"></div>
+<div class="star" style="left:78%;top:65%;width:1.5px;height:1.5px;animation-delay:1.6s"></div>
+<div class="star" style="left:90%;top:28%;width:2px;height:2px;animation-delay:.2s"></div>
+<div class="star" style="left:42%;top:88%;width:1.5px;height:1.5px;animation-delay:2s"></div>
+
+<!-- Logo -->
+<div style="opacity:0;animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .1s forwards;display:flex;flex-direction:column;align-items:center;margin-bottom:3rem">
+  <div class="logo" style="margin-bottom:0">
+    Web<span class="logo-o">o</span>Nada
+  </div>
+  <span class="logo-sub">.Studio</span>
+</div>
+
+<!-- Icono WiFi off -->
+<div class="icon-wrap">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4L28 28" stroke="rgba(61,155,255,.5)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M16 24.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="rgba(61,155,255,.6)"/>
+    <path d="M11.5 20c.9-.9 2.1-1.5 3.5-1.8" stroke="rgba(61,155,255,.45)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M7.5 16.2A12.5 12.5 0 0 1 16 13c1.8 0 3.5.4 5 1.1" stroke="rgba(61,155,255,.35)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M3.5 12.5A18.5 18.5 0 0 1 16 9c3.2 0 6.2.8 8.8 2.3" stroke="rgba(61,155,255,.25)" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<div class="deco-line"></div>
+
+<h1 class="title">
+  Sin conexión<br>
+  <span>a internet</span>
+</h1>
+
+<p class="body">
+  Parece que tu dispositivo no tiene acceso a la red en este momento.<br>
+  Revisa tu conexión y vuelve a intentarlo.
+</p>
+
+<button class="btn-retry" onclick="retryConnection()">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M13.5 8A5.5 5.5 0 1 1 8 2.5M13.5 2.5v3h-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Reintentar conexión
+</button>
+
+<p class="status" id="status">Detectando estado de red…</p>
+
+<script>
+// Mostrar estado de red actual al cargar
+const statusEl = document.getElementById('status');
+
+function updateStatus(){
+  if(navigator.onLine){
+    statusEl.textContent = 'Conexión restaurada — recargando…';
+    statusEl.className   = 'status online';
+    setTimeout(() => window.location.reload(), 800);
+  } else {
+    statusEl.textContent = 'Sin conexión a internet';
+    statusEl.className   = 'status';
+  }
+}
+
+function retryConnection(){
+  statusEl.textContent = 'Verificando conexión…';
+  statusEl.className   = 'status checking';
+  // Hacer un fetch ligero para confirmar conectividad real
+  fetch('/favicon.svg', { cache: 'no-store', method: 'HEAD' })
+    .then(() => {
+      statusEl.textContent = 'Conexión restaurada — recargando…';
+      statusEl.className   = 'status online';
+      setTimeout(() => window.location.href = '/', 600);
+    })
+    .catch(() => {
+      statusEl.textContent = 'Aún sin conexión. Inténtalo de nuevo.';
+      statusEl.className   = 'status';
+    });
+}
+
+// Detectar cuando vuelve la conexión automáticamente
+window.addEventListener('online', () => {
+  statusEl.textContent = 'Conexión restaurada — recargando…';
+  statusEl.className   = 'status online';
+  setTimeout(() => window.location.href = '/', 800);
+});
+
+window.addEventListener('offline', () => {
+  statusEl.textContent = 'Sin conexión a internet';
+  statusEl.className   = 'status';
+});
+
+// Estado inicial
+setTimeout(updateStatus, 400);
+</script>
+</body>
+</html>
