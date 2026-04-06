@@ -6,7 +6,6 @@ const PRECACHE = [
   '/favicon.svg',
 ];
 
-// Instalar: guardar en caché los archivos esenciales
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME)
@@ -15,7 +14,6 @@ self.addEventListener('install', e => {
   );
 });
 
-// Activar: limpiar cachés viejas de versiones anteriores
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -28,9 +26,7 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Fetch: interceptar navegaciones — si falla la red, mostrar offline.html
 self.addEventListener('fetch', e => {
-  // Solo interceptar peticiones de navegación (cargar una página)
   if(e.request.mode !== 'navigate') return;
 
   e.respondWith(

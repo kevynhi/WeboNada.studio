@@ -997,38 +997,44 @@ document.querySelectorAll('.service-card').forEach(card=>{
 
   const cards = Array.from(grid.querySelectorAll('.pricing-card'));
   const N = cards.length;
-  let current = 1; // arranca en "Profesional"
+  let current = 0;
   let startX = 0, startY = 0, dragging = false;
 
   function isMobile(){ return window.innerWidth <= 768; }
 
   // Calcula el offset px para centrar la tarjeta `idx`
   function getOffset(idx){
-    const gridW  = grid.parentElement ? grid.parentElement.offsetWidth : window.innerWidth;
-    const cardW  = grid.offsetWidth / N;   // cada card ocupa 1/N del track
-    // Queremos centrar la tarjeta idx en el viewport
-    const center = gridW / 2;
-    const cardCenter = cardW * idx + cardW / 2;
-    return cardCenter - center;
+    const parentW = grid.parentElement ? grid.parentElement.offsetWidth : window.innerWidth;
+    const card = cards[idx];
+    if(!card) return 0;
+    const cardRect = card.getBoundingClientRect();
+    const gridRect = grid.getBoundingClientRect();
+    const cardLeft = cardRect.left - gridRect.left;
+    const cardW    = cardRect.width;
+    return cardLeft - (parentW / 2 - cardW / 2);
   }
 
   function goTo(idx, animated){
     if(!isMobile()) return;
     current = Math.max(0, Math.min(idx, N - 1));
 
-    const offset = getOffset(current);
-    grid.style.transition = animated ? 'transform .4s cubic-bezier(.23,1,.32,1)' : 'none';
-    grid.style.transform  = `translateX(-${offset}px)`;
+    grid.style.transition = 'none';
+    grid.style.transform  = 'translateX(0)';
 
-    cards.forEach((c, i) => {
-      const isActive = i === current;
-      c.classList.toggle('pc-active', isActive);
-      // Solo opacity y scale — sin tocar position ni left
-      c.style.opacity   = isActive ? '1' : '0.45';
-      c.style.transform = isActive ? 'scale(1)' : 'scale(0.93)';
+    requestAnimationFrame(() => {
+      const offset = getOffset(current);
+      grid.style.transition = animated ? 'transform .4s cubic-bezier(.23,1,.32,1)' : 'none';
+      grid.style.transform  = `translateX(-${offset}px)`;
+
+      cards.forEach((c, i) => {
+        const isActive = i === current;
+        c.classList.toggle('pc-active', isActive);
+        c.style.opacity   = isActive ? '1' : '0.45';
+        c.style.transform = isActive ? 'scale(1)' : 'scale(0.93)';
+      });
+
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
     });
-
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
   function setupMobile(){
@@ -1208,13 +1214,19 @@ const pfProjects = {
     title: 'Marietic Beauty Studio',
     meta: 'Centro Estético · Catálogo de servicios con WhatsApp y redes sociales',
     url: 'https://www.marietic.com',
-    video: './videos/marietic.mp4'
+    video: './videos/1.mp4'
   },
   monstercarr: {
     title: 'MonsterCarr',
     meta: 'Taller Automotriz · Latonería y pintura con presencia digital profesional',
     url: 'https://monstercarr.netlify.app',
-    video: './videos/monstercarr.mp4'
+    video: './videos/2.mp4'
+  },
+  sofia: {
+    title: 'Sofia Isabella',
+    meta: 'Invitación 15 Años · Sitio web diseñado para celebrar una noche inolvidable',
+    url: '/proyectos/sofia-isabella/',
+    video: './videos/3.mp4'
   }
 };
 

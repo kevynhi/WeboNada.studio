@@ -1,13 +1,4 @@
-# robots.txt para webonada.studio
-# Permite a todos los buscadores rastrear todo el sitio
-# Incluye sitemap para mejorar indexación
-
 User-agent: *
-Disallow:
+Allow: /
 
-# Sitemap principal
-Sitemap: https://www.webonada.studio/sitemap.xml
-
-# Reglas específicas para videos (mejor rastreo en Google)
-User-agent: Googlebot-Video
-Disallow:
+Sitemap: https://webonada.studio/sitemap.xml
