@@ -1209,6 +1209,14 @@ document.querySelectorAll('.service-card').forEach(card=>{
   }, 200);
 })();
 
+
+document.querySelectorAll('.pf-preview-vid').forEach(function(vid){
+  vid.addEventListener('canplay', function(){
+    vid.classList.add('vid-ready');
+  });
+  if(vid.readyState >= 3) vid.classList.add('vid-ready');
+});
+
 const pfProjects = {
   marietic: {
     title: 'Marietic Beauty Studio',
