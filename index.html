@@ -6,9 +6,10 @@
 
 <!-- SEO Básico -->
 <title>WeboNada.Studio — Agencia de Desarrollo Web &amp; Software en Latinoamérica y España</title>
-<meta name="description" content="Agencia de desarrollo web y aplicaciones a medida para empresas y emprendedores en Latinoamérica y España. Diseño web moderno, código de alta calidad, landing pages de conversión y aplicaciones web personalizadas. Resultados reales desde el día uno.">
+<meta name="description" content="Agencia de desarrollo web y software a medida. Creamos páginas rápidas, modernas y enfocadas en conversión. ¿Tienes una web o una webonada?">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://webonada.studio/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <!-- Open Graph para redes sociales -->
 <meta property="og:type" content="website">
@@ -60,10 +61,9 @@
   ],
   "serviceType": ["Desarrollo Web", "Aplicaciones Web a Medida", "Landing Pages", "Rediseño Web", "Automatización"],
   "sameAs": [
-    "https://linkedin.com/company/webonada",
-    "https://x.com/webonada",
-    "https://instagram.com/webonada",
-    "https://github.com/webonada"
+    "https://www.tiktok.com/@webonada.studio",
+    "https://www.instagram.com/webonada.studio/",
+    "https://www.facebook.com/share/1CfZJgfmAe/"
   ],
   "contactPoint": {
     "@type": "ContactPoint",
@@ -96,7 +96,6 @@
 </head>
 <body>
 
-<!-- PRELOADER — se oculta al disparar window.load -->
 <div id="preloader" role="status" aria-label="Cargando WeboNada.Studio">
   <div class="pre-logo">
     Web<span class="pre-logo-o">o</span>Nada
@@ -106,13 +105,10 @@
   </div>
 </div>
 
-<!-- Skip link para accesibilidad por teclado -->
 <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-<!-- Canvas de partículas (decorativo) -->
 <canvas id="particle-canvas" aria-hidden="true" role="presentation"></canvas>
 
-<!-- Banner de cookies (GDPR/LGPD) -->
 <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
   <p>Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. Al continuar navegando, aceptas nuestra <a href="/privacidad">política de privacidad</a>.</p>
   <div class="cookie-actions">
@@ -121,9 +117,6 @@
   </div>
 </div>
 
-<!-- =============================================
-     NAV — CAMBIO 2: solo hamburger al lado del CTA
-     ============================================= -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
   <canvas id="logoParticles" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity .4s ease"></canvas>
   <a href="#" class="logo" aria-label="WeboNada.Studio" style="position:relative">
@@ -133,7 +126,6 @@
     <span class="logo-sub" style="position:relative;z-index:1">.Studio</span>
   </a>
 
-  <!-- CTA + hamburger juntos a la derecha -->
   <div class="nav-right">
     <button class="hamburger" id="hamburger"
       aria-label="Abrir menú de navegación"
@@ -146,11 +138,9 @@
   </div>
 </nav>
 
-<!-- FULLSCREEN DROPDOWN -->
 <div class="nav-dropdown" id="navDropdown" role="dialog" aria-label="Menú de navegación" aria-modal="true">
   <div class="nav-dropdown-bg"></div>
 
-  <!-- Links normales -->
   <div class="nav-dropdown-inner" id="navDropdownInner">
     <a href="#services">Servicios</a>
     <a href="#benefits">Beneficios</a>
@@ -170,7 +160,6 @@
     <button class="eg-trigger-nav" onclick="openNavEasterEgg()">¿No te gusta este diseño?</button>
   </div>
 
-  <!-- Panel easter egg DENTRO del menú (fade cruzado) -->
   <div id="navEasterPanel">
     <div class="eg-deco-line" style="margin:0 auto"></div>
     <p style="font-family:var(--font-display);font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;letter-spacing:-1px;line-height:1.15;color:var(--white)">
@@ -196,14 +185,11 @@
   </div>
 </div>
 
-<!-- Contenido principal -->
 <main id="main-content">
 
-<!-- WEB O NADA — SPLIT SCREEN FILOSOFÍA -->
 <section id="web-o-nada" aria-label="Nuestra filosofía">
   <div class="won-split">
 
-    <!-- Línea diagonal luminosa + texto partido (SVG) -->
     <svg id="wonDeskSVG" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:11;overflow:hidden" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="wonDeskDiagGrad" x1="0" y1="0" x2="1" y2="0">
@@ -235,14 +221,12 @@
         filter="url(#wonDeskDiagGlow)"/>
     </svg>
 
-    <!-- won-divider oculto (ya no se usa visualmente) -->
     <div class="won-divider" id="wonDivider" style="display:none"></div>
 
     <!-- Flash de unión (overlay central) -->
     <div class="won-union-flash" id="wonUnionFlash"></div>
 
-     <!-- LADO IZQUIERDO: WEB -->
-    <div class="won-half won-left" id="wonLeft">
+     <div class="won-half won-left" id="wonLeft">
       <div class="won-side-label" id="wonLeftLabel">La herramienta</div>
 
       <div class="won-left-big" id="wonLeftBig">WEB</div>
@@ -258,7 +242,6 @@
       <div class="won-left-tag">Eres el referente o no eres nada</div>
     </div>
 
-    <!-- LADO DERECHO: NADA -->
     <div class="won-half won-right" id="wonRight">
       <canvas class="won-noise-canvas" id="wonNoiseCanvas"></canvas>
 
@@ -277,7 +260,6 @@
     </div>
 
   </div>
-  <!-- MOBILE: split diagonal WEB arriba / NADA abajo -->
   <div class="won-mobile">
     <div class="won-mob-stage">
 
@@ -285,14 +267,14 @@
       <div class="won-mob-top">
         <p class="won-mob-h1">Diseño de páginas web profesionales</p>
         <div class="won-mob-word-web">WEB</div>
-        <div class="won-mob-label-web">— La herramienta</div>
+        <div class="won-mob-label-web">La herramienta</div>
         <div class="won-mob-sub-web">Rápida, elegante y efectiva por diseño. Cada milisegundo cuenta.</div>
       </div>
 
       <!-- NADA — mitad inferior -->
       <div class="won-mob-bot">
         <div class="won-mob-word-nada">NADA</div>
-        <div class="won-mob-label-nada">— El rechazo</div>
+        <div class="won-mob-label-nada">El rechazo</div>
         <div class="won-mob-sub-nada">O es excelente o no es nada. La mediocridad no tiene dirección IP.</div>
       </div>
 
@@ -334,9 +316,7 @@
 
 </section>
 
-<!-- SEPARADOR OVNI + ASTEROIDES -->
 <div class="ufo-separator" aria-hidden="true" id="ufoSeparator">
-  <!-- Estrellas fijas de fondo -->
   <div class="ufo-star" style="left:8%;top:28%;width:2px;height:2px;animation-delay:.3s"></div>
   <div class="ufo-star" style="left:22%;top:68%;width:1.5px;height:1.5px;animation-delay:.9s"></div>
   <div class="ufo-star" style="left:45%;top:20%;width:2px;height:2px;animation-delay:.5s"></div>
@@ -344,11 +324,8 @@
   <div class="ufo-star" style="left:80%;top:32%;width:2px;height:2px;animation-delay:.7s"></div>
   <div class="ufo-star" style="left:91%;top:60%;width:1.5px;height:1.5px;animation-delay:1.8s"></div>
 
-  <!-- Stats overlay — reveladas por la nave -->
   <div class="ufo-stats-overlay">
-    <!-- H1 SEO — revelado por la nave, centrado a la izquierda -->
     <h1 class="ufo-h1" id="ufoH1">Desarrollo de páginas web profesionales</h1>
-    <!-- Stats agrupados a la derecha -->
     <div class="ufo-stats-group">
       <div class="ufo-stat" id="ufoStat0">
         <span class="ufo-stat-num">20+</span>
@@ -365,8 +342,6 @@
     </div>
   </div>
 
-  <!-- Asteroides (JS los inserta dinámicamente) -->
-  <!-- OVNI -->
   <div class="ufo-ship" id="ufoShip">
     <div class="ufo-trail"></div>
     <svg width="80" height="52" viewBox="0 0 80 52" xmlns="http://www.w3.org/2000/svg">
@@ -389,7 +364,6 @@
   </div>
 </div>
 
-<!-- SERVICES -->
 <section id="services">
   <div class="services-header reveal">
     <div class="section-label">Lo que hacemos</div>
@@ -408,7 +382,6 @@
 
 <div class="divider"></div>
 
-<!-- BENEFITS -->
 <section id="benefits">
   <div class="benefits-layout">
     <div class="benefits-visual reveal">
@@ -440,7 +413,6 @@
 
 <div class="divider"></div>
 
-<!-- PROCESS -->
 <section id="process">
   <div class="process-header reveal">
     <div class="section-label">Cómo trabajamos</div>
@@ -459,7 +431,6 @@
 
 <div class="divider"></div>
 
-<!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="portfolio-header reveal">
     <div class="section-label">Nuestro trabajo</div>
@@ -469,7 +440,6 @@
 
   <div class="pf-grid">
 
-    <!-- Card 1: Marietic -->
     <div class="pf-card reveal" onclick="openPfModal('marietic')">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(61,155,255,.15))"></div>
@@ -487,7 +457,6 @@
       </div>
     </div>
 
-    <!-- Card 2: MonsterCarr -->
     <div class="pf-card reveal" style="transition-delay:.1s" onclick="openPfModal('monstercarr')">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(26,111,255,.25),rgba(0,212,255,.15))"></div>
@@ -505,7 +474,6 @@
       </div>
     </div>
 
-    <!-- Card 3: Placeholder -->
     <div class="pf-card reveal" style="transition-delay:.1s" onclick="openPfModal('monstercarr')">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(26,111,255,.25),rgba(0,212,255,.15))"></div>
@@ -522,7 +490,6 @@
         <a href="/proyectos/sofia-isabella/" target="_blank" rel="noopener noreferrer" class="pf-link" onclick="event.stopPropagation()">Visitar →</a>
       </div>
     </div>
-    <!-- Card 4: Placeholder -->
     <div class="pf-card reveal pf-coming" style="transition-delay:.3s">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(168,85,247,.12))"></div>
@@ -540,7 +507,6 @@
 
   </div>
 
-  <!-- MODAL -->
   <div class="pf-modal-bg" id="pfModalBg" onclick="closePfModal(event)">
     <div class="pf-modal" id="pfModal">
       <div class="pf-modal-bar"></div>
@@ -568,7 +534,6 @@
 
 <div class="divider"></div>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="testimonials-header reveal">
     <div class="section-label">Lo que dicen</div>
@@ -596,18 +561,15 @@
 
 <div class="divider"></div>
 
-<!-- PRICING + CTA — una sola sección -->
 <section id="pricing" aria-labelledby="pricing-title">
   <div class="cta-bg"></div>
 
-  <!-- Header Inversión -->
   <div class="pricing-header reveal">
     <div class="section-label">Inversión</div>
     <h2 class="section-title" id="pricing-title">Rangos de Inversión</h2>
     <p class="section-sub">Precios orientativos. Cada proyecto es único; solicita una propuesta personalizada gratuita.</p>
   </div>
 
-  <!-- Desktop: grid 3 columnas | Móvil: carrusel -->
   <div class="pricing-grid" id="pricingGrid">
     <div class="pricing-card" data-plan="0">
       <div style="display:flex;justify-content:space-between;align-items:center">
@@ -670,13 +632,12 @@
     </div>
   </div>
 
-  <!-- Dots carrusel — solo visibles en móvil -->
-  <div class="pricing-dots" id="pricingDots" aria-label="Seleccionar plan">
+    <div class="pricing-dots" id="pricingDots" aria-label="Seleccionar plan">
     <button class="pricing-dot" aria-label="Plan Esencial"></button>
     <button class="pricing-dot active" aria-label="Plan Profesional"></button>
     <button class="pricing-dot" aria-label="Plan A Medida"></button>
   </div>
-<div class="pricing-cta-bottom reveal">
+    <div class="pricing-cta-bottom reveal">
     <div class="cta-bg"></div>
     <div class="section-label" style="justify-content:center">¿Listo para empezar?</div>
     <h2 class="section-title">Tu proyecto merece una<br><span style="background:linear-gradient(135deg,var(--electric),var(--neon),var(--violet-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">solución extraordinaria</span></h2>
@@ -692,7 +653,6 @@
 
 
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-layout">
     <div class="contact-info reveal">
@@ -701,26 +661,19 @@
       <p class="section-sub" style="margin-bottom:2rem">Cuéntanos sobre tu proyecto y recibe una propuesta personalizada en 24 horas.</p>
       <div class="contact-detail">
         <div class="contact-icon">
-          <!-- Email SVG -->
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="#EA4335"/>
-            <path d="M20 4L12 13 4 4h16z" fill="#FBBC05"/>
-            <path d="M2 6l10 9 10-9" stroke="#fff" stroke-width="0" fill="none"/>
-            <path d="M4 4l8 9 8-9H4z" fill="#FBBC05"/>
-            <path d="M2 6v12l6-6L2 6z" fill="#34A853"/>
-            <path d="M22 6v12l-6-6 6-6z" fill="#4285F4"/>
-            <path d="M8 12l-6 6h16l-6-6-2 2-2-2z" fill="#EA4335"/>
+            <rect x="2" y="4" width="20" height="16" rx="2" fill="#EA4335"/>
+            <path d="M2 6l10 7 10-7" stroke="#fff" stroke-width="1.5" fill="none"/>
           </svg>
         </div>
         <div class="contact-detail-text">
           <span>Email</span>
-          <a href="/cdn-cgi/l/email-protection#fc95929a93bc8b999e93929d989dd28f8889989593"><span class="__cf_email__" data-cfemail="543d3a323b142331363b3a3530357a272021303d3b">[email&#160;protected]</span></a>
+          <a href="mailto:info@webonada.studio">info@webonada.studio</a>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-icon">
-          <!-- WhatsApp SVG -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.979-1.404A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="#25D366"/>
             <path d="M17.006 14.57c-.274-.137-1.617-.797-1.868-.888-.251-.09-.434-.137-.617.137-.183.274-.708.888-.868 1.071-.16.183-.32.206-.594.069-.274-.137-1.157-.426-2.204-1.36-.815-.727-1.365-1.625-1.525-1.899-.16-.274-.017-.423.12-.56.124-.122.274-.32.411-.48.137-.16.183-.274.274-.457.092-.183.046-.343-.023-.48-.069-.137-.617-1.486-.846-2.034-.222-.534-.449-.462-.617-.47-.16-.007-.343-.009-.526-.009-.183 0-.48.069-.731.343-.251.274-.96.938-.96 2.287 0 1.348.983 2.651 1.12 2.834.137.183 1.934 2.952 4.686 4.14.655.283 1.166.452 1.565.578.658.209 1.257.18 1.73.109.527-.079 1.617-.661 1.845-1.3.228-.638.228-1.185.16-1.3-.069-.114-.251-.183-.525-.32z" fill="#fff"/>
           </svg>
@@ -732,8 +685,7 @@
       </div>
       <div class="contact-detail">
         <div class="contact-icon">
-          <!-- Google Maps SVG -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
             <path d="M12 2C8.13 2 5 5.13 5 9c0 1.7.52 3.28 1.41 4.59L12 2z" fill="#4285F4"/>
             <path d="M12 2l-5.59 11.59C7.72 15.13 9.74 16 12 16s4.28-.87 5.59-2.41L12 2z" fill="#FBBC05"/>
@@ -742,13 +694,12 @@
         </div>
         <div class="contact-detail-text">
           <span>Ubicación</span>
-          <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Trabajo 100% remoto · Latinoamérica y España</a>
+          <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Trabajo 100% remoto</a>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-icon">
-          <!-- Reloj SVG -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="9" stroke="#3d9bff" stroke-width="2"/>
             <path d="M12 7v5l3 3" stroke="#3d9bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -844,7 +795,6 @@
         </div>
       </form>
 
-      <!-- ── Pantalla de confirmación de envío ── -->
       <div id="form-sent-screen" aria-live="polite" style="display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;gap:1.6rem;min-height:420px">
         <div id="fss-icon" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(26,111,255,.12));border:1.5px solid rgba(0,212,255,.35);display:flex;align-items:center;justify-content:center;position:relative;opacity:0;transform:scale(.6);transition:opacity .55s cubic-bezier(.34,1.56,.64,1),transform .55s cubic-bezier(.34,1.56,.64,1)">
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
@@ -864,15 +814,11 @@
           </button>
         </div>
       </div>
-      <!-- /pantalla confirmación -->
-
-    </div>
+      </div>
   </div>
 </section>
 
-</main><!-- /main -->
-
-<!-- FOOTER -->
+</main>
 <footer role="contentinfo">
   <div class="footer-top">
     <div class="footer-brand">
@@ -882,8 +828,7 @@
       </a>
       <p>Desarrollo web y software de alta calidad para empresas y emprendedores que quieren crecer en el mundo digital.</p>
       <div class="footer-socials">
-        <!-- INSTAGRAM — reemplaza TU_LINK_DE_INSTAGRAM con la URL de tu perfil -->
-        <a href="TU_LINK_DE_INSTAGRAM" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram de WeboNada Studio">
+        <a href="https://www.instagram.com/webonada.studio/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram de WeboNada Studio">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><radialGradient id="ig-grad" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs>
             <rect width="24" height="24" rx="5.5" fill="url(#ig-grad)"/>
@@ -891,8 +836,7 @@
             <circle cx="17.2" cy="6.8" r="1.1" fill="#fff"/>
           </svg>
         </a>
-        <!-- TIKTOK — reemplaza TU_LINK_DE_TIKTOK con la URL de tu perfil -->
-        <a href="TU_LINK_DE_TIKTOK" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok de WeboNada Studio">
+        <a href="https://www.tiktok.com/@webonada.studio" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok de WeboNada Studio">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="24" height="24" rx="5.5" fill="#010101"/>
             <path d="M16.5 5.5a3.5 3.5 0 003.5 3.5v2.5a6 6 0 01-3.5-1.12V15a5 5 0 11-5-5h.5v2.5H12a2.5 2.5 0 102.5 2.5V4.5h2v1z" fill="#fff"/>
@@ -900,8 +844,7 @@
             <path d="M11 15a2.5 2.5 0 102.5 2.5V4.5" stroke="#EE1D52" stroke-width="1.2" fill="none"/>
           </svg>
         </a>
-        <!-- FACEBOOK — reemplaza TU_LINK_DE_FACEBOOK con la URL de tu perfil -->
-        <a href="TU_LINK_DE_FACEBOOK" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook de WeboNada Studio">
+        <a href="https://www.facebook.com/share/1CfZJgfmAe/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook de WeboNada Studio">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="24" height="24" rx="5.5" fill="#1877F2"/>
             <path d="M16 8h-2a1 1 0 00-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 014-4h2v3z" fill="#fff"/>
@@ -911,19 +854,17 @@
     </div>
     <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#services">Páginas Web</a></li><li><a href="#services">Aplicaciones Web</a></li><li><a href="#services">Landing Pages</a></li><li><a href="#services">Rediseño Web</a></li><li><a href="#services">Automatización</a></li></ul></div>
     <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#portfolio">Portafolio</a></li><li><a href="#testimonials">Testimonios</a></li><li><a href="#process">Proceso</a></li><li><a href="#web-o-nada">Nuestra Filosofía</a></li><li><a href="#pricing">Precios</a></li></ul></div>
-    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/cdn-cgi/l/email-protection#a8c1c6cec7e8dfcdcac7c6c9ccc986dbdcddccc1c7"><span class="__cf_email__" data-cfemail="751c1b131a350210171a1b1411145b060100111c1a">[email&#160;protected]</span></a></li><li><a href="#" onclick="return openCalendly()">Agendar llamada</a></li><li><a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="#contact">Solicitar cotización</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="mailto:info@webonada.studio">info@webonada.studio</a></li><li><a href="#" onclick="return openCalendly()">Agendar llamada</a></li><li><a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="#contact">Solicitar cotización</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 WeboNada.Studio Todos los derechos reservados. · <a href="/privacidad" style="color:inherit;text-decoration:underline">Política de Privacidad</a> · <a href="/cookies" style="color:inherit;text-decoration:underline">Cookies</a></p>
     <button class="eg-trigger" id="easterTriggerFooter" onclick="openEasterEgg()">¿No te gusta este diseño?</button>
-    <p>Hecho con ❤️ para hacer crecer negocios</p>
   </div>
 </footer>
 
 <a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer" class="float-cta" id="floatCta" onclick="trackCTA && trackCTA('float-cotizacion')"><span class="float-dot"></span>Cotización Gratis</a>
 
 <script src="js/main.js" defer></script>
-<!-- EASTER EGG — fullscreen -->
 <div id="easterEgg" role="dialog" aria-modal="true" aria-label="Easter egg">
   <div class="eg-deco-line"></div>
   <h2 class="eg-main-title">
@@ -949,7 +890,6 @@
 </div>
 
 
-<!-- Envelope send animation overlay -->
 <div id="sendEnvelope">
   <div class="env-mailbox" id="envMailbox">
     <div class="env-mailbox-body">
@@ -974,5 +914,12 @@
 </div>
 
 <script src="js/logo-o.js" defer></script>
+<script>
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
 </body>
 </html>

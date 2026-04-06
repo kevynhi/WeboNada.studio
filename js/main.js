@@ -1,18 +1,14 @@
-/* =============================================
-   CONFIGURACIÓN GLOBAL
-   ============================================= */
+
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+// Forzar scroll al top antes de que cualquier otra cosa corra
+window.scrollTo(0, 0);
+
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* =============================================
-   PRELOADER + ANIMACIONES DE ENTRADA
-   Flujo único y lineal:
-   1. Bloquear animaciones del hero al inicio
-   2. Esperar a que document.fonts.ready se resuelva
-   3a. Si tardó <500ms → quitar preloader sin mostrarlo → arrancar anims
-   3b. Si tardó ≥500ms → mostrar preloader → esperar al menos 700ms
-       → fade out preloader (550ms) → arrancar anims
-   Las animaciones NUNCA arrancan antes de este flujo.
-   ============================================= */
+
 (function(){
   const pre   = document.getElementById('preloader');
   const split = document.querySelector('.won-split');
@@ -25,11 +21,15 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
       if(mob)   mob.classList.add('won-anim-done');
       return;
     }
+    // En móvil garantizamos al menos 120ms para que el navegador
+    // haya pintado el primer frame y las transiciones clip-path sean visibles.
+    // En desktop 20ms es suficiente porque el GPU ya tiene el layout listo.
+    const minDelay = window.innerWidth <= 768 ? 120 : 20;
     requestAnimationFrame(() => {
       setTimeout(() => {
         if(split) split.classList.add('won-anim-done');
         if(mob)   mob.classList.add('won-anim-done');
-      }, 20);
+      }, minDelay);
     });
   }
 
@@ -88,10 +88,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
   setTimeout(onFontsReady, 5000);
 })();
 
-/* =============================================
-   CALENDLY — abre popup de forma segura
-   Si el script async aún no cargó, abre en nueva pestaña
-   ============================================= */
+
 function openCalendly(){
   // Cargar CSS de Calendly solo la primera vez que se necesita
   if(!document.getElementById('calendly-css')){
@@ -109,12 +106,7 @@ function openCalendly(){
   return false;
 }
 
-/* =============================================
-   REAL-VH — fallback para iOS 14/15 y browsers
-   que no soportan svh. Se usa visualViewport
-   para NO reaccionar al resize de la barra de
-   dirección del browser (evita saltos de layout)
-   ============================================= */
+
 (function(){
   if(window.innerWidth > 768) return;
   try{ if(CSS.supports('height','1svh')) return; }catch(e){}
@@ -125,23 +117,19 @@ function openCalendly(){
     );
   }
   setRealVh();
-  /* visualViewport no dispara en resize por barra de dirección */
+
   if(window.visualViewport){
     window.visualViewport.addEventListener('resize', setRealVh, {passive:true});
   }
   window.addEventListener('orientationchange', ()=>setTimeout(setRealVh,200), {passive:true});
 })();
 
-/* =============================================
-   NAV SCROLL + FLOAT CTA
-   ============================================= */window.addEventListener('scroll',()=>{
+window.addEventListener('scroll',()=>{
   document.getElementById('navbar').classList.toggle('scrolled',scrollY>50);
   document.getElementById('floatCta').classList.toggle('show',scrollY>400);
 },{passive:true});
 
-/* =============================================
-   HAMBURGER — accesible con aria-expanded
-   ============================================= */
+
 const hamburger=document.getElementById('hamburger');
 const navDropdown=document.getElementById('navDropdown');
 const navDropdownInner=document.getElementById('navDropdownInner');
@@ -199,26 +187,25 @@ navDropdown.addEventListener('keydown', e => {
   }
 });
 
-/* =============================================
-   REVEAL CON INTERSECTION OBSERVER
-   ============================================= */
+
 function checkReveal(){
   document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
     const rect = el.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 40){
+    if(rect.top < window.innerHeight + 10){
       el.classList.add('visible');
     }
   });
 }
+const isMobileReveal = window.innerWidth <= 768;
 const rvIO=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('visible');rvIO.unobserve(e.target);}
-}),{threshold:0,rootMargin:'0px 0px -40px 0px'});
+}),{threshold:0, rootMargin: isMobileReveal ? '0px 0px 0px 0px' : '0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>rvIO.observe(el));
-window.addEventListener('load',checkReveal);
+// Doble rAF garantiza que el layout ya pintó antes de medir posiciones
+requestAnimationFrame(()=>requestAnimationFrame(()=>checkReveal()));
+window.addEventListener('load', ()=>requestAnimationFrame(()=>checkReveal()));
 
-/* =============================================
-   FORMULARIO — con integración real (Formspree)
-   ============================================= */
+
 /* ── Phone digit rules per country code ── */
 const PHONE_RULES = {
   '+1':   {min:10,max:10, label:'10 dígitos'},
@@ -371,25 +358,25 @@ function showPaperShatter(formData, onDone) {
   const mailboxEl  = document.getElementById('envMailbox');
   const envScene   = document.getElementById('envScene');
 
-  /* Show mailbox */
+
   envOverlay.style.display = 'block';
   envScene.style.opacity   = '0';
   mailboxEl.style.opacity  = '0';
   mailboxEl.style.transition = 'opacity .35s ease';
   setTimeout(() => { mailboxEl.style.opacity = '1'; }, 350);
 
-  /* Full-viewport canvas */
+
   const tc = document.createElement('canvas');
   tc.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9998';
   tc.width = window.innerWidth; tc.height = window.innerHeight;
   document.body.appendChild(tc);
   const ctx = tc.getContext('2d');
 
-  /* Fade form fields */
+
   const fields = form.querySelectorAll('.form-group,.form-row,button[type=submit],#form-success,#form-error');
   fields.forEach(f => { f.style.transition = 'opacity .28s ease'; f.style.opacity = '0'; });
 
-  /* ── Generate shards from form bounding box ── */
+
   const COLS = [
     'rgba(0,212,255,',    // cyan
     'rgba(26,111,255,',   // blue
@@ -426,7 +413,7 @@ function showPaperShatter(formData, onDone) {
     ctx.translate(s.x, s.y);
     ctx.rotate(s.rot);
 
-    /* Main triangle */
+  
     ctx.beginPath();
     ctx.moveTo(0, -s.sz * .6);
     ctx.lineTo( s.sz * .5,  s.sz * .4);
@@ -438,7 +425,7 @@ function showPaperShatter(formData, onDone) {
     ctx.fill();
     ctx.stroke();
 
-    /* Inner bright edge — holographic glint */
+  
     ctx.beginPath();
     ctx.moveTo(0, -s.sz * .6);
     ctx.lineTo(s.sz * .5, s.sz * .4);
@@ -446,7 +433,7 @@ function showPaperShatter(formData, onDone) {
     ctx.lineWidth   = .4;
     ctx.stroke();
 
-    /* Center dot */
+  
     ctx.beginPath();
     ctx.arc(0, 0, s.sz * .1, 0, Math.PI * 2);
     ctx.fillStyle = s.col + (s.a * .8) + ')';
@@ -472,7 +459,7 @@ function showPaperShatter(formData, onDone) {
       sh.t = progress;
 
       if(local < SCATTER_DUR){
-        /* Phase 1 — scatter outward with random velocity */
+      
         const p = local / SCATTER_DUR;
         sh.a = Math.min(p * 3, 1);
         sh.x += sh.vx * (1 - p * .6);
@@ -480,7 +467,7 @@ function showPaperShatter(formData, onDone) {
         sh.rot += sh.vrot;
         allDone = false;
       } else {
-        /* Phase 2 — converge to mailbox */
+      
         const convLocal = local - SCATTER_DUR;
         const p = Math.min(convLocal / CONVERGE_DUR, 1);
         const ep = easeOut(p);
@@ -495,7 +482,7 @@ function showPaperShatter(formData, onDone) {
       if(sh.a > .01) drawShard(sh);
     });
 
-    /* Convergence pulse rings at mailbox */
+  
     if(el > SCATTER_DUR){
       const p = Math.min((el - SCATTER_DUR) / CONVERGE_DUR, 1);
       if(p > .6){
@@ -516,13 +503,13 @@ function showPaperShatter(formData, onDone) {
   requestAnimationFrame(frame);
 
   function onArrival(){
-    /* Flash mailbox */
+  
     const mbBody = mailboxEl.querySelector('.env-mailbox-body');
     mbBody.style.transition = 'box-shadow .15s ease';
     mbBody.style.boxShadow  = '0 0 0 3px rgba(0,212,255,.9),0 0 50px rgba(0,212,255,.8),0 0 100px rgba(26,111,255,.5)';
     setTimeout(() => { mbBody.style.boxShadow = ''; }, 700);
 
-    /* Spark burst */
+  
     for(let i = 0; i < 26; i++){
       const angle = Math.random() * Math.PI * 2;
       const dist  = Math.random() * 60 + 14;
@@ -538,14 +525,14 @@ function showPaperShatter(formData, onDone) {
       setTimeout(() => sp.parentNode && sp.parentNode.removeChild(sp), 800);
     }
 
-    /* Cleanup — hide form, reveal success screen */
+  
     setTimeout(() => {
       ctx.clearRect(0, 0, tc.width, tc.height);
       if(tc.parentNode) tc.parentNode.removeChild(tc);
       envOverlay.style.display = 'none';
       mailboxEl.style.opacity  = '0';
       mailboxEl.style.transition = '';
-      /* Keep fields hidden; hide whole form, show sent screen */
+    
       form.style.display = 'none';
       onDone && onDone();
     }, 750);
@@ -662,9 +649,7 @@ async function submitForm(e){
   }
 }
 
-/* =============================================
-   TIMELINE DE PROCESO
-   ============================================= */
+
 (function(){
   const timeline  = document.getElementById('procTimeline');
   const spineFill = document.getElementById('spineFill');
@@ -683,7 +668,7 @@ async function submitForm(e){
   // Pausa entre que el nodo se prende y empieza la línea hacia el siguiente (ms)
   const STEP_PAUSE = 300;
 
-  /* ── Posiciona la línea entre la primera y última burbuja ── */
+
   function positionSpine(){
     const r1 = steps[0].querySelector('.proc-bubble').getBoundingClientRect();
     const rN = steps[N-1].querySelector('.proc-bubble').getBoundingClientRect();
@@ -707,13 +692,13 @@ async function submitForm(e){
     }
   }
 
-  /* ── % de fill cuando la línea está en el nodo i ── */
+
   function targetPct(i){
     if(N <= 1) return 100;
     return (i / (N - 1)) * 100;
   }
 
-  /* ── Anima fill de currentFill → to en dur ms, llama onDone al terminar ── */
+
   function animFill(to, dur, onDone){
     const isMob = window.innerWidth <= 768;
     const from  = currentFill;
@@ -730,7 +715,7 @@ async function submitForm(e){
     })(t0);
   }
 
-  /* ── Secuencia encadenada: línea llega → nodo se prende → siguiente ── */
+
   function runSequence(i){
     if(i >= N) return;
 
@@ -752,7 +737,7 @@ async function submitForm(e){
     });
   }
 
-  /* ── Reset fill ── */
+
   function resetFill(){
     const isMob = window.innerWidth <= 768;
     spineFill.style.width  = isMob ? '2px' : '0%';
@@ -762,7 +747,7 @@ async function submitForm(e){
 
   window.addEventListener('resize', positionSpine, {passive:true});
 
-  /* ── Arranca cuando la sección entra en vista ── */
+
   const obs = new IntersectionObserver(entries=>{
     if(entries[0].isIntersecting && !started){
       started = true;
@@ -785,9 +770,7 @@ async function submitForm(e){
   obs.observe(timeline);
 })();
 
-/* =============================================
-   PARTÍCULAS — esfera eliminada, más partículas
-   ============================================= */
+
 (function(){
   if(prefersReducedMotion) return;
 
@@ -892,12 +875,6 @@ async function submitForm(e){
 
 /* scroll glow eliminado */
 
-/* =============================================
-   CONTADOR ANIMADO
-   ============================================= */
-/* =============================================
-   CONTADOR ANIMADO — todos terminan al mismo tiempo
-   ============================================= */
 const counterObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting) return;
@@ -920,9 +897,7 @@ const counterObs=new IntersectionObserver(entries=>{
 },{threshold:0.5});
 document.querySelectorAll('[data-counter]').forEach(el => counterObs.observe(el));
 
-/* =============================================
-   SERVICE CARDS — spotlight effect
-   ============================================= */
+
 document.querySelectorAll('.service-card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
@@ -931,9 +906,7 @@ document.querySelectorAll('.service-card').forEach(card=>{
   });
 });
 
-/* =============================================
-   TESTIMONIALS CAROUSEL
-   ============================================= */
+
 (function(){
   const track=document.getElementById('testimonialsTrack');
   if(!track) return;
@@ -1017,97 +990,126 @@ document.querySelectorAll('.service-card').forEach(card=>{
   update(false);
 })();
 
-
-/* =============================================
-   PRICING CAROUSEL — solo en móvil
-   ============================================= */
 (function(){
   const grid = document.getElementById('pricingGrid');
   const dots = document.querySelectorAll('.pricing-dot');
   if(!grid) return;
 
   const cards = Array.from(grid.querySelectorAll('.pricing-card'));
+  const N = cards.length;
   let current = 1; // arranca en "Profesional"
-  let startX = 0, dragging = false;
+  let startX = 0, startY = 0, dragging = false;
 
   function isMobile(){ return window.innerWidth <= 768; }
 
-  function activate(idx){
-    if(!isMobile()) return;
-    current = Math.max(0, Math.min(idx, cards.length - 1));
-    cards.forEach((c, i) => c.classList.toggle('pc-active', i === current));
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  // Calcula el offset px para centrar la tarjeta `idx`
+  function getOffset(idx){
+    const gridW  = grid.parentElement ? grid.parentElement.offsetWidth : window.innerWidth;
+    const cardW  = grid.offsetWidth / N;   // cada card ocupa 1/N del track
+    // Queremos centrar la tarjeta idx en el viewport
+    const center = gridW / 2;
+    const cardCenter = cardW * idx + cardW / 2;
+    return cardCenter - center;
+  }
 
-    // Desplazar sin overflow scroll — usamos translateX en cada card
-    const offset = current * 100;
+  function goTo(idx, animated){
+    if(!isMobile()) return;
+    current = Math.max(0, Math.min(idx, N - 1));
+
+    const offset = getOffset(current);
+    grid.style.transition = animated ? 'transform .4s cubic-bezier(.23,1,.32,1)' : 'none';
+    grid.style.transform  = `translateX(-${offset}px)`;
+
     cards.forEach((c, i) => {
-      const diff = i - current;
-      c.style.transform = diff === 0
-        ? 'scale(1) translateX(0)'
-        : `scale(.93) translateX(${diff * 105}%)`;
-      c.style.opacity = diff === 0 ? '1' : '0.45';
-      c.style.position = diff === 0 ? 'relative' : 'absolute';
-      c.style.top = diff === 0 ? '' : '0';
-      c.style.left = diff === 0 ? '' : '50%';
-      c.style.marginLeft = diff === 0 ? '' : '-44%';
-      c.style.zIndex = diff === 0 ? '2' : '1';
-      c.style.pointerEvents = diff === 0 ? '' : 'none';
+      const isActive = i === current;
+      c.classList.toggle('pc-active', isActive);
+      // Solo opacity y scale — sin tocar position ni left
+      c.style.opacity   = isActive ? '1' : '0.45';
+      c.style.transform = isActive ? 'scale(1)' : 'scale(0.93)';
     });
+
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
   function setupMobile(){
     if(!isMobile()) return;
-    grid.style.position = 'relative';
-    grid.style.minHeight = cards[0].offsetHeight + 'px';
-    activate(current);
+    // El grid es flex-row con las tarjetas en línea
+    // Cada tarjeta ocupa ~88% del container — el track es N*88% aprox
+    grid.style.display        = 'flex';
+    grid.style.flexWrap       = 'nowrap';
+    grid.style.gap            = '0';
+    grid.style.overflow       = 'visible';  // visible para que se vean las laterales
+    grid.style.width          = (N * 88) + 'vw'; // ancho total del track
+    grid.style.maxWidth       = 'none';
+    grid.style.margin         = '0';
+    grid.style.willChange     = 'transform';
+    // Contenedor padre: overflow hidden para ocultar lo que sale
+    const parent = grid.parentElement;
+    if(parent){
+      parent.style.overflow   = 'hidden';
+      parent.style.position   = parent.style.position || 'relative';
+    }
+    cards.forEach(c => {
+      c.style.flex      = `0 0 82vw`;
+      c.style.maxWidth  = '82vw';
+      c.style.margin    = '0 3vw';
+      c.style.position  = '';
+      c.style.left      = '';
+      c.style.top       = '';
+    });
+    requestAnimationFrame(()=>requestAnimationFrame(()=> goTo(current, false)));
   }
 
   function resetDesktop(){
-    cards.forEach(c => {
-      c.style.transform = '';
-      c.style.opacity = '';
-      c.style.position = '';
-      c.style.top = '';
-      c.style.left = '';
-      c.style.marginLeft = '';
-      c.style.zIndex = '';
-      c.style.pointerEvents = '';
-    });
-    grid.style.position = '';
-    grid.style.minHeight = '';
+    grid.style.cssText = '';
+    const parent = grid.parentElement;
+    if(parent){ parent.style.overflow = ''; }
+    cards.forEach(c => { c.style.cssText = ''; });
   }
 
   // Dots
-  dots.forEach((d, i) => d.addEventListener('click', () => activate(i)));
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i, true)));
 
-  // Touch swipe
-  grid.addEventListener('touchstart', e => { startX = e.touches[0].clientX; dragging = true; }, {passive:true});
-  grid.addEventListener('touchend', e => {
-    if(!dragging) return;
+  // Touch swipe — escuchar en el PADRE (overflow:hidden) para no perder eventos
+  const swipeTarget = grid.parentElement || grid;
+  swipeTarget.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    dragging = true;
+  }, {passive:true});
+  swipeTarget.addEventListener('touchend', e => {
+    if(!dragging || !isMobile()) return;
     const dx = e.changedTouches[0].clientX - startX;
-    if(dx < -40) activate(current + 1);
-    else if(dx > 40) activate(current - 1);
+    const dy = Math.abs(e.changedTouches[0].clientY - startY);
+    // Solo swipe horizontal (ignora scroll vertical)
+    if(Math.abs(dx) > 40 && Math.abs(dx) > dy){
+      if(dx < 0) goTo(current + 1, true);
+      else        goTo(current - 1, true);
+    }
     dragging = false;
   }, {passive:true});
 
   // Resize
   let lastMob = isMobile();
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    const mob = isMobile();
-    if(mob !== lastMob){
-      lastMob = mob;
-      mob ? setupMobile() : resetDesktop();
-    }
-    if(mob) { grid.style.minHeight = cards[current].offsetHeight + 'px'; }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const mob = isMobile();
+      if(mob !== lastMob){
+        lastMob = mob;
+        mob ? setupMobile() : resetDesktop();
+      } else if(mob){
+        goTo(current, false); // recalcular offset si cambió ancho sin cambiar breakpoint
+      }
+    }, 100);
   }, {passive:true});
 
   // Init
   if(isMobile()) setupMobile();
 })();
 
-/* =============================================
-   LOGO PARTICLES — activas solo con nav.scrolled
-   ============================================= */
+
 (function(){
   const c   = document.getElementById('logoParticles');
   const nav = document.getElementById('navbar');
@@ -1201,13 +1203,6 @@ document.querySelectorAll('.service-card').forEach(card=>{
   }, 200);
 })();
 
-/* =============================================
-   FILOSOFÍA SPLIT SCREEN — animaciones eliminadas
-   ============================================= */
-
-/* =============================================
-   PORTFOLIO MODAL
-   ============================================= */
 const pfProjects = {
   marietic: {
     title: 'Marietic Beauty Studio',
@@ -1249,9 +1244,7 @@ function closePfModal(e){
 }
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePfModal(); });
 
-/* =============================================
-   OVNI + ASTEROIDES BIDIRECCIONALES
-   ============================================= */
+
 (function(){
   if(prefersReducedMotion) return;
   const sep = document.getElementById('ufoSeparator');
@@ -1294,9 +1287,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePfModal(); }
   });
 })();
 
-/* =============================================
-   STATS REVEAL — nave espacial revela stats + h1 letra por letra
-   ============================================= */
+
 (function(){
   if(prefersReducedMotion) return;
 
@@ -1439,10 +1430,6 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePfModal(); }
   });
 })();
 
-/* =============================================
-   EASTER EGG — open / close
-   ============================================= */
-
 /* Hero y footer — abre el fullscreen global */
 function openEasterEgg(){
   const eg = document.getElementById('easterEgg');
@@ -1508,9 +1495,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* =============================================
-   COOKIE BANNER (GDPR/LGPD)
-   ============================================= */
+
 (function(){
   const banner=document.getElementById('cookie-banner');
   if(!banner) return;
@@ -1526,9 +1511,7 @@ document.addEventListener('keydown', e => {
   });
 })();
 
-/* =============================================
-   DETECCIÓN AUTOMÁTICA DE PAÍS — campo teléfono
-   ============================================= */
+
 (function(){
   const sel = document.getElementById('contact-phone-code');
   if(!sel) return;
