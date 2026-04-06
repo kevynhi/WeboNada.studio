@@ -507,16 +507,47 @@
 
   </div>
 
-  <div class="pf-modal-bg" id="pfModalBg" onclick="closePfModal(event)">
+  <div class="pf-modal-bg" id="pfModalBg">
     <div class="pf-modal" id="pfModal">
       <div class="pf-modal-bar"></div>
-      <div class="pf-modal-screen">
-        <video id="pfVideo" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:none"></video>
+
+      <div class="pf-modal-screen" id="pfModalScreen">
+        <video id="pfVideo" playsinline style="width:100%;height:100%;object-fit:cover;display:none"></video>
+
         <div class="pf-modal-ph" id="pfModalPh">
           <div class="pf-modal-ring">▶</div>
-          <span class="pf-modal-hint" id="pfModalHint">Agrega el video del proyecto</span>
+          <span class="pf-modal-hint" id="pfModalHint">Video no disponible</span>
+        </div>
+
+        <div class="pf-vid-controls" id="pfVidControls">
+          <div class="pf-vid-progress-wrap" id="pfProgressWrap">
+            <div class="pf-vid-progress-bg">
+              <div class="pf-vid-progress-fill" id="pfProgressFill"></div>
+              <div class="pf-vid-progress-thumb" id="pfProgressThumb"></div>
+            </div>
+          </div>
+          <div class="pf-vid-bar">
+            <div class="pf-vid-bar-left">
+              <button class="pf-vid-btn" id="pfPlayBtn" aria-label="Play/Pause">
+                <svg id="pfIconPlay" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3.5l10 5.5-10 5.5V3.5z" fill="currentColor"/></svg>
+                <svg id="pfIconPause" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none"><rect x="4" y="3" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="10.5" y="3" width="3.5" height="12" rx="1" fill="currentColor"/></svg>
+              </button>
+              <button class="pf-vid-btn" id="pfMuteBtn" aria-label="Silenciar">
+                <svg id="pfIconVol" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 7h3l4-4v12l-4-4H3V7z" fill="currentColor"/><path d="M13 6a4 4 0 010 6M15 4a7 7 0 010 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg id="pfIconMute" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none"><path d="M3 7h3l4-4v12l-4-4H3V7z" fill="currentColor"/><path d="M13 8l3 3m0-3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <div class="pf-vid-time" id="pfVidTime">0:00 / 0:00</div>
+            </div>
+            <div class="pf-vid-bar-right">
+              <button class="pf-vid-btn" id="pfFullBtn" aria-label="Pantalla completa">
+                <svg id="pfIconFull" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 7V3h4M15 7V3h-4M3 11v4h4M15 11v4h-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg id="pfIconExit" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none"><path d="M7 3v4H3M11 3v4h4M7 15v-4H3M11 15v-4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="pf-modal-foot">
         <div>
           <div class="pf-modal-title" id="pfModalTitle">Proyecto</div>
@@ -524,7 +555,7 @@
         </div>
         <div style="display:flex;gap:.6rem;align-items:center">
           <a id="pfModalLink" href="#" target="_blank" rel="noopener noreferrer" class="pf-modal-visit" onclick="event.stopPropagation()">Visitar sitio →</a>
-          <button class="pf-modal-close" onclick="closePfModal()">✕</button>
+          <button class="pf-modal-close" id="pfModalCloseBtn" aria-label="Cerrar">✕</button>
         </div>
       </div>
     </div>
