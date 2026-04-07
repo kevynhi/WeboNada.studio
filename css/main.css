@@ -1022,9 +1022,9 @@ padding-left:9%;
 .pf-link{font-size:.75rem;color:var(--electric);font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:color .3s}
 .pf-link:hover{color:var(--neon)}
 
-.pf-modal-bg{position:fixed;inset:0;background:rgba(5,13,26,.94);backdrop-filter:blur(18px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
+.pf-modal-bg{position:fixed;inset:0;background:rgba(5,13,26,.94);backdrop-filter:blur(18px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;will-change:opacity}
 .pf-modal-bg.open{opacity:1;pointer-events:auto}
-.pf-modal{background:#0a1628;border-radius:22px;border:1px solid rgba(61,155,255,.2);width:min(820px,94%);overflow:hidden;transform:scale(.93) translateY(20px);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.pf-modal{background:#0a1628;border-radius:22px;border:1px solid rgba(61,155,255,.2);width:min(820px,94%);overflow:hidden;transform:scale(.93) translateY(20px);transition:transform .4s cubic-bezier(.34,1.56,.64,1);will-change:transform}
 .pf-modal-bg.open .pf-modal{transform:scale(1) translateY(0)}
 .pf-modal-bar{height:2px;background:linear-gradient(90deg,var(--blue),var(--neon),var(--violet-light))}
 .pf-modal-screen{width:100%;aspect-ratio:16/9;background:#000;position:relative;overflow:hidden;cursor:pointer}

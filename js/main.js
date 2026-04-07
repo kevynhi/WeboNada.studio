@@ -1211,10 +1211,17 @@ document.querySelectorAll('.service-card').forEach(card=>{
 
 
 document.querySelectorAll('.pf-preview-vid').forEach(function(vid){
+  const PREVIEW_END = 2;
   vid.addEventListener('canplay', function(){
     vid.classList.add('vid-ready');
   });
   if(vid.readyState >= 3) vid.classList.add('vid-ready');
+  vid.addEventListener('timeupdate', function(){
+    if(vid.currentTime >= PREVIEW_END){
+      vid.currentTime = 0;
+      vid.play().catch(function(){});
+    }
+  });
 });
 
 const pfProjects = {
@@ -1413,14 +1420,20 @@ const pfProjects = {
     sep.appendChild(a);
   }
 
-  // Pausar cuando la pestaña está oculta
-  const ship = document.getElementById('ufoShip');
+  const allAnimEls = () => sep.querySelectorAll('.ufo-ast, .ufo-ship, .ufo-light, .ufo-star');
+
   document.addEventListener('visibilitychange', () => {
     const state = document.hidden ? 'paused' : 'running';
-    sep.querySelectorAll('.ufo-ast, .ufo-ship, .ufo-light, .ufo-star').forEach(el => {
-      el.style.animationPlayState = state;
-    });
+    allAnimEls().forEach(el => { el.style.animationPlayState = state; });
   });
+
+  let sepVisible = false;
+  const sepObs = new IntersectionObserver(entries => {
+    sepVisible = entries[0].isIntersecting;
+    const state = sepVisible ? 'running' : 'paused';
+    allAnimEls().forEach(el => { el.style.animationPlayState = state; });
+  }, { rootMargin: '100px' });
+  sepObs.observe(sep);
 })();
 
 
