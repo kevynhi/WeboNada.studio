@@ -5,26 +5,466 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sofía Isabella · XV Años</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&family=Cinzel:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="stile.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a96e;--gold-l:#ecdeb4;--gold-d:#7a5a18;
+  --rose:#6b1535;--blush:#f4c2d0;--ivory:#fdf6ee;
+  --deep:#04010a;--champ:#f7e7ce;
+}
+
+html,body{width:100%;height:100%;overflow:hidden;
+  background:var(--deep);font-family:'Cormorant Garamond',serif;
+  color:var(--ivory);cursor:none}
+
+/* ─── CURSOR ─── */
+.cur{position:fixed;width:26px;height:26px;
+  border:1.5px solid rgba(201,169,110,.75);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .18s,height .18s,border-color .3s;mix-blend-mode:screen}
+.cur2{position:fixed;width:5px;height:5px;background:var(--gold);
+  border-radius:50%;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);transition:transform .06s}
+
+/* ─── CANVAS ─── */
+#bgCanvas{position:fixed;inset:0;pointer-events:none;z-index:1}
+
+/* ════════════════════════════════════════
+   PERSISTENT PHOTO BACKGROUND
+════════════════════════════════════════ */
+#photoBg{
+  position:fixed;
+  inset:0;
+  z-index:2;
+  background:var(--deep);
+  display:flex;
+  justify-content:center;
+  align-items:flex-end; /* la baja un poco como modelo */
+  opacity:0;
+  transition:none;
+  will-change:transform,opacity,filter;
+}
+
+
+/* IMAGEN PRINCIPAL CORREGIDA */
+.main-photo{
+  height:100%;
+  width:100%;
+  object-fit:cover;
+  transform:translateX(0);
+  transform: translateY(4%);
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.264));
+}
+
+/* Placeholder gradient when no image */
+#photoBg .ph-grad{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 40% 50%,rgba(120,60,80,.55) 0%,transparent 65%),
+    radial-gradient(ellipse 80% 80% at 60% 50%,rgba(30,8,20,.9) 0%,transparent 70%),
+    linear-gradient(135deg,#1a0510 0%,#0d0208 40%,#180a14 100%);
+}
+#photoBg .ph-silhouette{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+}
+#photoBg .ph-silhouette svg{opacity:.18}
+
+/* Photo overlay — subtle darkening only */
+#photoOverlay{
+  position:fixed;inset:0;z-index:3;
+  background:rgba(4,1,10,0);
+  transition:background 1.6s ease;
+  pointer-events:none;
+}
+
+/* Vignette always on top of photo */
+#vignette{
+  position:fixed;inset:0;z-index:4;pointer-events:none;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 30%,rgba(4,1,10,.72) 100%);
+  opacity:0;transition:opacity 1.5s ease;
+}
+
+/* ════════════════════════════════════════
+   DOORS — z-index above photo
+════════════════════════════════════════ */
+#doorsStage{
+  position:fixed;inset:0;z-index:10;
+  perspective:1800px;perspective-origin:50% 48%;
+  pointer-events:none;
+}
+#doorsStage.active{pointer-events:all}
+
+.door{
+  position:absolute;top:0;height:100%;width:50%;
+  transform-style:preserve-3d;backface-visibility:hidden;
+  will-change:transform;
+  transition:transform 3.2s cubic-bezier(.77,0,.13,1),box-shadow 3.2s ease;
+}
+.door-l{
+  left:0;transform-origin:0% 50%;transform:rotateY(0deg);
+  border-right:1px solid rgba(201,169,110,.5);
+  box-shadow:inset -40px 0 80px rgba(0,0,0,.5);
+}
+.door-r{
+  right:0;transform-origin:100% 50%;transform:rotateY(0deg);
+  border-left:1px solid rgba(201,169,110,.5);
+  box-shadow:inset 40px 0 80px rgba(0,0,0,.5);
+}
+#doorsStage.open .door-l{transform:rotateY(-92deg)}
+#doorsStage.open .door-r{transform:rotateY(92deg)}
+
+.door-face{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,#1e0c08 0%,#120504 35%,#0e0303 65%,#1c0907 100%);
+}
+/* Wood grain texture */
+.door-grain{
+  position:absolute;inset:0;opacity:.06;
+  background:repeating-linear-gradient(
+    88deg,
+    transparent 0,transparent 2px,
+    rgba(180,120,60,.3) 2px,rgba(180,120,60,.3) 3px
+  );
+}
+.door-sheen{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.04) 50%,rgba(255,255,255,0) 100%);
+  animation:sheen 6s ease-in-out infinite;
+}
+@keyframes sheen{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* Molding frames */
+.mol{position:absolute;border:1px solid rgba(201,169,110,.25);pointer-events:none}
+.mol1{top:1.4rem;bottom:1.4rem;left:1.4rem;right:1.4rem}
+.mol2{top:2rem;bottom:2rem;left:2rem;right:2rem}
+.mol3{top:2.6rem;bottom:2.6rem;left:2.6rem;right:2.6rem;border-color:rgba(201,169,110,.1)}
+
+/* Top light arch */
+.door-arch{
+  position:absolute;top:0;left:0;right:0;height:120px;
+  background:linear-gradient(180deg,rgba(201,169,110,.12) 0%,transparent 100%);
+}
+/* Bottom shadow */
+.door-floor{
+  position:absolute;bottom:0;left:0;right:0;height:80px;
+  background:linear-gradient(0deg,rgba(0,0,0,.5) 0%,transparent 100%);
+}
+
+/* Gold edge */
+.d-edge{
+  position:absolute;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent 0%,var(--gold-d) 15%,var(--gold) 50%,var(--gold-d) 85%,transparent 100%);
+}
+.door-l .d-edge{right:0}.door-r .d-edge{left:0}
+
+/* Handle */
+.d-handle-wrap{
+  position:absolute;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+}
+.door-l .d-handle-wrap{right:1.8rem}
+.door-r .d-handle-wrap{left:1.8rem}
+.d-handle{
+  width:10px;height:52px;
+  background:linear-gradient(180deg,var(--gold-d),var(--gold),var(--gold-l) 50%,var(--gold),var(--gold-d));
+  border-radius:12px;
+  box-shadow:0 0 14px rgba(201,169,110,.35),inset 0 0 4px rgba(255,255,255,.1);
+}
+.d-ring{
+  width:24px;height:24px;border:1.5px solid var(--gold);border-radius:50%;
+  box-shadow:0 0 8px rgba(201,169,110,.3);
+}
+
+/* SVG filigree */
+.door-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.45;pointer-events:none}
+
+/* ════════════════════════════════════════
+   SCENES LAYER  
+════════════════════════════════════════ */
+#scenesRoot{
+  position:fixed;inset:0;z-index:20;pointer-events:none;
+}
+
+.scene{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:none;
+}
+.scene.on{pointer-events:all}
+
+/* ── SCENE 0: INTRO ── */
+#s0{flex-direction:column;text-align:center;align-items:center;background:transparent}
+
+.s0-crown{
+  opacity:0;animation:crownIn 1.8s .1s cubic-bezier(.34,1.56,.64,1) both;
+  filter:drop-shadow(0 0 30px rgba(201,169,110,.9));
+  margin-bottom:1.6rem;
+}
+.s0-crown svg{animation:float 5s ease-in-out infinite}
+
+.s0-tag{
+  font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.7em;
+  color:var(--gold);text-transform:uppercase;
+  opacity:0;animation:fadeUp 1.2s .5s both;margin-bottom:1.6rem;
+}
+.s0-name{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(5rem,13vw,12rem);line-height:1;
+  color:#fff;
+  text-shadow:0 0 40px rgba(255,255,255,.3),0 2px 60px rgba(201,169,110,.3);
+  opacity:0;animation:fadeUp 1.8s .7s both,namePulse 6s 2.5s ease-in-out infinite;
+}
+.s0-rule{
+  display:flex;align-items:center;gap:1.5rem;
+  width:min(400px,85vw);margin:1.6rem auto;
+  opacity:0;animation:fadeUp 1.2s 1s both;
+}
+.s0-rule hr{flex:1;border:none;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-d),var(--gold),var(--gold-d),transparent)}
+.s0-rule i{color:var(--gold);font-style:normal}
+.s0-xv{
+  font-family:'Cinzel',serif;font-size:clamp(.7rem,1.8vw,.95rem);letter-spacing:.5em;
+  color:var(--gold-l);text-transform:uppercase;
+  opacity:0;animation:fadeUp 1.2s 1.1s both;
+}
+.s0-date{
+  font-size:1.1rem;font-style:italic;color:rgba(244,194,208,.65);
+  margin-top:.5rem;opacity:0;animation:fadeUp 1.2s 1.3s both;
+}
+.s0-hint{
+  position:absolute;bottom:3rem;
+  display:flex;flex-direction:column;align-items:center;gap:.8rem;
+  opacity:0;animation:fadeIn 1s 2.4s both;
+}
+.s0-hint span{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(201,169,110,.6);text-transform:uppercase}
+.s0-arr{width:16px;height:16px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);animation:arrowB 1.6s ease-in-out infinite}
+
+/* ── SCENE 1: PHOTO REVEAL ── 
+   After doors open — photo caption floats over full-screen image */
+#s1{flex-direction:column;text-align:center;justify-content:flex-end;padding-bottom:8vh;background:transparent}
+.s1-caption{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 1.6s 1.8s ease,transform 1.6s 1.8s cubic-bezier(.25,.46,.45,.94);
+}
+.s1-caption.show{opacity:1;transform:translateY(0)}
+.s1-name{
+  font-family:'Great Vibes',cursive;font-size:clamp(4rem,10vw,9rem);
+  color:#fff;line-height:1;
+  text-shadow:0 4px 40px rgba(0,0,0,.8),0 0 80px rgba(201,169,110,.25);
+}
+.s1-sub{
+  font-family:'Cinzel',serif;font-size:clamp(.6rem,1.4vw,.78rem);
+  letter-spacing:.55em;color:var(--gold-l);text-transform:uppercase;margin-top:.8rem;
+}
+.s1-line{
+  width:180px;height:1px;margin:.9rem auto;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0;transition:opacity 1.4s 2.4s ease;
+}
+.s1-line.show{opacity:1}
+
+/* ── SCENES 2–4: overlaid on dimmed photo ── */
+#s2,#s3,#s4{
+  flex-direction:column;
+  background:transparent;
+}
+
+/* Glass panel */
+.glass{
+  background:rgba(4,1,10,.72);
+  border:1px solid rgba(201,169,110,.18);
+  padding:3rem 3.5rem;
+  position:relative;
+  width:min(700px,92vw);
+}
+.glass::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(201,169,110,.07);pointer-events:none;
+}
+/* corner accents */
+.glass .ga{position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid;opacity:.55}
+.glass .ga.tl{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
+.glass .ga.tr{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0}
+.glass .ga.bl{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px}
+.glass .ga.br{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
+
+.stitle{font-family:'Great Vibes',cursive;font-size:clamp(2.8rem,6vw,5rem);color:var(--champ);text-shadow:0 0 30px rgba(201,169,110,.25);margin-bottom:.3rem;line-height:1.1}
+.ssub{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;margin-bottom:2.5rem}
+
+/* Scene enter transitions */
+.scene-in{
+  opacity:1;
+  transform:none;
+}
+.scene-entering .scene-in{
+  animation:sceneInAnim .8s forwards;
+}
+@keyframes sceneInAnim{
+  from{opacity:0;transform:translateY(40px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+
+/* COUNTDOWN */
+.cd-grid{display:flex;gap:1.2rem;align-items:center;justify-content:center;flex-wrap:wrap}
+.cd-cell{display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.cd-num{
+  width:100px;height:100px;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:3.6rem;font-weight:300;color:var(--gold-l);
+  border:1px solid rgba(201,169,110,.22);position:relative;
+  text-shadow:0 0 20px rgba(201,169,110,.35);
+  background:rgba(201,169,110,.04);
+}
+.cd-num::before{content:'';position:absolute;inset:6px;border:1px solid rgba(201,169,110,.07)}
+.cd-lbl{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:var(--blush);text-transform:uppercase}
+.cd-sep{font-size:2.5rem;color:rgba(201,169,110,.25);font-weight:200;padding-bottom:1.2rem}
+
+/* PROGRAM */
+.prog{position:relative;text-align:left;margin-top:.5rem}
+.prog::before{
+  content:'';position:absolute;left:4.5rem;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--gold),rgba(201,169,110,.2),transparent);
+}
+.pi{
+  display:flex;gap:1.6rem;align-items:flex-start;padding:.9rem 0;
+  border-bottom:1px solid rgba(201,169,110,.06);
+  opacity:1;
+}
+.scene-entering .pi{animation:piAnim .6s forwards}
+@keyframes piAnim{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+.scene-entering .pi:nth-child(1){animation-delay:.3s}
+.scene-entering .pi:nth-child(2){animation-delay:.45s}
+.scene-entering .pi:nth-child(3){animation-delay:.6s}
+.scene-entering .pi:nth-child(4){animation-delay:.75s}
+.scene-entering .pi:nth-child(5){animation-delay:.9s}
+.pi-t{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.15em;color:var(--gold);width:4.5rem;flex-shrink:0;padding-top:.2rem;text-align:right}
+.pi-dot{width:9px;height:9px;border:1.5px solid var(--gold);border-radius:50%;flex-shrink:0;margin-top:.28rem;z-index:1;background:rgba(4,1,10,.8);box-shadow:0 0 10px rgba(201,169,110,.6)}
+.pi-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--champ)}
+.pi-desc{font-family:'Cinzel',serif;font-size:.55rem;color:rgba(244,194,208,.5);letter-spacing:.14em;margin-top:.15rem}
+
+/* RSVP */
+.ri{
+  width:100%;background:transparent;border:none;
+  border-bottom:1px solid rgba(201,169,110,.2);
+  padding:.85rem 0;color:var(--ivory);
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;
+  outline:none;transition:border-color .3s;margin-bottom:1.1rem;display:block;
+}
+.ri:focus{border-bottom-color:var(--gold)}
+.ri::placeholder{color:rgba(253,246,238,.2);font-style:italic}
+.rb{
+  width:100%;padding:1.05rem;background:transparent;
+  border:1px solid rgba(201,169,110,.5);
+  color:var(--champ);font-family:'Cinzel',serif;
+  font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;
+  cursor:pointer;transition:all .5s;position:relative;overflow:hidden;margin-top:.3rem;
+}
+.rb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(201,169,110,0),rgba(201,169,110,.15),rgba(201,169,110,0));
+  transform:translateX(-100%);transition:transform .6s ease;
+}
+.rb:hover::after{transform:translateX(100%)}
+.rb:hover{border-color:var(--gold);box-shadow:0 0 30px rgba(201,169,110,.2),inset 0 0 20px rgba(201,169,110,.05)}
+.rb span{position:relative;z-index:1}
+
+/* ─── NAV DOTS ─── */
+.nav-dots{
+  position:fixed;right:2rem;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:.85rem;z-index:200;
+}
+.nd{
+  width:7px;height:7px;border-radius:50%;
+  border:1px solid rgba(201,169,110,.35);cursor:pointer;
+  transition:all .4s ease;position:relative;
+}
+.nd::before{
+  content:'';position:absolute;inset:-5px;border-radius:50%;
+}
+.nd.on{
+  background:var(--gold);border-color:var(--gold);
+  box-shadow:0 0 14px rgba(201,169,110,.8),0 0 28px rgba(201,169,110,.3);
+}
+
+/* ─── SCENE LABEL ─── */
+.sc-label{
+  position:fixed;left:2.5rem;bottom:2.5rem;z-index:200;
+  font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.38em;
+  color:rgba(201,169,110,.45);text-transform:uppercase;pointer-events:none;
+  transition:opacity .6s ease;
+}
+
+/* ─── TRANSITION FLASH ─── */
+#flash{
+  position:fixed;inset:0;z-index:15;pointer-events:none;
+  background:rgba(201,169,110,0);transition:background .0s;
+}
+
+/* ─── KEYFRAMES ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes crownIn{from{opacity:0;transform:translateY(-50px) scale(.6)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-10px) rotate(1.5deg)}}
+@keyframes arrowB{0%,100%{transform:rotate(45deg)}50%{transform:rotate(45deg) translate(4px,4px)}}
+@keyframes namePulse{
+  0%,100%{text-shadow:0 0 40px rgba(255,255,255,.3),0 2px 60px rgba(201,169,110,.3)}
+  50%{text-shadow:0 0 70px rgba(255,255,255,.4),0 2px 100px rgba(201,169,110,.45)}
+}
+
+@media(max-width:600px){
+  .cd-num{width:74px;height:74px;font-size:2.6rem}
+  .cd-sep{display:none}
+  .glass{padding:2rem 1.5rem}
+  .prog::before{left:3.8rem}
+  .pi-t{width:3.8rem;font-size:.5rem}
+  .nav-dots{right:1rem}
+}
+</style>
 </head>
 <body>
+
+<!-- Particles -->
 <canvas id="bgCanvas"></canvas>
 
+<!-- Cursor -->
 <div class="cur" id="cur"></div>
 <div class="cur2" id="cur2"></div>
 
+<!-- Flash transition layer -->
 <div id="flash"></div>
 
+<!-- PERSISTENT PHOTO BACKGROUND -->
 <div id="photoBg">
   <img src="1.jpg" class="main-photo" alt="">
 </div>
+      <!-- Silhouette dress/person placeholder -->
+      <ellipse cx="120" cy="68" rx="34" ry="38" fill="rgba(201,169,110,.6)"/>
+      <!-- neck -->
+      <rect x="112" y="100" width="16" height="22" rx="6" fill="rgba(201,169,110,.5)"/>
+      <!-- dress body -->
+      <path d="M60 130 Q80 120 120 122 Q160 120 180 130 L200 300 Q180 280 120 282 Q60 280 40 300 Z" fill="rgba(201,169,110,.35)"/>
+      <!-- dress skirt flare -->
+      <path d="M40 300 Q20 380 120 400 Q220 380 200 300 Q170 330 120 332 Q70 330 40 300Z" fill="rgba(201,169,110,.25)"/>
+      <!-- arms -->
+      <path d="M60 130 Q30 170 28 210" stroke="rgba(201,169,110,.45)" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <path d="M180 130 Q210 170 212 210" stroke="rgba(201,169,110,.45)" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <!-- bouquet -->
+      <circle cx="32" cy="220" r="22" fill="rgba(244,194,208,.25)"/>
+      <circle cx="36" cy="208" r="10" fill="rgba(244,194,208,.2)"/>
+      <circle cx="20" cy="210" r="9" fill="rgba(244,194,208,.15)"/>
+    </svg>
+  </div>
+</div>
 
+<!-- Photo overlay dimmer -->
 <div id="photoOverlay"></div>
-
+<!-- Vignette -->
 <div id="vignette"></div>
 
+<!-- DOORS -->
 <div id="doorsStage" class="active">
-  
+  <!-- LEFT -->
   <div class="door door-l">
     <div class="door-face">
       <div class="door-grain"></div>
@@ -36,7 +476,7 @@
       <div class="door-sheen"></div>
       <svg class="door-svg" viewBox="0 0 340 900" preserveAspectRatio="xMidYMid meet">
         <g stroke="#c9a96e" fill="none" stroke-linecap="round">
-          
+          <!-- top rosette -->
           <circle cx="170" cy="100" r="42" stroke-width=".9"/>
           <circle cx="170" cy="100" r="28" stroke-width=".7"/>
           <circle cx="170" cy="100" r="9" fill="rgba(201,169,110,.7)" stroke="none"/>
@@ -44,42 +484,42 @@
           <path d="M170 142 Q190 121 170 100 Q150 121 170 142" stroke-width=".9"/>
           <path d="M128 100 Q149 121 170 100 Q149 79 128 100" stroke-width=".9"/>
           <path d="M212 100 Q191 79 170 100 Q191 121 212 100" stroke-width=".9"/>
-          
+          <!-- diagonals -->
           <path d="M141 71 Q156 85 170 100 Q156 115 141 129" stroke-width=".7" opacity=".6"/>
           <path d="M199 71 Q184 85 170 100 Q184 115 199 129" stroke-width=".7" opacity=".6"/>
-          
+          <!-- tendrils -->
           <path d="M128 100 Q106 88 90 95 Q74 102 90 109 Q106 116 128 100" stroke-width=".8"/>
           <circle cx="76" cy="100" r="5" stroke-width=".8"/>
           <circle cx="72" cy="100" r="2" fill="rgba(201,169,110,.5)" stroke="none"/>
           <path d="M212 100 Q234 88 250 95 Q266 102 250 109 Q234 116 212 100" stroke-width=".8"/>
           <circle cx="264" cy="100" r="5" stroke-width=".8"/>
           <circle cx="268" cy="100" r="2" fill="rgba(201,169,110,.5)" stroke="none"/>
-          
+          <!-- stem down -->
           <path d="M170 142 Q185 168 170 195 Q155 222 170 249 Q185 276 170 303 Q155 330 170 357" stroke-width=".95"/>
-          
+          <!-- leaves -->
           <ellipse cx="189" cy="166" rx="14" ry="5.5" transform="rotate(38 189 166)" stroke-width=".75" opacity=".8"/>
           <ellipse cx="151" cy="191" rx="14" ry="5.5" transform="rotate(-38 151 191)" stroke-width=".75" opacity=".8"/>
           <ellipse cx="189" cy="221" rx="14" ry="5.5" transform="rotate(38 189 221)" stroke-width=".75" opacity=".8"/>
           <ellipse cx="151" cy="246" rx="14" ry="5.5" transform="rotate(-38 151 246)" stroke-width=".75" opacity=".8"/>
           <ellipse cx="189" cy="276" rx="14" ry="5.5" transform="rotate(38 189 276)" stroke-width=".75" opacity=".7"/>
           <ellipse cx="151" cy="301" rx="14" ry="5.5" transform="rotate(-38 151 301)" stroke-width=".75" opacity=".7"/>
-          
+          <!-- diamond -->
           <polygon points="170,375 202,435 170,495 138,435" stroke-width=".9" opacity=".7"/>
           <polygon points="170,390 194,435 170,480 146,435" fill="rgba(201,169,110,.06)"/>
           <circle cx="170" cy="435" r="8" stroke-width=".85"/>
           <circle cx="170" cy="435" r="4" fill="rgba(201,169,110,.55)" stroke="none"/>
-          
+          <!-- mid rail -->
           <line x1="50" y1="530" x2="290" y2="530" stroke-width=".7" opacity=".35"/>
           <line x1="50" y1="534" x2="290" y2="534" stroke-width=".3" opacity=".18"/>
-          
+          <!-- small diamonds rail -->
           <polygon points="170,530 176,542 170,554 164,542" stroke-width=".7" opacity=".5"/>
-          
+          <!-- stem up from bottom -->
           <path d="M170 760 Q155 734 170 708 Q185 682 170 656 Q155 630 170 604 Q185 578 170 552" stroke-width=".95"/>
           <ellipse cx="151" cy="737" rx="14" ry="5.5" transform="rotate(38 151 737)" stroke-width=".75" opacity=".7"/>
           <ellipse cx="189" cy="712" rx="14" ry="5.5" transform="rotate(-38 189 712)" stroke-width=".75" opacity=".7"/>
           <ellipse cx="151" cy="683" rx="14" ry="5.5" transform="rotate(38 151 683)" stroke-width=".75" opacity=".75"/>
           <ellipse cx="189" cy="657" rx="14" ry="5.5" transform="rotate(-38 189 657)" stroke-width=".75" opacity=".75"/>
-          
+          <!-- bottom rosette -->
           <circle cx="170" cy="800" r="38" stroke-width=".9"/>
           <circle cx="170" cy="800" r="25" stroke-width=".7"/>
           <circle cx="170" cy="800" r="8" fill="rgba(201,169,110,.65)" stroke="none"/>
@@ -96,7 +536,7 @@
       </div>
     </div>
   </div>
-  
+  <!-- RIGHT (mirrored) -->
   <div class="door door-r">
     <div class="door-face">
       <div class="door-grain"></div>
@@ -160,9 +600,10 @@
   </div>
 </div>
 
+<!-- SCENES -->
 <div id="scenesRoot">
 
-  
+  <!-- S0: INTRO -->
   <section class="scene on" id="s0">
     <div class="s0-crown">
       <svg width="120" height="85" viewBox="0 0 140 90" fill="none">
@@ -190,7 +631,7 @@
     </div>
   </section>
 
-  
+  <!-- S1: PHOTO CAPTION (over full-screen photo) -->
   <section class="scene" id="s1">
     <div class="s1-caption" id="s1cap">
       <div class="s1-name">Sofía Isabella</div>
@@ -199,7 +640,7 @@
     </div>
   </section>
 
-  
+  <!-- S2: COUNTDOWN -->
   <section class="scene" id="s2">
     <div class="scene-in">
       <div class="glass">
@@ -220,7 +661,7 @@
     </div>
   </section>
 
-  
+  <!-- S3: PROGRAM -->
   <section class="scene" id="s3">
     <div class="scene-in" style="width:min(680px,92vw)">
       <div class="glass">
@@ -239,7 +680,7 @@
     </div>
   </section>
 
-  
+  <!-- S4: RSVP -->
   <section class="scene" id="s4">
     <div class="scene-in">
       <div class="glass" style="text-align:center">
@@ -255,8 +696,9 @@
     </div>
   </section>
 
-</div>
+</div><!-- /scenesRoot -->
 
+<!-- Nav dots -->
 <div class="nav-dots">
   <div class="nd on" data-i="0"></div>
   <div class="nd" data-i="1"></div>
@@ -267,6 +709,270 @@
 
 <div class="sc-label" id="scLabel">Inicio</div>
 
-<script src="java.js"></script>
+<script>
+/* ─── CURSOR ─── */
+const cEl=document.getElementById('cur'),c2=document.getElementById('cur2');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;
+  c2.style.left=mx+'px';c2.style.top=my+'px';});
+(function lerp(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;
+  cEl.style.left=cx+'px';cEl.style.top=cy+'px';requestAnimationFrame(lerp);})();
+document.addEventListener('mousedown',()=>{cEl.style.width='14px';cEl.style.height='14px'});
+document.addEventListener('mouseup',()=>{cEl.style.width='26px';cEl.style.height='26px'});
+
+/* ─── SCENE STATE ─── */
+const LABELS=['Inicio','La Gran Revelación','La Espera','Programa','Confirmar'];
+const scEls=[0,1,2,3,4].map(i=>document.getElementById('s'+i));
+const dots=document.querySelectorAll('.nd');
+const scLabel=document.getElementById('scLabel');
+const photoBg=document.getElementById('photoBg');
+const photoOv=document.getElementById('photoOverlay');
+const vigEl=document.getElementById('vignette');
+const doorsEl=document.getElementById('doorsStage');
+const flash=document.getElementById('flash');
+
+let cur=0,busy=false,doorsOpened=false;
+
+/* Photo states per scene:
+   0 → hidden (behind doors)
+   1 → full screen, vivid
+   2–4 → zoomed-out slightly, dimmed, blurred a touch
+*/
+function setPhotoState(sceneIdx, instant){
+  const T=instant?'none':'transform 1.4s cubic-bezier(.25,.46,.45,.94), opacity 1.2s ease, filter 1.4s ease';
+  photoBg.style.transition=T;
+  if(sceneIdx===0){
+    // hidden behind doors — no change needed; doors cover it
+    photoBg.style.opacity='0';
+    photoBg.style.transform='scale(1.15)';
+    photoBg.style.filter='none';
+    photoOv.style.background='rgba(4,1,10,0)';
+    vigEl.style.opacity='0';
+  } else if(sceneIdx===1){
+    // FULL SCREEN — hero reveal (zoom in slightly for cinematic feel)
+    photoBg.style.opacity='1';
+    photoBg.style.transform='scale(1.08)';
+    photoBg.style.filter='none';
+    photoOv.style.background='rgba(4,1,10,.12)';
+    vigEl.style.opacity='1';
+  } else {
+    // Background mode — zoom out to normal (scale 1 always fills screen, no black borders)
+    photoBg.style.opacity='1';
+    photoBg.style.transform='scale(1)';
+    photoBg.style.filter='brightness(.80) saturate(.85)';
+    photoOv.style.background='rgba(4,1,10,.15)';
+    vigEl.style.opacity='1';
+  }
+}
+
+/* Immersive cinematic transition */
+function goTo(next){
+  if(busy||next===cur||next<0||next>=5)return;
+  busy=true;
+  const dir=next>cur;
+  const leaving=scEls[cur];
+  const entering=scEls[next];
+  const prev=cur;
+  cur=next;
+
+  /* 1. Flash */
+  flash.style.transition='background .18s ease';
+  flash.style.background='rgba(201,169,110,.06)';
+  setTimeout(()=>{flash.style.transition='background .6s ease';flash.style.background='rgba(201,169,110,0)';},180);
+
+  /* 2. Leaving scene — solo transform en salida, opacity a 0 instantáneo */
+  leaving.style.transition='transform .7s ease';
+  leaving.style.transform=dir?'translateY(-3.5%) scale(.97)':'translateY(3.5%) scale(.97)';
+  leaving.style.pointerEvents='none';
+  // Opacity a 0 con pequeño delay para que el transform empiece primero
+  setTimeout(()=>{ leaving.style.opacity='0'; },50);
+  leaving.classList.remove('on');
+
+  /* 3. Update photo */
+  setPhotoState(next);
+
+  /* 4. Doors logic */
+  if(next===1&&!doorsOpened) openDoors();
+  if(prev===1&&next===0){
+    doorsEl.style.transition='opacity .8s ease';
+    doorsEl.style.opacity='1';
+    doorsEl.style.pointerEvents='all';
+  }
+
+  /* 5. Entering scene */
+  setTimeout(()=>{
+    // Lock leaving scene: disable transition, opacity stays 0, transform neutral
+    leaving.style.transition='none';
+    leaving.style.opacity='0';
+    leaving.style.transform='none';
+
+    // If returning to scene 0, freeze animated children at final state
+    if(next===0){
+      entering.querySelectorAll('.s0-crown,.s0-tag,.s0-name,.s0-rule,.s0-xv,.s0-date,.s0-hint').forEach(el=>{
+        el.style.animation='none';
+        el.style.opacity='1';
+        el.style.transform='translateY(0)';
+      });
+      const crownSvg=entering.querySelector('.s0-crown svg');
+      if(crownSvg) crownSvg.style.animation='float 5s ease-in-out infinite';
+    }
+
+    // Prepare entering scene: invisible + shifted, transition off
+    entering.classList.remove('scene-entering');
+    entering.style.transition='none';
+    entering.style.opacity='0';
+    entering.style.transform=dir?'translateY(4%) scale(.96)':'translateY(-4%) scale(.96)';
+    entering.classList.add('on');
+
+    // Escena aparece directamente con opacity:1 — solo translate anima
+    // Esto evita que opacity<1 en el padre arruine el compositing del glass
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        entering.style.transition='transform .95s cubic-bezier(.25,.46,.45,.94)';
+        entering.style.opacity='1';
+        entering.style.transform='translateY(0) scale(1)';
+        // Trigger child animations (scene-in, pi items)
+        entering.classList.add('scene-entering');
+      });
+    });
+
+    dots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+    scLabel.style.transition='opacity .3s ease';
+    scLabel.style.opacity='0';
+    setTimeout(()=>{scLabel.textContent=LABELS[cur];scLabel.style.opacity='1';},300);
+
+    // After all animations end: lock opacity, remove entering class so re-entry re-triggers
+    // Longest child animation: pi:nth-child(5) = 0.9s delay + 0.6s = 1.5s, plus scene 0.95s
+    setTimeout(()=>{
+      entering.style.transition='none';
+      entering.style.opacity='1';
+      entering.style.transform='none';
+      busy=false;
+    },1050);
+    // Remove entering class after ALL child animations complete (delay+duration = max 1.55s)
+    setTimeout(()=>{
+      entering.classList.remove('scene-entering');
+    },1600);
+  },680);
+}
+
+/* ─── OPEN DOORS ─── */
+function openDoors(){
+  doorsOpened=true;
+  doorsEl.classList.add('open');
+  doorsEl.style.transition='opacity 1.2s 2.8s ease';
+  setTimeout(()=>{
+    doorsEl.style.opacity='0';
+    doorsEl.style.pointerEvents='none';
+  },2800);
+  // show caption after doors are open
+  setTimeout(()=>{
+    document.getElementById('s1cap').classList.add('show');
+    document.getElementById('s1line').classList.add('show');
+  },1800);
+}
+
+/* ─── INPUT ─── */
+let wCool=false;
+window.addEventListener('wheel',e=>{
+  if(wCool||Math.abs(e.deltaY)<30)return;
+  wCool=true;setTimeout(()=>wCool=false,1200);
+  if(e.deltaY>0)goTo(cur+1);else goTo(cur-1);
+},{passive:true});
+
+let ty=0;
+window.addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+window.addEventListener('touchend',e=>{
+  const d=ty-e.changedTouches[0].clientY;
+  if(Math.abs(d)>60){if(d>0)goTo(cur+1);else goTo(cur-1);}
+},{passive:true});
+
+window.addEventListener('keydown',e=>{
+  if([' ','ArrowDown','PageDown'].includes(e.key)){e.preventDefault();goTo(cur+1);}
+  if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();goTo(cur-1);}
+});
+
+dots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
+
+/* ─── COUNTDOWN ─── */
+const evD=new Date('2025-06-14T19:00:00');
+function tick(){
+  let d=Math.max(0,evD-new Date());
+  document.getElementById('cdD').textContent=String(Math.floor(d/86400000)).padStart(2,'0');
+  document.getElementById('cdH').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cdM').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+  document.getElementById('cdS').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ─── PARTICLES ─── */
+const cv=document.getElementById('bgCanvas'),ctx=cv.getContext('2d');
+function rsz(){cv.width=innerWidth;cv.height=innerHeight;}rsz();
+window.addEventListener('resize',rsz);
+const pts=[];
+for(let i=0;i<110;i++){
+  const p=Math.random()<.35;
+  pts.push(p?{
+    type:'p',x:Math.random()*innerWidth,y:Math.random()*innerHeight*2.2-innerHeight*0.6,
+    sz:Math.random()*14+5,sx:(Math.random()-.5)*.5,sy:Math.random()*.7+.2,
+    r:Math.random()*Math.PI*2,rs:(Math.random()-.5)*.022,
+    op:Math.random()*.3+.05,
+    col:['#f4c2d0','#e8a0b8','#d4849e','#f9d4df'][Math.floor(Math.random()*4)]
+  }:{
+    type:'s',x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    sz:Math.random()*2.2+.4,sx:(Math.random()-.5)*.15,sy:(Math.random()-.5)*.15,
+    op:Math.random(),od:(Math.random()-.5)*.016,
+    col:['#c9a96e','#e8d5a3','#fffdf5'][Math.floor(Math.random()*3)]
+  });
+}
+(function loop(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  pts.forEach(p=>{
+    if(p.type==='p'){
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);
+      ctx.globalAlpha=p.op;ctx.fillStyle=p.col;
+      ctx.beginPath();ctx.ellipse(0,0,p.sz*.36,p.sz,0,0,Math.PI*2);ctx.fill();ctx.restore();
+      p.x+=p.sx;p.y+=p.sy;p.r+=p.rs;
+      if(p.y>cv.height+24){p.y=-24;p.x=Math.random()*cv.width;}
+    }else{
+      ctx.save();ctx.globalAlpha=Math.max(0,Math.min(1,p.op));
+      ctx.fillStyle=p.col;ctx.shadowColor=p.col;ctx.shadowBlur=7;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);ctx.fill();ctx.restore();
+      p.x+=p.sx;p.y+=p.sy;p.op+=p.od;
+      if(p.op<=0||p.op>=1)p.od*=-1;
+      if(p.x<0||p.x>cv.width)p.sx*=-1;
+      if(p.y<0||p.y>cv.height)p.sy*=-1;
+    }
+  });
+  requestAnimationFrame(loop);
+})();
+
+/* Click burst */
+document.addEventListener('click',e=>{
+  for(let i=0;i<14;i++){
+    const s={type:'s',x:e.clientX,y:e.clientY,
+      sz:Math.random()*3+.5,sx:(Math.random()-.5)*6,sy:(Math.random()-.5)*6,
+      op:1,od:-.028,col:['#c9a96e','#f4c2d0','#fff','#ecdeb4'][Math.floor(Math.random()*4)]};
+    pts.push(s);setTimeout(()=>pts.splice(pts.indexOf(s),1),4000);
+  }
+});
+
+/* ─── RSVP ─── */
+function sendRSVP(btn){
+  const sp=btn.querySelector('span');
+  sp.textContent='✦ ¡Confirmado con amor! ✦';
+  btn.style.borderColor='rgba(110,201,122,.7)';btn.style.color='#a8e6b0';
+  setTimeout(()=>{sp.textContent='Con mucho gusto asistiré ✦';btn.style.borderColor='';btn.style.color='';},4000);
+}
+
+/* ─── INIT ─── */
+setPhotoState(0,true);
+// Lock initial opacity states: scene 0 visible, all others hidden
+scEls.forEach((el,i)=>{
+  el.style.transition='none';
+  el.style.opacity= i===0 ? '1' : '0';
+  el.style.transform='none';
+});
+</script>
 </body>
 </html>
