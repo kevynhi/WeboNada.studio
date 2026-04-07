@@ -1,8 +1,10 @@
-const CACHE_NAME = 'webonada-v1';
+const CACHE_NAME = 'webonada-v2';
 
 const PRECACHE = [
+  '/',
   '/offline.html',
   '/css/main.css',
+  '/js/main.js',
   '/favicon.svg',
 ];
 

@@ -121,7 +121,7 @@
   <canvas id="logoParticles" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity .4s ease"></canvas>
   <a href="#" class="logo" aria-label="WeboNada.Studio" style="position:relative">
     <span class="logo-row" style="position:relative;z-index:1">
-      <span class="logo-a"><span class="logo-char logo-char-W" style="--hd:0s;--id:0s">W</span><span class="logo-char logo-char-e" style="--hd:.04s;--id:.05s">e</span><span class="logo-char logo-char-b" style="--hd:.08s;--id:.10s">b</span></span><span class="logo-o logo-char logo-char-o" style="--hd:.10s;--id:.13s"><svg id="logoONav" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"></svg></span><span class="logo-b"><span class="logo-char logo-char-N" style="--hd:.12s;--id:.15s">N</span><span class="logo-char logo-char-a2" style="--hd:.16s;--id:.20s">a</span><span class="logo-char logo-char-d" style="--hd:.2s;--id:.25s">d</span><span class="logo-char logo-char-a3" style="--hd:.24s;--id:.30s">a</span></span>
+      <span class="logo-a"><span class="logo-char logo-char-W" style="--hd:0s;--id:0s">W</span><span class="logo-char logo-char-e" style="--hd:.04s;--id:.05s">e</span><span class="logo-char logo-char-b" style="--hd:.08s;--id:.10s">b</span></span><span class="logo-o logo-char logo-char-o logo-o-static" style="--hd:.10s;--id:.13s">o</span><span class="logo-b"><span class="logo-char logo-char-N" style="--hd:.12s;--id:.15s">N</span><span class="logo-char logo-char-a2" style="--hd:.16s;--id:.20s">a</span><span class="logo-char logo-char-d" style="--hd:.2s;--id:.25s">d</span><span class="logo-char logo-char-a3" style="--hd:.24s;--id:.30s">a</span></span>
     </span>
     <span class="logo-sub" style="position:relative;z-index:1">.Studio</span>
   </a>
@@ -443,7 +443,7 @@
     <div class="pf-card reveal" onclick="openPfModal('marietic')">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(61,155,255,.15))"></div>
-        <video class="pf-preview-vid" src="./videos/1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <img class="pf-preview-img" src="./videos/poster1.jpg" alt="Marietic Beauty Studio" loading="lazy">
         <div class="pf-overlay"></div>
         <span class="pf-cat-tag">Centro Estético</span>
         <div class="pf-play-btn">▶</div>
@@ -461,7 +461,7 @@
     <div class="pf-card reveal" style="transition-delay:.1s" onclick="openPfModal('monstercarr')">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(26,111,255,.25),rgba(0,212,255,.15))"></div>
-        <video class="pf-preview-vid" src="./videos/2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <img class="pf-preview-img" src="./videos/poster2.jpg" alt="MonsterCarr" loading="lazy">
         <div class="pf-overlay"></div>
         <span class="pf-cat-tag">Automotriz</span>
         <div class="pf-play-btn">▶</div>
@@ -479,7 +479,7 @@
     <div class="pf-card reveal" style="transition-delay:.1s" onclick="openPfModal('sofia')">
       <div class="pf-thumb">
         <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(255,107,180,.15))"></div>
-        <video class="pf-preview-vid" src="./videos/3.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <img class="pf-preview-img" src="./videos/poster3.jpg" alt="Sofia Isabella" loading="lazy">
         <div class="pf-overlay"></div>
         <span class="pf-cat-tag">Invitación</span>
         <div class="pf-play-btn">▶</div>
@@ -515,42 +515,9 @@
       <div class="pf-modal-bar"></div>
 
       <div class="pf-modal-screen" id="pfModalScreen">
-        <video id="pfVideo" playsinline style="width:100%;height:100%;object-fit:cover;display:none"></video>
+                <img id="pfModalImg" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
 
-        <div class="pf-modal-ph" id="pfModalPh">
-          <div class="pf-modal-ring">▶</div>
-          <span class="pf-modal-hint" id="pfModalHint">Video no disponible</span>
-        </div>
-
-        <div class="pf-vid-controls" id="pfVidControls">
-          <div class="pf-vid-progress-wrap" id="pfProgressWrap">
-            <div class="pf-vid-progress-bg">
-              <div class="pf-vid-progress-fill" id="pfProgressFill"></div>
-              <div class="pf-vid-progress-thumb" id="pfProgressThumb"></div>
-            </div>
-          </div>
-          <div class="pf-vid-bar">
-            <div class="pf-vid-bar-left">
-              <button class="pf-vid-btn" id="pfPlayBtn" aria-label="Play/Pause">
-                <svg id="pfIconPlay" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false"><path d="M5 3.5l10 5.5-10 5.5V3.5z" fill="currentColor"/></svg>
-                <svg id="pfIconPause" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false" style="display:none"><rect x="4" y="3" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="10.5" y="3" width="3.5" height="12" rx="1" fill="currentColor"/></svg>
-              </button>
-              <button class="pf-vid-btn" id="pfMuteBtn" aria-label="Silenciar">
-                <svg id="pfIconVol" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false"><path d="M3 7h3l4-4v12l-4-4H3V7z" fill="currentColor"/><path d="M13 6a4 4 0 010 6M15 4a7 7 0 010 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <svg id="pfIconMute" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false" style="display:none"><path d="M3 7h3l4-4v12l-4-4H3V7z" fill="currentColor"/><path d="M13 8l3 3m0-3l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </button>
-              <div class="pf-vid-time" id="pfVidTime">0:00 / 0:00</div>
-            </div>
-            <div class="pf-vid-bar-right">
-              <button class="pf-vid-btn" id="pfFullBtn" aria-label="Pantalla completa">
-                <svg id="pfIconFull" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false"><path d="M3 7V3h4M15 7V3h-4M3 11v4h4M15 11v4h-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <svg id="pfIconExit" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" focusable="false" style="display:none"><path d="M7 3v4H3M11 3v4h4M7 15v-4H3M11 15v-4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
       <div class="pf-modal-foot">
         <div>
           <div class="pf-modal-title" id="pfModalTitle">Proyecto</div>
@@ -702,7 +669,7 @@
         </div>
         <div class="contact-detail-text">
           <span>Email</span>
-          <a href="/cdn-cgi/l/email-protection#1b72757d745b6c7e7974757a7f7a35686f6e7f7274"><span class="__cf_email__" data-cfemail="7d14131b123d0a181f12131c191c530e0908191412">[email&#160;protected]</span></a>
+          <a href="mailto:info@webonada.studio">info@webonada.studio</a>
         </div>
       </div>
       <div class="contact-detail">
@@ -857,7 +824,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#" class="logo logo-footer" aria-label="WeboNada Studio">
-        <span class="logo-row"><span class="logo-a"><span class="logo-char logo-char-W">W</span><span class="logo-char logo-char-e">e</span><span class="logo-char logo-char-b">b</span></span><span class="logo-o logo-char logo-char-o"><svg id="logoOFooter" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"></svg></span><span class="logo-b"><span class="logo-char logo-char-N">N</span><span class="logo-char logo-char-a2">a</span><span class="logo-char logo-char-d">d</span><span class="logo-char logo-char-a3">a</span></span></span>
+        <span class="logo-row"><span class="logo-a"><span class="logo-char logo-char-W">W</span><span class="logo-char logo-char-e">e</span><span class="logo-char logo-char-b">b</span></span><span class="logo-o logo-char logo-char-o logo-o-static">o</span><span class="logo-b"><span class="logo-char logo-char-N">N</span><span class="logo-char logo-char-a2">a</span><span class="logo-char logo-char-d">d</span><span class="logo-char logo-char-a3">a</span></span></span>
         <span class="logo-sub">.Studio</span>
       </a>
       <p>Desarrollo web y software de alta calidad para empresas y emprendedores que quieren crecer en el mundo digital.</p>
@@ -888,7 +855,7 @@
     </div>
     <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#services">Páginas Web</a></li><li><a href="#services">Aplicaciones Web</a></li><li><a href="#services">Landing Pages</a></li><li><a href="#services">Rediseño Web</a></li><li><a href="#services">Automatización</a></li></ul></div>
     <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#portfolio">Portafolio</a></li><li><a href="#testimonials">Testimonios</a></li><li><a href="#process">Proceso</a></li><li><a href="#web-o-nada">Nuestra Filosofía</a></li><li><a href="#pricing">Precios</a></li></ul></div>
-    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/cdn-cgi/l/email-protection#c5acaba3aa85b2a0a7aaaba4a1a4ebb6b1b0a1acaa"><span class="__cf_email__" data-cfemail="82ebece4edc2f5e7e0edece3e6e3acf1f6f7e6ebed">[email&#160;protected]</span></a></li><li><a href="#" onclick="return openCalendly()">Agendar llamada</a></li><li><a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="#contact">Solicitar cotización</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="mailto:info@webonada.studio">info@webonada.studio</a></li><li><a href="#" onclick="return openCalendly()">Agendar llamada</a></li><li><a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="#contact">Solicitar cotización</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 WeboNada.Studio Todos los derechos reservados. · <a href="/privacidad" style="color:inherit;text-decoration:underline">Política de Privacidad</a> · <a href="/cookies" style="color:inherit;text-decoration:underline">Cookies</a></p>
@@ -898,8 +865,7 @@
 
 <a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer" class="float-cta" id="floatCta" onclick="trackCTA && trackCTA('float-cotizacion')"><span class="float-dot"></span>Cotización Gratis</a>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js" defer></script>
-<script src="js/logo-o.js" defer></script>
+<script src="js/main.js" defer></script>
 <div id="easterEgg" role="dialog" aria-modal="true" aria-label="Easter egg">
   <div class="eg-deco-line"></div>
   <h2 class="eg-main-title">
@@ -940,3 +906,38 @@
           <div class="env-letter-line"></div>
           <div class="env-letter-line"></div>
                
+          <div class="env-letter-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="env-envelope" id="envEnvelope">
+      <div class="env-flap"></div>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-banner" role="region" aria-label="Aviso de cookies">
+  <p>Usamos cookies para mejorar tu experiencia y analizar el tráfico. Al continuar navegando aceptas nuestra <a href="/privacidad" rel="noopener">política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button class="cookie-btn-decline" id="cookieDecline">Rechazar</button>
+    <button class="cookie-btn-accept" id="cookieAccept">Aceptar</button>
+  </div>
+</div>
+
+<script src="js/main.js" defer></script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  });
+}
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
+  });
+}
+</script>
+</body>
+</html>

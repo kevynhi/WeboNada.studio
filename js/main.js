@@ -1210,178 +1210,52 @@ document.querySelectorAll('.service-card').forEach(card=>{
 })();
 
 
-document.querySelectorAll('.pf-preview-vid').forEach(function(vid){
-  const PREVIEW_END = 2;
-  vid.addEventListener('canplay', function(){
-    vid.classList.add('vid-ready');
-  });
-  if(vid.readyState >= 3) vid.classList.add('vid-ready');
-  vid.addEventListener('timeupdate', function(){
-    if(vid.currentTime >= PREVIEW_END){
-      vid.currentTime = 0;
-      vid.play().catch(function(){});
-    }
-  });
-});
+
 
 const pfProjects = {
   marietic: {
     title: 'Marietic Beauty Studio',
     meta: 'Centro Estético · Catálogo de servicios con WhatsApp y redes sociales',
     url: 'https://www.marietic.com',
-    video: './videos/1.mp4'
+    poster: './videos/poster1.jpg'
   },
   monstercarr: {
     title: 'MonsterCarr',
     meta: 'Taller Automotriz · Latonería y pintura con presencia digital profesional',
     url: 'https://monstercarr.netlify.app',
-    video: './videos/2.mp4'
+    poster: './videos/poster2.jpg'
   },
   sofia: {
     title: 'Sofia Isabella',
     meta: 'Invitación 15 Años · Sitio web diseñado para celebrar una noche inolvidable',
     url: '/proyectos/sofia-isabella/',
-    video: './videos/3.mp4'
+    poster: './videos/poster3.jpg'
   }
 };
 
 (function(){
-  const bg       = document.getElementById('pfModalBg');
-  const video    = document.getElementById('pfVideo');
-  const ph       = document.getElementById('pfModalPh');
-  const controls = document.getElementById('pfVidControls');
-  const playBtn  = document.getElementById('pfPlayBtn');
-  const muteBtn  = document.getElementById('pfMuteBtn');
-  const fullBtn  = document.getElementById('pfFullBtn');
-  const screen   = document.getElementById('pfModalScreen');
-  const fill     = document.getElementById('pfProgressFill');
-  const thumb    = document.getElementById('pfProgressThumb');
-  const timeEl   = document.getElementById('pfVidTime');
-  const progressWrap = document.getElementById('pfProgressWrap');
-  const closeBtn = document.getElementById('pfModalCloseBtn');
+  const bg      = document.getElementById('pfModalBg');
+  const img     = document.getElementById('pfModalImg');
+  const closeBtn= document.getElementById('pfModalCloseBtn');
 
-  const iconPlay  = document.getElementById('pfIconPlay');
-  const iconPause = document.getElementById('pfIconPause');
-  const iconVol   = document.getElementById('pfIconVol');
-  const iconMute  = document.getElementById('pfIconMute');
-  const iconFull  = document.getElementById('pfIconFull');
-  const iconExit  = document.getElementById('pfIconExit');
-
-  function fmt(s){
-    if(isNaN(s)) return '0:00';
-    const m = Math.floor(s/60), sec = Math.floor(s%60);
-    return m+':'+(sec<10?'0':'')+sec;
-  }
-
-  function updateProgress(){
-    if(!video.duration) return;
-    const pct = (video.currentTime/video.duration)*100;
-    fill.style.width  = pct+'%';
-    thumb.style.left  = pct+'%';
-    timeEl.textContent = fmt(video.currentTime)+' / '+fmt(video.duration);
-  }
-
-  function setPlayIcon(playing){
-    iconPlay.style.display  = playing ? 'none' : '';
-    iconPause.style.display = playing ? ''     : 'none';
-  }
-  function setMuteIcon(muted){
-    iconVol.style.display  = muted ? 'none' : '';
-    iconMute.style.display = muted ? ''     : 'none';
-  }
-  function setFullIcon(full){
-    iconFull.style.display = full ? 'none' : '';
-    iconExit.style.display = full ? ''     : 'none';
-  }
-
-  // Play/Pause al clickear la pantalla o el botón
-  function togglePlay(){
-    if(video.paused) video.play(); else video.pause();
-  }
-  screen.addEventListener('click', e=>{
-    if(e.target === video || e.target === screen) togglePlay();
-  });
-  playBtn.addEventListener('click', togglePlay);
-
-  video.addEventListener('play',  ()=> setPlayIcon(true));
-  video.addEventListener('pause', ()=> setPlayIcon(false));
-  video.addEventListener('timeupdate', updateProgress);
-  video.addEventListener('loadedmetadata', updateProgress);
-  video.addEventListener('ended', ()=>{ setPlayIcon(false); });
-
-  // Mute
-  muteBtn.addEventListener('click', ()=>{
-    video.muted = !video.muted;
-    setMuteIcon(video.muted);
-  });
-
-  // Barra de progreso — click para seek
-  progressWrap.addEventListener('click', e=>{
-    const rect = progressWrap.getBoundingClientRect();
-    const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    if(video.duration) video.currentTime = pct * video.duration;
-  });
-
-  // Pantalla completa
-  fullBtn.addEventListener('click', ()=>{
-    if(!document.fullscreenElement){
-      screen.requestFullscreen && screen.requestFullscreen();
-    } else {
-      document.exitFullscreen && document.exitFullscreen();
-    }
-  });
-  document.addEventListener('fullscreenchange', ()=>{
-    setFullIcon(!!document.fullscreenElement);
-    if(controls) controls.classList.toggle('always-show', !!document.fullscreenElement);
-  });
-
-  // Cerrar con la X
   function doClose(){
     bg.classList.remove('open');
-    video.pause();
-    video.src = '';
     document.body.style.overflow = '';
-    setPlayIcon(false);
-    setMuteIcon(false);
-    if(document.fullscreenElement) document.exitFullscreen();
+    if(img) img.src = '';
   }
-  closeBtn.addEventListener('click', doClose);
 
-  // Cerrar clickeando el fondo oscuro
-  bg.addEventListener('click', e=>{
-    if(e.target === bg) doClose();
-  });
-
-  // Escape
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape') doClose(); });
+  if(closeBtn) closeBtn.addEventListener('click', doClose);
+  bg.addEventListener('click', function(e){ if(e.target === bg) doClose(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') doClose(); });
 
   window.openPfModal = function(id){
     const p = pfProjects[id]; if(!p) return;
     document.getElementById('pfModalTitle').textContent = p.title;
     document.getElementById('pfModalMeta').textContent  = p.meta;
     document.getElementById('pfModalLink').href         = p.url;
-
-    video.src   = p.video;
-    video.muted = false;
-    setMuteIcon(false);
-    setPlayIcon(false);
-
-    video.style.display = 'block';
-    ph.style.display    = 'none';
-
-    video.onerror = ()=>{
-      video.style.display = 'none';
-      ph.style.display    = 'flex';
-      document.getElementById('pfModalHint').textContent = 'Video no disponible aún';
-    };
-
+    if(img){ img.src = p.poster; img.alt = p.title; }
     bg.classList.add('open');
     document.body.style.overflow = 'hidden';
-
-    video.load();
-    video.play().catch(()=>{
-      // Autoplay bloqueado — el usuario toca play manualmente
-    });
   };
 
   window.closePfModal = doClose;
