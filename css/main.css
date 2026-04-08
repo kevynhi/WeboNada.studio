@@ -106,8 +106,8 @@ nav.scrolled .logo-a, nav.scrolled .logo-b{
   filter: drop-shadow(0 0 8px rgba(204,214,246,.35)) brightness(1.1);
   transition: filter .4s;
 }
-nav.scrolled .logo-o,nav.scrolled .logo-o-static{
-  text-shadow:0 0 18px rgba(204,214,246,.2);
+nav.scrolled .logo-o{
+  filter: drop-shadow(0 0 6px rgba(204,214,246,.25));
 }
 @keyframes charDance{
   0%{transform:translateY(0) rotate(0) scale(1)}
@@ -120,30 +120,38 @@ nav.scrolled .logo-o,nav.scrolled .logo-o-static{
 .logo-a{margin-right:3px}
 .logo-b{margin-left:3px}
 .logo-o{
-  font-size:2.9rem;
-  font-weight:200;
-  color:rgba(255,255,255,.2);
-  -webkit-text-fill-color:rgba(255,255,255,.2);
+  display:inline-block;
+ 
+  width:2.15rem;
+  height:2.15rem;
   margin:0 4px;
-  line-height:1;
+  vertical-align:middle;
   position:relative;
-  top:0;
-  transition:color .3s,-webkit-text-fill-color .3s;
-  display:inline-block;
-  vertical-align:baseline;
+  top:-0.05em;
+  flex-shrink:0;
 }
-.logo-footer .logo-o{font-size:1.25rem;font-weight:200;top:0}
+
+.logo-o svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.logo-footer .logo-o{
+  width:0.93rem;
+  height:0.93rem;
+  top:-0.03em;
+}
 .logo-o-static{
-  font-size:2.9rem;
+  font-size:2.15rem;
   font-weight:200;
-  color:rgba(255,255,255,.2);
-  -webkit-text-fill-color:rgba(255,255,255,.2);
-  margin:0 4px;
+  color:rgba(204,214,246,0.7);
+  -webkit-text-fill-color:rgba(204,214,246,0.7);
   line-height:1;
   display:inline-block;
-  vertical-align:baseline;
+  vertical-align:middle;
 }
-.logo-footer .logo-o-static{font-size:1.25rem}
+.logo-footer .logo-o-static{font-size:0.93rem}
 .pf-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;display:block}
 @keyframes oBreath{
   0%,100%{opacity:1}
@@ -151,8 +159,8 @@ nav.scrolled .logo-o,nav.scrolled .logo-o-static{
 }
 .logo-sub{font-size:.58rem;font-weight:400;letter-spacing:5px;color:rgba(204,214,246,.25);-webkit-text-fill-color:rgba(204,214,246,.25)}
 .logo:hover .logo-a,.logo:hover .logo-b{filter:brightness(1.2) drop-shadow(0 0 12px rgba(204,214,246,.5))}
-.logo:hover .logo-o,.logo:hover .logo-o-static{
-  color:rgba(255,255,255,.35);-webkit-text-fill-color:rgba(255,255,255,.35);
+.logo:hover .logo-o{
+  filter: drop-shadow(0 0 8px rgba(204,214,246,.4));
 }
 .logo-footer .logo-a,.logo-footer .logo-b{font-size:1.25rem;font-weight:900;letter-spacing:-1px}
 .logo-footer .logo-sub{font-size:.54rem;letter-spacing:5px}
@@ -1028,10 +1036,9 @@ padding-left:9%;
 .pf-modal{background:#0a1628;border-radius:22px;border:1px solid rgba(61,155,255,.2);width:min(820px,94%);overflow:hidden;transform:scale(.93) translateY(20px);transition:transform .4s cubic-bezier(.34,1.56,.64,1);will-change:transform}
 .pf-modal-bg.open .pf-modal{transform:scale(1) translateY(0)}
 .pf-modal-bar{height:2px;background:linear-gradient(90deg,var(--blue),var(--neon),var(--violet-light))}
-.pf-modal-screen{width:100%;aspect-ratio:16/9;background:var(--navy-mid);position:relative;overflow:hidden;cursor:default}
-.pf-modal-screen img{width:100%;height:100%;object-fit:contain;display:block}
-.pf-modal-ph{display:none!important}
-
+.pf-modal-screen{width:100%;aspect-ratio:16/9;background:#000;position:relative;overflow:hidden;cursor:default}
+.pf-modal-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(135deg,#07101f,#0b1a30);position:absolute;inset:0;z-index:2}
+.pf-modal-ring{width:64px;height:64px;border-radius:50%;background:rgba(61,155,255,.07);border:2px solid rgba(61,155,255,.22);display:flex;align-items:center;justify-content:center;color:rgba(61,155,255,.7);font-size:1.5rem}
 .pf-modal-hint{font-size:.72rem;color:rgba(139,163,192,.45);font-family:var(--font-body);text-align:center;max-width:200px;line-height:1.5}
 .pf-modal-foot{padding:1rem 1.2rem 1.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
 .pf-modal-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--white)}
@@ -1682,10 +1689,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 .ufo-beam-path{opacity:0;transition:opacity .3s}
 
 @media(max-width:768px){
-  .ufo-separator{height:90px;overflow:visible;background:#020407}
-  .ufo-separator::before{background:linear-gradient(to bottom,#020407,transparent)}
-  .ufo-separator::after{background:linear-gradient(to top,#020407,transparent)}
-  .ufo-ship,.ufo-ast,.ufo-star{display:block!important;visibility:visible!important}
+  .ufo-separator{height:90px;overflow:visible}
 }
 
 .ufo-stats-overlay{
@@ -1989,69 +1993,3 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
   margin-top: .4rem;
 }
 .eg-close-btn:hover { color: rgba(139,163,192,.75); }
-
-/* ── Nav compacto en scroll (mobile) ─────────────── */
-@media(max-width:768px){
-  nav{padding:.85rem 5%}
-  nav.scrolled{padding:.75rem 5%}
-}
-
-/* ── Hero background: eliminate particle canvas on mobile ─── */
-@media(max-width:768px){
-  #particle-canvas{display:none!important}
-}
-
-/* ── Tamaños globales reducidos en pantallas muy pequeñas (<400px) ─── */
-@media(max-width:400px){
-  .section-title{font-size:clamp(1.5rem,7vw,2.2rem)!important}
-  .hero-tagline{font-size:clamp(1.8rem,8vw,2.8rem)!important;letter-spacing:-1px}
-  html{font-size:14px}
-}
-
-/* ── Hero tagline — forzar 1 línea en móviles medianos ─────── */
-@media(max-width:768px) and (min-width:401px){
-  .hero-tagline{font-size:clamp(1.9rem,6.5vw,3rem)!important;letter-spacing:-1.5px}
-  html{font-size:15px}
-}
-
-/* ── Pricing mobile: reducir tamaño de carta ────────────────── */
-@media(max-width:768px){
-  .pricing-card{padding:1.6rem 1.4rem}
-  .pricing-price{font-size:2rem}
-  .pricing-features li{font-size:.78rem}
-}
-
-/* ── Contact form: no desbordamiento en móvil ───────────────── */
-@media(max-width:768px){
-  .contact-layout{grid-template-columns:1fr!important;gap:2rem}
-  .form-row{grid-template-columns:1fr!important}
-  #contact{overflow-x:hidden}
-}
-
-/* ── Won-mobile "No hacemos cualquier webonada" phrase visible ─ */
-@media(max-width:768px){
-  .won-mob-phrase,.won-mob-phrase-text{display:flex!important;visibility:visible!important}
-}
-
-/* ── Hero nav sombra: recortar al alto del nav únicamente ─────── */
-nav.scrolled::after{
-  content:'';
-  position:absolute;
-  bottom:-18px;left:0;right:0;
-  height:18px;
-  background:linear-gradient(to bottom,rgba(5,13,26,.55),transparent);
-  pointer-events:none;
-  z-index:-1;
-}
-
-/* ── Fondo hero: estrellas estáticas en lugar del canvas ────── */
-#hero{background:var(--navy)}
-#hero .grid-bg{opacity:.5}
-.hero-stars{
-  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-}
-.hero-star{
-  position:absolute;border-radius:50%;background:#fff;
-  animation:heroStarBlink 3s ease-in-out infinite;
-}
-@keyframes heroStarBlink{0%,100%{opacity:.08}50%{opacity:.3}}
