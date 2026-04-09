@@ -95,7 +95,7 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
 /* ── LOGO — estilo offline (texto simple, O ligera) ── */
 .logo{
   font-family:var(--font-display);
-  font-size:1.85rem;
+  font-size:1.6rem;
   font-weight:900;
   letter-spacing:-1px;
   color:#ccd6f6;
@@ -106,12 +106,6 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
   user-select:none;
   line-height:1;
   gap:2px;
-}
-@media(max-width:768px){
-  .logo{ font-size:1.6rem; }
-}
-@media(max-width:390px){
-  .logo{ font-size:1.45rem; }
 }
 .logo-row{
   display:inline-flex;
@@ -1336,14 +1330,13 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
   .stat{min-width:0}
 }
 
-/* ── Teléfonos pequeños 360px ── */
-@media(max-width:390px){
+/* ── Teléfonos pequeños 360px (excluye pantallas con CSS <340px) ── */
+@media(min-width:340px) and (max-width:390px){
   /* Base */
   body{ font-size:14px }
   section{ padding:3.5rem 4% }
   #web-o-nada{ padding:0 }
 
-  /* Logo nav — tamaño sin cambios en 360px, el base 1.6rem ya es correcto */
 
   /* Títulos de sección */
   .section-title{ font-size:1.6rem !important; letter-spacing:-1px }
