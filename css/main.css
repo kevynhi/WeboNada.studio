@@ -92,78 +92,100 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
 ::-webkit-scrollbar-track{background:var(--navy)}
 ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
 
-.logo{font-family:var(--font-display);text-decoration:none;display:inline-flex;flex-direction:column;align-items:center;user-select:none;gap:1px;line-height:1}
-.logo-row{display:inline-flex;align-items:baseline}
-
-/* Animación por letra — cada una baila por separado al hover Y al cargar */
-.logo-char{display:inline-block}
-
-.logo:hover .logo-char{animation:charDance .55s cubic-bezier(.34,1.56,.64,1) both var(--hd,0s)}
-/* AUTO-PLAY on load via .logo-intro — delay vía --id (intro-delay) */
-.logo-intro .logo-char{animation:charDance .55s cubic-bezier(.34,1.56,.64,1) both var(--id,0s)}
-
-nav.scrolled .logo-a, nav.scrolled .logo-b{
-  filter: drop-shadow(0 0 8px rgba(204,214,246,.35)) brightness(1.1);
-  transition: filter .4s;
-}
-nav.scrolled .logo-o{
-  filter: drop-shadow(0 0 6px rgba(204,214,246,.25));
-}
-@keyframes charDance{
-  0%{transform:translateY(0) rotate(0) scale(1)}
-  35%{transform:translateY(-12px) rotate(-8deg) scale(1.2)}
-  65%{transform:translateY(-4px) rotate(4deg) scale(1.08)}
-  100%{transform:translateY(0) rotate(0) scale(1)}
-}
-
-.logo-a,.logo-b{font-size:2.9rem;font-weight:900;letter-spacing:-1px;color:#ccd6f6;-webkit-text-fill-color:#ccd6f6;transition:filter .35s;will-change:filter}
-.logo-a{margin-right:0}
-.logo-b{margin-left:0}
-.logo-o{
-  display:inline-block;
- 
-  width:2.15rem;
-  height:2.15rem;
-  margin:0 6px;
-  vertical-align:middle;
-  position:relative;
-  top:-0.05em;
-  flex-shrink:0;
-}
-
-.logo-o svg{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.logo-footer .logo-o{
-  width:0.93rem;
-  height:0.93rem;
-  top:-0.03em;
-}
-.logo-o-static{
-  font-size:2.15rem;
-  font-weight:200;
-  color:rgba(204,214,246,0.7);
-  -webkit-text-fill-color:rgba(204,214,246,0.7);
+/* ── LOGO — estilo offline (texto simple, O ligera) ── */
+.logo{
+  font-family:var(--font-display);
+  font-size:1.6rem;
+  font-weight:900;
+  letter-spacing:-1px;
+  color:#ccd6f6;
+  text-decoration:none;
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  user-select:none;
   line-height:1;
-  display:inline-block;
-  vertical-align:middle;
+  gap:2px;
 }
-.logo-footer .logo-o-static{font-size:0.93rem}
+.logo-row{
+  display:inline-flex;
+  align-items:baseline;
+  gap:0;
+}
+/* La O central — peso ligero, ligeramente opaca */
+.logo-o-static{
+  font-weight:200;
+  color:rgba(255,255,255,.2);
+  -webkit-text-fill-color:rgba(255,255,255,.2);
+  margin:0 3px;
+  display:inline;
+  font-size:inherit;
+  vertical-align:baseline;
+}
+/* Ocultar el SVG animado — usamos solo texto */
+.logo-o{
+  display:inline;
+  width:auto;
+  height:auto;
+  margin:0 3px;
+  vertical-align:baseline;
+  position:static;
+  top:auto;
+  flex-shrink:unset;
+  font-weight:200;
+  font-size:inherit;
+  color:rgba(255,255,255,.2);
+  -webkit-text-fill-color:rgba(255,255,255,.2);
+}
+.logo-o svg{ display:none; }
+/* Partes Web y Nada — mismo peso que el offline */
+.logo-a,.logo-b{
+  font-size:inherit;
+  font-weight:900;
+  letter-spacing:-1px;
+  color:#ccd6f6;
+  -webkit-text-fill-color:#ccd6f6;
+  transition:filter .35s;
+}
+.logo-a{ margin-right:0; }
+.logo-b{ margin-left:0; }
+/* .Studio */
+.logo-sub{
+  font-size:.52rem;
+  font-weight:400;
+  letter-spacing:5px;
+  color:rgba(204,214,246,.25);
+  -webkit-text-fill-color:rgba(204,214,246,.25);
+  display:block;
+  text-align:center;
+  margin-top:2px;
+}
+/* Sin sombras al hacer scroll */
+nav.scrolled .logo-a,
+nav.scrolled .logo-b,
+nav.scrolled .logo-o{ filter:none; transition:none; }
+
+/* Hover sutil */
+.logo:hover .logo-a,.logo:hover .logo-b{
+  filter:brightness(1.15);
+}
+
+/* Logo en footer — tamaño reducido */
+.logo-footer{ font-size:1.1rem; }
+.logo-footer .logo-sub{ font-size:.50rem; }
+
+/* Animación por letra — mantener para preloader */
+.logo-char{ display:inline-block; }
+.logo:hover .logo-char{ animation:charDance .55s cubic-bezier(.34,1.56,.64,1) both var(--hd,0s); }
+.logo-intro .logo-char{ animation:charDance .55s cubic-bezier(.34,1.56,.64,1) both var(--id,0s); }
+@keyframes charDance{
+  0%  { transform:translateY(0) rotate(0) scale(1); }
+  35% { transform:translateY(-12px) rotate(-8deg) scale(1.2); }
+  65% { transform:translateY(-4px) rotate(4deg) scale(1.08); }
+  100%{ transform:translateY(0) rotate(0) scale(1); }
+}
+
 .pf-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;display:block;background:#07101f}
-@keyframes oBreath{
-  0%,100%{opacity:1}
-  50%{opacity:.75}
-}
-.logo-sub{font-size:.58rem;font-weight:400;letter-spacing:5px;color:rgba(204,214,246,.25);-webkit-text-fill-color:rgba(204,214,246,.25)}
-.logo:hover .logo-a,.logo:hover .logo-b{filter:brightness(1.2) drop-shadow(0 0 12px rgba(204,214,246,.5))}
-.logo:hover .logo-o{
-  filter: drop-shadow(0 0 8px rgba(204,214,246,.4));
-}
-.logo-footer .logo-a,.logo-footer .logo-b{font-size:1.25rem;font-weight:900;letter-spacing:-1px}
-.logo-footer .logo-sub{font-size:.54rem;letter-spacing:5px}
 
 #navEasterPanel{
   position:absolute;
@@ -1058,8 +1080,8 @@ padding-left:9%;
 .pf-modal-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(240,246,255,.55);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
 .pf-modal-close:hover{background:rgba(220,38,38,.25);border-color:rgba(220,38,38,.4);color:#fff}
 .pf-vid-progress-wrap:hover .pf-vid-progress-wrap:hover .pf-modal-screen:fullscreen 
-@media(max-width:768px){
-  .pf-grid{grid-template-columns:1fr}
+@media(max-width:900px){
+  .pf-grid{grid-template-columns:1fr;max-width:520px}
 }
 
 #testimonials{background:var(--navy-mid)}
@@ -1306,6 +1328,87 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 @media(max-width:380px){
   .stat-num{font-size:1.3rem}
   .stat{min-width:0}
+}
+
+/* ── Teléfonos pequeños 360px ── */
+@media(max-width:390px){
+  /* Base */
+  body{ font-size:14px }
+  section{ padding:3.5rem 4% }
+  #web-o-nada{ padding:0 }
+
+  /* Logo nav */
+  .logo{ font-size:1.25rem }
+
+  /* Títulos de sección */
+  .section-title{ font-size:1.6rem !important; letter-spacing:-1px }
+  .section-sub{ font-size:.85rem !important }
+  .section-label{ font-size:.68rem }
+
+  /* WEB/NADA móvil */
+  .won-mob-word-web,
+  .won-mob-word-nada{ font-size:clamp(3.5rem,18vw,5rem) !important }
+  .won-mob-h1{ font-size:1rem !important }
+  .won-mob-label-web,
+  .won-mob-label-nada{ font-size:.6rem !important }
+  .won-mob-sub-web,
+  .won-mob-sub-nada{ font-size:.8rem !important }
+  .won-mob-phrase-text{ font-size:1rem !important }
+
+  /* Servicios */
+  .service-card{ padding:1.4rem 1.1rem }
+  .svc-title{ font-size:.95rem }
+  .svc-desc{ font-size:.82rem !important }
+
+  /* Beneficios */
+  .benefit-item h4{ font-size:.9rem }
+  .benefit-text p{ font-size:.82rem !important }
+
+  /* Proceso */
+  .proc-title{ font-size:1rem }
+  .proc-desc{ font-size:.82rem !important }
+
+  /* Portafolio */
+  .pf-title{ font-size:.95rem }
+  .pf-desc{ font-size:.8rem }
+  .pf-info{ padding:.9rem }
+
+  /* Precios */
+  .pricing-card{ padding:1.4rem 1.1rem }
+  .pricing-plan{ font-size:.9rem }
+  .pricing-price{ font-size:1.9rem !important }
+  .pricing-features li{ font-size:.8rem !important }
+  .pricing-desc{ font-size:.8rem !important }
+
+  /* Testimonios */
+  .testimonial-text{ font-size:.82rem !important }
+  .author-name{ font-size:.85rem }
+  .author-role{ font-size:.72rem }
+
+  /* Formulario contacto */
+  .contact-form{ gap:.9rem }
+  .form-group input,
+  .form-group select,
+  .form-group textarea{ padding:.7rem .85rem; font-size:.82rem }
+  #contact-phone-code{ min-width:82px !important; font-size:.78rem !important; padding:.7rem .5rem !important }
+
+  /* Botones */
+  .btn-primary,
+  .btn-secondary{ padding:.75rem 1.4rem; font-size:.85rem }
+
+  /* Estadísticas ufo */
+  .ufo-stat-num{ font-size:1.4rem !important }
+  .ufo-stat-label{ font-size:.62rem !important }
+
+  /* Footer */
+  .footer-top{ gap:1rem }
+  .footer-col h4{ font-size:.85rem }
+  .footer-col ul li a{ font-size:.8rem !important }
+
+  /* Nav dropdown */
+  .nav-dropdown-inner a{ font-size:1.6rem }
+  .nav-cta-primary,
+  .nav-cta-secondary{ font-size:.85rem; padding:.7rem 1.4rem }
 }
 
 @media (prefers-reduced-motion: reduce) {
