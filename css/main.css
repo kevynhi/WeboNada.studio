@@ -1345,15 +1345,40 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
   .section-sub{ font-size:.85rem !important }
   .section-label{ font-size:.68rem }
 
-  /* WEB/NADA móvil */
-  .won-mob-word-web,
-  .won-mob-word-nada{ font-size:clamp(3.5rem,18vw,5rem) !important }
-  .won-mob-h1{ font-size:1rem !important }
+  /* WEB/NADA móvil — todo más compacto para 360px */
+  .won-mob-stage{
+    height:calc(100vh - 70px) !important;
+    height:calc(100svh - 70px) !important;
+  }
+  .won-mob-top{
+    padding-top:60px !important;
+    padding-left:7% !important;
+    padding-right:7% !important;
+  }
+  .won-mob-bot{
+    padding-top:140px !important;
+    padding-left:7% !important;
+    padding-right:7% !important;
+  }
+  .won-mob-h1{
+    font-size:.75rem !important;
+    padding:.3rem .75rem !important;
+    margin-bottom:32px !important;
+  }
+  .won-mob-word-web{
+    font-size:clamp(2.8rem,14vw,3.8rem) !important;
+    letter-spacing:-2px !important;
+  }
+  .won-mob-word-nada{
+    font-size:clamp(2.2rem,12vw,3.2rem) !important;
+    letter-spacing:-2px !important;
+  }
   .won-mob-label-web,
-  .won-mob-label-nada{ font-size:.6rem !important }
+  .won-mob-label-nada{ font-size:.55rem !important; letter-spacing:2px !important }
   .won-mob-sub-web,
-  .won-mob-sub-nada{ font-size:.8rem !important }
-  .won-mob-phrase-text{ font-size:1rem !important }
+  .won-mob-sub-nada{ font-size:.72rem !important; margin-top:.3rem !important }
+  .won-mob-phrase-text{ font-size:.92rem !important; line-height:1.25 !important }
+  .won-mob-phrase{ padding-bottom:10px !important }
 
   /* Servicios */
   .service-card{ padding:1.4rem 1.1rem }
