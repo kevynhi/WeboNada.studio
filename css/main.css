@@ -117,14 +117,14 @@ nav.scrolled .logo-o{
 }
 
 .logo-a,.logo-b{font-size:2.9rem;font-weight:900;letter-spacing:-1px;color:#ccd6f6;-webkit-text-fill-color:#ccd6f6;transition:filter .35s;will-change:filter}
-.logo-a{margin-right:3px}
-.logo-b{margin-left:3px}
+.logo-a{margin-right:0}
+.logo-b{margin-left:0}
 .logo-o{
   display:inline-block;
  
   width:2.15rem;
   height:2.15rem;
-  margin:0 4px;
+  margin:0 6px;
   vertical-align:middle;
   position:relative;
   top:-0.05em;
@@ -152,7 +152,7 @@ nav.scrolled .logo-o{
   vertical-align:middle;
 }
 .logo-footer .logo-o-static{font-size:0.93rem}
-.pf-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;display:block}
+.pf-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;display:block;background:#07101f}
 @keyframes oBreath{
   0%,100%{opacity:1}
   50%{opacity:.75}
@@ -622,10 +622,20 @@ section{padding:8rem 5%;position:relative}
 .won-right:hover::before { opacity: .6; }
 
 .won-noise-canvas {
-  position: absolute; inset: 0;
+  display: none;
+}
+
+/* Estrellas en el lado NADA */
+.won-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: wonStarBlink 2.4s ease-in-out infinite;
   pointer-events: none;
-  opacity: .03;
-  mix-blend-mode: screen;
+}
+@keyframes wonStarBlink {
+  0%,100% { opacity: .08; }
+  50%      { opacity: .45; }
 }
 
 .won-side-label {
@@ -1238,6 +1248,11 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
   .service-card::after{display:none}.service-card{padding:1.8rem 1.5rem}
   .portfolio-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
+  #contact-phone-code{min-width:90px!important;max-width:110px!important;font-size:.82rem!important;padding:.75rem .6rem!important}
+  #contact .contact-form,
+  #contact .contact-layout,
+  #contact .reveal{max-width:100%;overflow:hidden}
+  #contact-phone-code + input{min-width:0;width:0;flex:1 1 0}
  
   .footer-top{grid-template-columns:1fr 1fr;gap:1.5rem}
   .footer-brand{grid-column:1 / -1;text-align:center;display:flex;flex-direction:column;align-items:center}
@@ -1689,7 +1704,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 .ufo-beam-path{opacity:0;transition:opacity .3s}
 
 @media(max-width:768px){
-  .ufo-separator{height:90px;overflow:visible}
+  .ufo-separator{height:120px;overflow:visible}
 }
 
 .ufo-stats-overlay{

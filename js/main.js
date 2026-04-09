@@ -1336,7 +1336,9 @@ const pfProjects = {
     document.getElementById('ufoStat2')
   ];
   // En móvil ufoH1 tiene display:none → offsetParent null → no se incluye
-  const stats = allStats.filter(s => s && s.offsetParent !== null);
+  // En móvil los stats sí existen pero pueden estar en layout especial (display:contents)
+  // Usamos allStats directamente para que en móvil también funcione la lógica de parar la nave
+  const stats = allStats.filter(s => s != null);
   if(!sep || !ship || stats.length === 0) return;
 
   // Letras del h1 como unidades individuales a revelar
@@ -1397,8 +1399,8 @@ const pfProjects = {
       }
     });
 
-    const lettersAllDone = h1LetterRevealed.every(r => r);
-    const statsAllDone   = revealed.every(r => r);
+    const lettersAllDone = h1LetterRevealed.length === 0 || h1LetterRevealed.every(r => r);
+    const statsAllDone   = revealed.length === 0 || revealed.every(r => r);
     if(lettersAllDone && statsAllDone){ active = false; return; }
     rafId = requestAnimationFrame(checkShipReveal);
   }
@@ -1557,4 +1559,32 @@ document.addEventListener('keydown', e => {
       }
     })
     .catch(()=>{}); // silencioso si falla
+})();
+
+
+/* ── Estrellas en sección WEB/NADA (lado NADA) ── */
+(function(){
+  const wonRight = document.getElementById('wonRight');
+  const wonMobBot = document.querySelector('.won-mob-bot');
+  if(!wonRight && !wonMobBot) return;
+
+  function addStars(container, count) {
+    for(let i = 0; i < count; i++){
+      const s = document.createElement('div');
+      s.className = 'won-star';
+      const size = 1 + Math.random() * 2;
+      s.style.cssText = [
+        'width:'  + size + 'px',
+        'height:' + size + 'px',
+        'left:'   + (Math.random() * 96) + '%',
+        'top:'    + (Math.random() * 96) + '%',
+        'animation-delay:' + -(Math.random() * 4) + 's',
+        'animation-duration:' + (2 + Math.random() * 3) + 's'
+      ].join(';');
+      container.appendChild(s);
+    }
+  }
+
+  if(wonRight)  addStars(wonRight, 55);
+  if(wonMobBot) addStars(wonMobBot, 30);
 })();
