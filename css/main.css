@@ -99,7 +99,7 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
 /* ── LOGO — estilo offline (texto simple, O ligera) ── */
 .logo{
   font-family:var(--font-display);
-  font-size:1.6rem;
+  font-size:2.4rem;
   font-weight:900;
   letter-spacing:-1px;
   color:#ccd6f6;
@@ -155,7 +155,7 @@ body{font-family:var(--font-body);background:var(--navy);color:var(--white);over
 .logo-b{ margin-left:0; }
 /* .Studio */
 .logo-sub{
-  font-size:.52rem;
+  font-size:.38rem;
   font-weight:400;
   letter-spacing:5px;
   color:rgba(204,214,246,.25);
@@ -1280,6 +1280,19 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
      3) font-weight:300 se ve borroso en Android con antialiasing débil → subir a 400
      4) text-size-adjust evita que Safari/Android infle fuentes arbitrariamente */
   body{font-size:16px}
+
+  /* Logo navbar — tamaño correcto en móvil */
+  #navbar .logo{ font-size:1.8rem; }
+  #navbar .logo .logo-sub{ font-size:.42rem; }
+
+  /* H1 hero móvil +20% */
+  .won-mob-word-web{ font-size:clamp(4.2rem,21.6vw,7.2rem) !important; }
+  .won-mob-word-nada{ font-size:clamp(3.36rem,18vw,6rem) !important; }
+
+  /* Párrafos hero móvil +20% */
+  .won-mob-sub-web,
+  .won-mob-sub-nada{ font-size:.9rem !important; }
+
   .section-sub,
   .won-left-body p,
   .won-right-body p,
@@ -1402,12 +1415,12 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
     padding-right:8%;
   }
   .won-mob-h1{ font-size:.85rem; margin-bottom:40px }
-  .won-mob-word-web{ font-size:clamp(3rem,16vw,5rem); letter-spacing:-3px }
-  .won-mob-word-nada{ font-size:clamp(2.5rem,13vw,4rem); letter-spacing:-2px }
+  .won-mob-word-web{ font-size:clamp(3.6rem,19.2vw,6rem) !important; letter-spacing:-3px }
+  .won-mob-word-nada{ font-size:clamp(3rem,15.6vw,4.8rem) !important; letter-spacing:-2px }
   .won-mob-label-web,
   .won-mob-label-nada{ font-size:.52rem; letter-spacing:2px }
   .won-mob-sub-web,
-  .won-mob-sub-nada{ font-size:.72rem; margin-top:.4rem }
+  .won-mob-sub-nada{ font-size:.86rem !important; margin-top:.4rem }
   .won-mob-phrase-text{ font-size:1.25rem; line-height:1.25 }
 
   /* Nav dropdown */

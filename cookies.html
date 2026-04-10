@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Cookies — WeboNada.Studio</title>
+<meta name="description" content="Política de cookies y privacidad de WeboNada.Studio. Conoce qué datos recopilamos y cómo los usamos.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://webonada.studio/cookies">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#050d1a">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+/* ── Estilos específicos de la página de cookies ── */
+.policy-hero {
+  padding: 9rem 1.5rem 4rem;
+  text-align: center;
+  position: relative;
+}
+.policy-hero::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 20%, rgba(26,111,255,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 75% 80%, rgba(168,85,247,.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.policy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .4rem 1rem;
+  border-radius: 50px;
+  background: rgba(26,111,255,.08);
+  border: 1px solid rgba(26,111,255,.2);
+  font-size: .78rem;
+  font-weight: 600;
+  color: #3d9bff;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+.policy-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -.05em;
+  line-height: 1.1;
+  color: #f0f6ff;
+  margin-bottom: 1rem;
+}
+.policy-hero h1 span {
+  background: linear-gradient(135deg, #3d9bff, #00d4ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.policy-hero p {
+  color: rgba(139,163,192,.75);
+  font-size: 1rem;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.policy-updated {
+  margin-top: 1.2rem;
+  font-size: .8rem;
+  color: rgba(139,163,192,.45);
+}
+
+/* Contenido */
+.policy-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.policy-toc {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px;
+  padding: 1.6rem 2rem;
+  margin-bottom: 3rem;
+}
+.policy-toc h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  color: rgba(139,163,192,.6);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.policy-toc ol {
+  list-style: none;
+  counter-reset: toc;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+.policy-toc ol li {
+  counter-increment: toc;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.policy-toc ol li::before {
+  content: counter(toc, decimal-leading-zero);
+  font-size: .72rem;
+  font-weight: 700;
+  color: rgba(61,155,255,.5);
+  min-width: 1.5rem;
+}
+.policy-toc a {
+  color: rgba(204,214,246,.7);
+  text-decoration: none;
+  font-size: .9rem;
+  transition: color .2s;
+}
+.policy-toc a:hover { color: #3d9bff; }
+
+/* Secciones */
+.policy-section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 5rem;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.section-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(26,111,255,.15), rgba(168,85,247,.1));
+  border: 1px solid rgba(26,111,255,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #3d9bff;
+  flex-shrink: 0;
+}
+.section-header h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: #f0f6ff;
+}
+.policy-section p,
+.policy-section li {
+  color: rgba(139,163,192,.85);
+  font-size: .95rem;
+  line-height: 1.8;
+}
+.policy-section p + p { margin-top: .9rem; }
+.policy-section ul, .policy-section ol {
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: .8rem 0;
+}
+.policy-section ul li { list-style: disc; }
+.policy-section ol li { list-style: decimal; }
+.policy-section strong { color: #ccd6f6; font-weight: 600; }
+.policy-section a { color: #3d9bff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Tabla de cookies */
+.cookie-table-wrap { overflow-x: auto; margin: 1.2rem 0; border-radius: 12px; }
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .87rem;
+  min-width: 540px;
+}
+.cookie-table th {
+  background: rgba(26,111,255,.08);
+  color: #3d9bff;
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(26,111,255,.15);
+}
+.cookie-table td {
+  padding: .7rem 1rem;
+  color: rgba(139,163,192,.85);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  vertical-align: top;
+}
+.cookie-table tr:last-child td { border-bottom: none; }
+.cookie-table tr:hover td { background: rgba(255,255,255,.02); }
+.cookie-tag {
+  display: inline-block;
+  padding: .2rem .65rem;
+  border-radius: 50px;
+  font-size: .72rem;
+  font-weight: 600;
+}
+.tag-essential { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.2); }
+.tag-analytics  { background: rgba(61,155,255,.1); color: #3d9bff; border: 1px solid rgba(61,155,255,.2); }
+.tag-marketing  { background: rgba(168,85,247,.1); color: #c084fc; border: 1px solid rgba(168,85,247,.2); }
+
+/* Caja de contacto */
+.policy-contact-box {
+  background: rgba(26,111,255,.05);
+  border: 1px solid rgba(26,111,255,.15);
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.policy-contact-box h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #f0f6ff;
+  letter-spacing: -.03em;
+}
+.policy-contact-box p { color: rgba(139,163,192,.8); font-size: .9rem; line-height: 1.7; }
+.policy-contact-box a { color: #3d9bff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Botón volver */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: rgba(139,163,192,.6);
+  font-size: .88rem;
+  text-decoration: none;
+  padding: .5rem 0;
+  transition: color .2s;
+  margin-bottom: 2rem;
+}
+.back-btn:hover { color: #3d9bff; }
+
+@media (max-width: 600px) {
+  .policy-hero { padding: 7rem 1.2rem 3rem; }
+  .policy-toc { padding: 1.2rem 1.4rem; }
+  .policy-contact-box { padding: 1.4rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar del sitio principal -->
+<nav id="navbar" role="navigation" aria-label="Navegación principal">
+  <a href="/" class="logo" aria-label="WeboNada.Studio">
+    <span class="logo-row">Web <span class="logo-o-static">o</span> Nada</span>
+    <span class="logo-sub">.Studio</span>
+  </a>
+  <div class="nav-right">
+    <a href="/" class="nav-cta">← Volver al inicio</a>
+  </div>
+</nav>
+
+<main id="main-content">
+
+  <!-- Hero -->
+  <section class="policy-hero">
+    <div class="policy-badge">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z" fill="currentColor"/>
+      </svg>
+      Política de Cookies
+    </div>
+    <h1>Tu privacidad,<br><span>nuestra responsabilidad</span></h1>
+    <p>Aquí encontrarás exactamente qué cookies usamos, por qué y cómo puedes controlarlas. Sin letra chica.</p>
+    <p class="policy-updated">Última actualización: abril 2026</p>
+  </section>
+
+  <div class="policy-wrap">
+
+    <a href="/" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Volver al inicio
+    </a>
+
+    <!-- Índice -->
+    <nav class="policy-toc" aria-label="Índice de contenidos">
+      <h2>Índice</h2>
+      <ol>
+        <li><a href="#que-son">¿Qué son las cookies?</a></li>
+        <li><a href="#que-usamos">Cookies que utilizamos</a></li>
+        <li><a href="#terceros">Cookies de terceros</a></li>
+        <li><a href="#datos">Datos que recopilamos</a></li>
+        <li><a href="#control">Cómo controlar las cookies</a></li>
+        <li><a href="#derechos">Tus derechos</a></li>
+        <li><a href="#cambios">Cambios en esta política</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1. Qué son -->
+    <section class="policy-section" id="que-son">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2>¿Qué son las cookies?</h2>
+      </div>
+      <p>Las cookies son pequeños archivos de texto que los sitios web almacenan en tu navegador cuando los visitas. Sirven para recordar tus preferencias, analizar cómo navegas el sitio y ofrecerte una mejor experiencia.</p>
+      <p>No todas las cookies son iguales: algunas son <strong>esenciales</strong> para que el sitio funcione, otras son <strong>analíticas</strong> (nos ayudan a entender qué funciona) y otras son de <strong>marketing</strong> (para mostrarte contenido relevante).</p>
+    </section>
+
+    <!-- 2. Qué usamos -->
+    <section class="policy-section" id="que-usamos">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2>Cookies que utilizamos</h2>
+      </div>
+      <p>En WeboNada.Studio utilizamos las siguientes cookies:</p>
+      <div class="cookie-table-wrap">
+        <table class="cookie-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Duración</th>
+              <th>Finalidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>cookie_consent</strong></td>
+              <td><span class="cookie-tag tag-essential">Esencial</span></td>
+              <td>1 año</td>
+              <td>Guarda tu elección sobre el banner de cookies para no mostrarlo en cada visita.</td>
+            </tr>
+            <tr>
+              <td><strong>_ga</strong></td>
+              <td><span class="cookie-tag tag-analytics">Analítica</span></td>
+              <td>2 años</td>
+              <td>Google Analytics. Distingue usuarios únicos para medir el tráfico del sitio de forma anónima.</td>
+            </tr>
+            <tr>
+              <td><strong>_ga_*</strong></td>
+              <td><span class="cookie-tag tag-analytics">Analítica</span></td>
+              <td>2 años</td>
+              <td>Google Analytics 4. Mantiene el estado de la sesión de análisis.</td>
+            </tr>
+            <tr>
+              <td><strong>_gid</strong></td>
+              <td><span class="cookie-tag tag-analytics">Analítica</span></td>
+              <td>24 horas</td>
+              <td>Google Analytics. Distingue usuarios dentro de una misma sesión.</td>
+            </tr>
+            <tr>
+              <td><strong>calendly.*</strong></td>
+              <td><span class="cookie-tag tag-marketing">Marketing</span></td>
+              <td>Sesión / 60 días</td>
+              <td>Calendly (widget de agendamiento). Gestiona la sesión del formulario de citas.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Terceros -->
+    <section class="policy-section" id="terceros">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2>Cookies de terceros</h2>
+      </div>
+      <p>Algunos servicios externos que usamos pueden establecer sus propias cookies. Estos proveedores tienen sus propias políticas de privacidad y no tenemos control sobre sus cookies:</p>
+      <ul>
+        <li><strong>Google Analytics 4</strong> — Análisis de tráfico y comportamiento de usuarios. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Google →</a></li>
+        <li><strong>Calendly</strong> — Widget de agendamiento de llamadas. <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Calendly →</a></li>
+        <li><strong>Formspree</strong> — Procesamiento de formularios de contacto. No establece cookies de seguimiento. <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Política de privacidad de Formspree →</a></li>
+      </ul>
+      <p>Si rechazas las cookies desde nuestro banner, las cookies analíticas y de marketing no se cargan.</p>
+    </section>
+
+    <!-- 4. Datos -->
+    <section class="policy-section" id="datos">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2>Datos que recopilamos</h2>
+      </div>
+      <p>A través de Google Analytics recopilamos datos <strong>anónimos y agregados</strong> como:</p>
+      <ul>
+        <li>Páginas visitadas y tiempo de permanencia</li>
+        <li>País o región aproximada (no tu dirección exacta)</li>
+        <li>Tipo de dispositivo, sistema operativo y navegador</li>
+        <li>Fuente de tráfico (buscador, redes sociales, directo)</li>
+      </ul>
+      <p><strong>No recopilamos</strong> información personal identificable como nombre, correo o número de teléfono a través de cookies. Los datos que nos envías por el formulario de contacto o WhatsApp se usan exclusivamente para responderte y no se comparten con terceros.</p>
+    </section>
+
+    <!-- 5. Control -->
+    <section class="policy-section" id="control">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <h2>Cómo controlar las cookies</h2>
+      </div>
+      <p>Tienes varias formas de gestionar las cookies:</p>
+      <ol>
+        <li><strong>Desde nuestro banner:</strong> al visitar el sitio por primera vez puedes aceptar o rechazar las cookies no esenciales. Si rechazas, Google Analytics no se activará.</li>
+        <li><strong>Desde tu navegador:</strong> puedes bloquear o eliminar cookies en cualquier momento desde la configuración de tu navegador. Ten en cuenta que esto puede afectar la funcionalidad del sitio.</li>
+        <li><strong>Opt-out de Google Analytics:</strong> puedes instalar el <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">complemento de inhabilitación de Google Analytics</a> para evitar que tus datos sean recopilados.</li>
+      </ol>
+      <p>Guías para gestionar cookies en los navegadores más comunes: <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome</a> · <a href="https://support.mozilla.org/es/kb/cookies-informacion-que-los-sitios-web-guardan-en-" target="_blank" rel="noopener noreferrer">Firefox</a> · <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a> · <a href="https://support.microsoft.com/es-es/windows/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer">Edge</a></p>
+    </section>
+
+    <!-- 6. Derechos -->
+    <section class="policy-section" id="derechos">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <h2>Tus derechos</h2>
+      </div>
+      <p>De acuerdo con la normativa aplicable en materia de protección de datos, tienes derecho a:</p>
+      <ul>
+        <li><strong>Acceso:</strong> conocer qué datos tenemos sobre ti.</li>
+        <li><strong>Rectificación:</strong> corregir datos inexactos.</li>
+        <li><strong>Eliminación:</strong> solicitar que borremos tus datos.</li>
+        <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos con fines analíticos o de marketing.</li>
+        <li><strong>Portabilidad:</strong> recibir tus datos en formato estructurado.</li>
+      </ul>
+      <p>Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:hola@webonada.studio">hola@webonada.studio</a> y te respondemos en menos de 72 horas.</p>
+    </section>
+
+    <!-- 7. Cambios -->
+    <section class="policy-section" id="cambios">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <h2>Cambios en esta política</h2>
+      </div>
+      <p>Podemos actualizar esta política cuando cambiemos los servicios que usamos o cuando la normativa así lo requiera. La fecha de "última actualización" al inicio de este documento siempre reflejará la versión vigente.</p>
+      <p>Si los cambios son significativos, lo notificaremos a través del banner de cookies en el sitio.</p>
+    </section>
+
+    <!-- 8. Contacto -->
+    <section class="policy-section" id="contacto">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <h2>Contacto</h2>
+      </div>
+      <p>Si tienes dudas sobre esta política o sobre cómo tratamos tus datos, no dudes en contactarnos.</p>
+    </section>
+
+    <!-- Caja de contacto -->
+    <div class="policy-contact-box">
+      <h3>¿Tienes preguntas?</h3>
+      <p>Escríbenos y te respondemos en menos de 24 horas. Sin formularios eternos.</p>
+      <p>
+        📧 <a href="mailto:hola@webonada.studio">hola@webonada.studio</a><br>
+        💬 <a href="https://wa.me/584144507002?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20la%20pol%C3%ADtica%20de%20cookies" target="_blank" rel="noopener noreferrer">WhatsApp directo</a>
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-bottom">
+    <p>© 2026 WeboNada.Studio Todos los derechos reservados. · <a href="/privacidad" style="color:inherit;text-decoration:underline">Política de Privacidad</a> · <a href="/cookies" style="color:inherit;text-decoration:underline">Cookies</a></p>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>
