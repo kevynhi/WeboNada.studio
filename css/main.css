@@ -1088,11 +1088,34 @@ padding-left:9%;
 .pf-modal-visit:hover{color:var(--neon);border-color:rgba(0,212,255,.4)}
 .pf-modal-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(240,246,255,.55);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
 .pf-modal-close:hover{background:rgba(220,38,38,.25);border-color:rgba(220,38,38,.4);color:#fff}
-.pf-vid-progress-wrap:hover .pf-vid-progress-wrap:hover .pf-modal-screen:fullscreen 
+
 @media(max-width:900px){
   .pf-grid{
     grid-template-columns:1fr;
     max-width:560px;
+  }
+}
+
+@media(max-width:768px){
+  .pf-grid{
+    grid-template-columns:1fr;
+    max-width:420px;
+    gap:1.2rem;
+  }
+  .pf-card{
+    border-radius:16px;
+  }
+  .pf-thumb{
+    aspect-ratio:16/9;
+  }
+  .pf-info{
+    padding:1.1rem 1.2rem 1.3rem;
+  }
+  .pf-title{
+    font-size:1.05rem;
+  }
+  .pf-desc{
+    font-size:.82rem;
   }
 }
 

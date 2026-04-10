@@ -1008,12 +1008,14 @@ document.querySelectorAll('.service-card').forEach(card=>{
 
   const cards = Array.from(grid.querySelectorAll('.pricing-card'));
   const N = cards.length;
-  let current = 0;
+  let current = 1; // Empieza en la tarjeta Profesional (featured, índice 1)
   let startX = 0, startY = 0, dragging = false;
 
   function isMobile(){ return window.innerWidth <= 768; }
 
-  // Calcula el offset px para centrar la tarjeta `idx`
+  // Calcula el offset px para centrar la tarjeta `idx`.
+  // getOffset funciona correctamente aunque el grid tenga un transform aplicado,
+  // porque la diferencia card.left - grid.left cancela el transform compartido.
   function getOffset(idx){
     const parentW = grid.parentElement ? grid.parentElement.offsetWidth : window.innerWidth;
     const card = cards[idx];
@@ -1027,11 +1029,14 @@ document.querySelectorAll('.service-card').forEach(card=>{
 
   function goTo(idx, animated){
     if(!isMobile()) return;
-    current = Math.max(0, Math.min(idx, N - 1));
+    // Límite estricto: si el índice está fuera del rango, no hace nada.
+    // Esto evita la animación fantasma en el primer/último card.
+    if(idx < 0 || idx >= N) return;
+    current = idx;
 
-    grid.style.transition = 'none';
-    grid.style.transform  = 'translateX(0)';
-
+    // NO se resetea a translateX(0) antes de animar: ese reset causaba
+    // que el grid saltara visualmente al inicio y la animación se viera
+    // en dirección contraria al swipe. getOffset no lo necesita (ver arriba).
     requestAnimationFrame(() => {
       const offset = getOffset(current);
       grid.style.transition = animated ? 'transform .4s cubic-bezier(.23,1,.32,1)' : 'none';
