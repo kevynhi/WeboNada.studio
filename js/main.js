@@ -5,6 +5,17 @@ if ('scrollRestoration' in history) {
 // Forzar scroll al top antes de que cualquier otra cosa corra
 window.scrollTo(0, 0);
 
+// ── Fix iOS 14/15: --real-vh para calc() en lugar de 100vh ──
+(function(){
+  function setRealVh(){
+    document.documentElement.style.setProperty('--real-vh', (window.innerHeight * 0.01) + 'px');
+  }
+  setRealVh();
+  window.addEventListener('resize', setRealVh);
+  // También al rotar pantalla en móvil
+  window.addEventListener('orientationchange', function(){ setTimeout(setRealVh, 150); });
+})();
+
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

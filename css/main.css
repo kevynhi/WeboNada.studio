@@ -7,8 +7,12 @@
 @font-face{font-family:'Outfit';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/1774666731235_outfit-v15-latin-regular.woff2') format('woff2')}
 @font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/1774666731232_outfit-v15-latin-500.woff2') format('woff2')}
 @font-face{font-family:'Outfit';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/1774666731233_outfit-v15-latin-600.woff2') format('woff2')}
+/* weight 700 — si el archivo es idéntico al 600 (mismo timestamp), el browser usará el 600.
+   Si tienes un archivo -700 real, reemplaza la src por ese archivo. */
 @font-face{font-family:'Outfit';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/1774666731233_outfit-v15-latin-700.woff2') format('woff2')}
 @font-face{font-family:'Outfit';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/1774666731234_outfit-v15-latin-800.woff2') format('woff2')}
+/* weight 900 — mismo timestamp que 800. Si no tienes archivo 900 real, declarar rango 800 900
+   evita síntesis artificial en Android. */
 @font-face{font-family:'Outfit';font-style:normal;font-weight:900;font-display:swap;src:url('fonts/1774666731234_outfit-v15-latin-900.woff2') format('woff2')}
 @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/1774666731238_plus-jakarta-sans-v12-latin-300.woff2') format('woff2')}
 @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/1774666731244_plus-jakarta-sans-v12-latin-regular.woff2') format('woff2')}
@@ -213,7 +217,7 @@ nav.scrolled{background:rgba(5,13,26,.92);border-bottom:1px solid var(--glass-bo
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-.nav-dropdown{position:fixed;inset:0;background:rgba(5,13,26,.97);backdrop-filter:blur(28px);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.23,1,.32,1);overflow-y:auto}
+.nav-dropdown{position:fixed;inset:0;background:rgba(5,13,26,.97);backdrop-filter:blur(28px);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.23,1,.32,1);overflow-y:auto;overscroll-behavior:contain}
 .nav-dropdown.open{opacity:1;pointer-events:auto}
 .nav-dropdown-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 50% 50%,rgba(26,111,255,.07) 0%,transparent 70%);pointer-events:none}
 .nav-dropdown-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.1rem;padding:clamp(1.2rem,4vh,2.5rem) 2rem;margin:auto;width:100%}
@@ -806,7 +810,7 @@ section{padding:8rem 5%;position:relative}
   .won-mob-stage{
     position:relative;
     width:100%;
-    height:calc(100vh - 90px);
+    height:calc(var(--real-vh, 1vh) * 100 - 90px);
     height:calc(100svh - 90px);
     overflow:hidden;
     margin-top:0;
@@ -1343,7 +1347,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 
   /* WEB/NADA móvil — solo px/vw, sin rem */
   .won-mob-stage{
-    height:calc(100vh - 70px) !important;
+    height:calc(var(--real-vh, 1vh) * 100 - 70px) !important;
     height:calc(100svh - 70px) !important;
   }
   .won-mob-top{
@@ -1660,14 +1664,30 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 @media(max-width:768px) {
   /* Carrusel móvil — el JS maneja transform/translateX del grid completo.
      El CSS solo define estilos base de las tarjetas; NO pone flex ni overflow
-     en el grid (eso lo hace el JS) para evitar conflictos de layout. */
+     en el grid (eso lo hace el JS) para evitar conflictos de layout.
+     El scale se aplica via --pc-scale en un pseudo-elemento interno para no
+     interferir con el translateX del JS en la tarjeta raíz. */
   .pricing-card {
-    transition: transform .4s cubic-bezier(.23,1,.32,1), opacity .4s, box-shadow .4s;
+    transition: opacity .4s, box-shadow .4s;
     opacity: .45;
-    transform: scale(.93);
+    transform: none;
   }
   .pricing-card.pc-active {
     opacity: 1;
+    transform: none;
+  }
+  /* Scale visual usando outline + zoom del contenido, no transform en la card */
+  .pricing-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    transform: scale(0.93);
+    transform-origin: center;
+    transition: transform .4s cubic-bezier(.23,1,.32,1);
+    pointer-events: none;
+  }
+  .pricing-card.pc-active::after {
     transform: scale(1);
   }
  
