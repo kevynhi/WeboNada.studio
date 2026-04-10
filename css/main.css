@@ -1364,115 +1364,318 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
   .svc-desc{max-height:none!important;opacity:1!important;margin-top:.4rem!important}
   .svc-link{opacity:1!important;transform:none!important}
 }
-@media(max-width:500px){
-  .stat-num{font-size:1.5rem}
-  .stat-label{font-size:.68rem}
-}
-@media(max-width:380px){
-  .stat-num{font-size:1.3rem}
-  .stat{min-width:0}
-}
+/* ==============================================
+   SISTEMA DE BREAKPOINTS MÓVIL — 4 niveles
+   
+   BP1 — max-width: 480px  → Móvil pequeño a medio
+         Cubre: iPhone SE (375), Galaxy A14 (360), Pixel 6a (411 landscape)
+         Todos los teléfonos budget y mid-range Android comunes en LATAM
 
-/* ── Teléfonos pequeños 360px (excluye pantallas con CSS <340px) ── */
-@media(min-width:340px) and (max-width:390px){
-  /* Base — NO tocamos font-size del body para no afectar los rem globales */
-  section{ padding:56px 4% }
-  #web-o-nada{ padding:0 }
+   BP2 — max-width: 430px  → Móvil estándar moderno
+         Cubre: iPhone 14/15 Pro Max (430), Galaxy S23+ (393), Pixel 7 Pro (412)
+         La mayoría de flagships actuales
 
-  /* Títulos de sección — px en vez de rem */
-  .section-title{ font-size:26px !important; letter-spacing:-1px }
-  .section-sub{ font-size:14px !important }
-  .section-label{ font-size:11px }
+   BP3 — max-width: 390px  → Móvil compacto
+         Cubre: iPhone 14/15 (390), iPhone 13 mini (375), Galaxy S22 (360)
 
-  /* WEB/NADA móvil — solo px/vw, sin rem */
-  .won-mob-stage{
-    height:calc(var(--real-vh, 1vh) * 100 - 70px) !important;
-    height:calc(100svh - 70px) !important;
-  }
+   BP4 — max-width: 360px  → Móvil muy pequeño / budget Android
+         Cubre: Galaxy A03 (360), Redmi 9 (360), teléfonos <$200 en LATAM
+   ============================================== */
+
+/* ── BP1: max 480px — base móvil amplia ── */
+@media(max-width:480px){
+
+  /* Estadísticas UFO */
+  .stat-num{ font-size:1.5rem }
+  .stat-label{ font-size:.68rem }
+  .ufo-stat-num{ font-size:1.1rem !important }
+  .ufo-stat-label{ font-size:.5rem !important }
+
+  /* Sección general */
+  section{ padding:4.5rem 5% }
+  #web-o-nada{ padding:0 !important }
+  .section-title{ font-size:clamp(1.7rem,6.5vw,2.2rem); letter-spacing:-1px }
+  .section-sub{ font-size:.92rem !important }
+  .section-label{ font-size:.68rem }
+
+  /* Hero WEB/NADA */
   .won-mob-top{
-    padding-top:60px !important;
-    padding-left:7% !important;
-    padding-right:7% !important;
+    padding-top:80px;
+    padding-left:8%;
+    padding-right:8%;
   }
   .won-mob-bot{
-    padding-top:140px !important;
-    padding-left:7% !important;
-    padding-right:7% !important;
+    padding-top:170px;
+    padding-left:8%;
+    padding-right:8%;
   }
-  .won-mob-h1{
-    font-size:12px !important;
-    padding:5px 12px !important;
-    margin-bottom:32px !important;
-  }
-  .won-mob-word-web{
-    font-size:clamp(44px,14vw,60px) !important;
-    letter-spacing:-2px !important;
-  }
-  .won-mob-word-nada{
-    font-size:clamp(35px,12vw,50px) !important;
-    letter-spacing:-2px !important;
-  }
+  .won-mob-h1{ font-size:.85rem; margin-bottom:40px }
+  .won-mob-word-web{ font-size:clamp(3rem,16vw,5rem); letter-spacing:-3px }
+  .won-mob-word-nada{ font-size:clamp(2.5rem,13vw,4rem); letter-spacing:-2px }
   .won-mob-label-web,
-  .won-mob-label-nada{ font-size:9px !important; letter-spacing:2px !important }
+  .won-mob-label-nada{ font-size:.52rem; letter-spacing:2px }
   .won-mob-sub-web,
-  .won-mob-sub-nada{ font-size:12px !important; margin-top:5px !important }
-  .won-mob-phrase-text{ font-size:15px !important; line-height:1.25 !important }
-  .won-mob-phrase{ padding-bottom:10px !important }
+  .won-mob-sub-nada{ font-size:.72rem; margin-top:.4rem }
+  .won-mob-phrase-text{ font-size:1.25rem; line-height:1.25 }
+
+  /* Nav dropdown */
+  .nav-dropdown-inner a{ font-size:clamp(1.6rem,7vw,2.4rem) }
+  .nav-cta-primary,
+  .nav-cta-secondary{ font-size:.88rem; padding:.75rem 1.6rem }
 
   /* Servicios */
-  .service-card{ padding:22px 18px }
-  .svc-title{ font-size:15px }
-  .svc-desc{ font-size:13px !important }
+  .service-card{ padding:1.6rem 1.3rem }
+  .svc-title{ font-size:.95rem }
+  .svc-icon{ width:54px; height:54px; font-size:1.5rem }
 
   /* Beneficios */
-  .benefit-item h4{ font-size:14px }
-  .benefit-text p{ font-size:13px !important }
+  .benefit-item h4{ font-size:.95rem }
+  .benefit-icon{ width:34px; height:34px; font-size:.9rem }
 
   /* Proceso */
-  .proc-title{ font-size:16px }
-  .proc-desc{ font-size:13px !important }
+  .proc-title{ font-size:.97rem }
+  .proc-bubble{ width:52px; height:52px; font-size:1.2rem }
 
   /* Portafolio */
-  .pf-title{ font-size:15px }
-  .pf-desc{ font-size:13px }
-  .pf-info{ padding:14px }
+  .pf-title{ font-size:.95rem }
+  .pf-desc{ font-size:.76rem }
+  .pf-info{ padding:1rem 1.1rem 1.2rem }
 
   /* Precios */
-  .pricing-card{ padding:22px 18px }
-  .pricing-plan{ font-size:14px }
-  .pricing-price{ font-size:30px !important }
-  .pricing-features li{ font-size:13px !important }
-  .pricing-desc{ font-size:13px !important }
+  .pricing-card{ padding:1.8rem 1.4rem }
+  .pricing-price{ font-size:2.1rem !important }
+  .pricing-plan{ font-size:.7rem }
 
   /* Testimonios */
-  .testimonial-text{ font-size:13px !important }
-  .author-name{ font-size:14px }
-  .author-role{ font-size:12px }
+  .testimonial-card{ padding:1.4rem }
+  .testimonial-text{ font-size:.88rem !important }
+  .author-name{ font-size:.85rem }
+  .author-role{ font-size:.72rem }
 
-  /* Formulario contacto */
-  .contact-form{ gap:14px }
+  /* Formulario */
+  .contact-form{ gap:1rem }
   .form-group input,
   .form-group select,
-  .form-group textarea{ padding:11px 14px; font-size:13px }
-  #contact-phone-code{ min-width:82px !important; font-size:12px !important; padding:11px 8px !important }
+  .form-group textarea{ padding:.75rem 1rem; font-size:.9rem }
+  #contact-phone-code{ min-width:86px !important; font-size:.8rem !important; padding:.75rem .6rem !important }
 
   /* Botones */
   .btn-primary,
-  .btn-secondary{ padding:12px 22px; font-size:14px }
-
-  /* Estadísticas ufo */
-  .ufo-stat-num{ font-size:22px !important }
-  .ufo-stat-label{ font-size:10px !important }
+  .btn-secondary{ padding:.8rem 1.6rem; font-size:.88rem }
+  .cta-actions{ flex-direction:column; align-items:center }
+  .cta-actions .btn-primary,
+  .cta-actions .btn-secondary{ width:100%; max-width:320px; justify-content:center }
 
   /* Footer */
-  .footer-top{ gap:1rem }
+  .footer-top{ gap:1.2rem }
   .footer-col h4{ font-size:.85rem }
-  .footer-col ul li a{ font-size:.8rem !important }
+}
+
+/* ── BP2: max 430px — flagships modernos y Android mid-range ── */
+@media(max-width:430px){
+
+  /* Estadísticas UFO — más ajustadas */
+  .ufo-stat-num{ font-size:1rem !important }
+
+  /* Sección */
+  section{ padding:4rem 4.5% }
+  .section-title{ font-size:clamp(1.55rem,6vw,1.9rem) }
+
+  /* Hero */
+  .won-mob-top{ padding-top:75px; padding-left:7%; padding-right:7% }
+  .won-mob-bot{ padding-top:160px; padding-left:7%; padding-right:7% }
+  .won-mob-word-web{ font-size:clamp(2.8rem,15vw,4.5rem) }
+  .won-mob-word-nada{ font-size:clamp(2.3rem,12vw,3.8rem) }
+  .won-mob-phrase-text{ font-size:1.15rem }
 
   /* Nav dropdown */
-  .nav-dropdown-inner a{ font-size:1.6rem }
+  .nav-dropdown-inner a{ font-size:clamp(1.5rem,6.5vw,2.2rem) }
+
+  /* Precios */
+  .pricing-price{ font-size:1.9rem !important }
+  .pricing-features li{ font-size:.82rem !important }
+  .pricing-desc{ font-size:.82rem !important }
+
+  /* Portafolio */
+  .pf-info{ padding:.9rem 1rem 1.1rem }
+  .pf-title{ font-size:.9rem }
+
+  /* Float CTA */
+  .float-cta{ font-size:.78rem; padding:.7rem 1.1rem }
+}
+
+/* ── BP3: max 390px — móvil compacto (iPhone 14, Galaxy S22) ── */
+@media(max-width:390px){
+
+  /* Sección */
+  section{ padding:3.8rem 4% }
+  .section-title{ font-size:clamp(1.4rem,5.8vw,1.75rem); letter-spacing:-.8px }
+  .section-sub{ font-size:.88rem !important }
+
+  /* Hero */
+  .won-mob-stage{
+    height:calc(var(--real-vh, 1vh) * 100 - 75px);
+    height:calc(100svh - 75px);
+  }
+  .won-mob-top{ padding-top:68px; padding-left:6%; padding-right:6% }
+  .won-mob-bot{ padding-top:150px; padding-left:6%; padding-right:6% }
+  .won-mob-h1{ font-size:.78rem; padding:.35rem .9rem; margin-bottom:30px }
+  .won-mob-word-web{ font-size:clamp(2.5rem,14vw,3.8rem); letter-spacing:-2px }
+  .won-mob-word-nada{ font-size:clamp(2rem,11.5vw,3.2rem); letter-spacing:-2px }
+  .won-mob-phrase-text{ font-size:1.05rem }
+  .won-mob-phrase{ padding-bottom:10px }
+
+  /* Servicios */
+  .service-card{ padding:1.4rem 1.1rem }
+  .svc-title{ font-size:.9rem }
+  .svc-desc{ font-size:.8rem !important }
+  .svc-icon{ width:48px; height:48px; font-size:1.35rem }
+
+  /* Proceso */
+  .proc-bubble{ width:48px; height:48px; font-size:1.1rem }
+  .proc-title{ font-size:.92rem }
+  .proc-desc{ font-size:.8rem !important }
+
+  /* Portafolio */
+  .pf-title{ font-size:.85rem }
+  .pf-desc{ font-size:.72rem }
+  .pf-info{ padding:.8rem .9rem 1rem }
+  .pf-link{ font-size:.68rem }
+
+  /* Precios */
+  .pricing-card{ padding:1.5rem 1.1rem }
+  .pricing-price{ font-size:1.75rem !important }
+  .pricing-plan{ font-size:.65rem; letter-spacing:1.5px }
+  .pricing-features li{ font-size:.78rem !important }
+  .pricing-desc{ font-size:.78rem !important }
+
+  /* Testimonios */
+  .testimonial-text{ font-size:.82rem !important }
+  .author-name{ font-size:.8rem }
+  .author-role{ font-size:.68rem }
+  .testimonial-card{ padding:1.2rem }
+
+  /* Formulario */
+  .form-group input,
+  .form-group select,
+  .form-group textarea{ padding:.7rem .9rem; font-size:.85rem }
+  #contact-phone-code{ min-width:80px !important; font-size:.78rem !important; padding:.7rem .55rem !important }
+
+  /* Botones */
+  .btn-primary,
+  .btn-secondary{ padding:.75rem 1.4rem; font-size:.84rem }
+
+  /* UFO stats */
+  .stat-num{ font-size:1.3rem }
+  .stat{ min-width:0 }
+  .ufo-stat-num{ font-size:.95rem !important }
+  .ufo-stat-label{ font-size:.46rem !important }
+
+  /* Nav dropdown */
+  .nav-dropdown-inner a{ font-size:1.5rem }
   .nav-cta-primary,
-  .nav-cta-secondary{ font-size:.85rem; padding:.7rem 1.4rem }
+  .nav-cta-secondary{ font-size:.82rem; padding:.65rem 1.3rem }
+
+  /* Footer */
+  .footer-top{ gap:.9rem }
+  .footer-col h4{ font-size:.82rem }
+  .footer-col ul li a{ font-size:.78rem !important }
+}
+
+/* ── BP4: max 360px — budget Android, pantallas muy pequeñas ── */
+@media(max-width:360px){
+
+  /* Sección */
+  section{ padding:3.5rem 4% }
+  .section-title{ font-size:clamp(1.3rem,5.5vw,1.6rem) }
+  .section-sub{ font-size:.85rem !important }
+  .section-label{ font-size:.62rem; letter-spacing:1.5px }
+
+  /* Hero */
+  .won-mob-stage{
+    height:calc(var(--real-vh, 1vh) * 100 - 68px);
+    height:calc(100svh - 68px);
+  }
+  .won-mob-top{ padding-top:60px; padding-left:5%; padding-right:5% }
+  .won-mob-bot{ padding-top:138px; padding-left:5%; padding-right:5% }
+  .won-mob-h1{ font-size:.72rem; padding:.3rem .8rem; margin-bottom:26px }
+  .won-mob-word-web{ font-size:clamp(2.2rem,13vw,3.2rem); letter-spacing:-2px }
+  .won-mob-word-nada{ font-size:clamp(1.8rem,10.5vw,2.7rem); letter-spacing:-1.5px }
+  .won-mob-label-web,
+  .won-mob-label-nada{ font-size:.48rem; letter-spacing:1.5px }
+  .won-mob-sub-web,
+  .won-mob-sub-nada{ font-size:.65rem }
+  .won-mob-phrase-text{ font-size:.95rem }
+
+  /* Servicios */
+  .service-card{ padding:1.2rem 1rem }
+  .svc-title{ font-size:.85rem }
+  .svc-desc{ font-size:.76rem !important }
+  .svc-icon{ width:44px; height:44px; font-size:1.2rem; border-radius:14px }
+
+  /* Beneficios */
+  .benefit-item h4{ font-size:.88rem }
+  .benefit-text p{ font-size:.78rem !important }
+  .benefit-icon{ width:30px; height:30px; font-size:.8rem }
+
+  /* Proceso */
+  .proc-bubble{ width:44px; height:44px; font-size:1rem }
+  .proc-badge{ width:22px; height:22px; font-size:.62rem }
+  .proc-title{ font-size:.86rem }
+  .proc-desc{ font-size:.76rem !important }
+
+  /* Portafolio */
+  .pf-info{ padding:.7rem .8rem .9rem }
+  .pf-title{ font-size:.8rem }
+  .pf-desc{ font-size:.68rem }
+  .pf-cat{ font-size:.6rem }
+  .pf-link{ font-size:.65rem }
+  .pf-cat-tag{ font-size:.55rem; padding:.18rem .55rem }
+
+  /* Precios */
+  .pricing-card{ padding:1.3rem .9rem }
+  .pricing-price{ font-size:1.6rem !important; letter-spacing:-1px }
+  .pricing-plan{ font-size:.6rem }
+  .pricing-features li{ font-size:.74rem !important }
+  .pricing-desc{ font-size:.74rem !important }
+  .pricing-note{ font-size:.68rem }
+
+  /* Testimonios */
+  .testimonial-card{ padding:1rem .9rem }
+  .testimonial-text{ font-size:.78rem !important; line-height:1.6 !important }
+  .author-name{ font-size:.76rem }
+  .author-role{ font-size:.64rem }
+  .author-avatar{ width:34px; height:34px; font-size:.82rem }
+
+  /* Formulario */
+  .form-group input,
+  .form-group select,
+  .form-group textarea{ padding:.65rem .85rem; font-size:.82rem }
+  #contact-phone-code{ min-width:74px !important; font-size:.74rem !important; padding:.65rem .5rem !important }
+  .contact-form{ gap:.85rem }
+
+  /* Botones */
+  .btn-primary,
+  .btn-secondary{ padding:.7rem 1.2rem; font-size:.8rem }
+
+  /* UFO stats */
+  .stat-num{ font-size:1.2rem }
+  .ufo-stat-num{ font-size:.88rem !important }
+  .ufo-stat-label{ font-size:.42rem !important }
+
+  /* Nav dropdown */
+  .nav-dropdown-inner a{ font-size:1.35rem }
+  .nav-cta-primary,
+  .nav-cta-secondary{ font-size:.78rem; padding:.6rem 1.1rem }
+
+  /* Float CTA */
+  .float-cta{ font-size:.74rem; padding:.65rem 1rem; right:.8rem }
+
+  /* Footer */
+  .footer-top{ gap:.7rem }
+  .footer-col h4{ font-size:.78rem }
+  .footer-col ul li a{ font-size:.72rem !important }
+  .footer-brand p{ font-size:.78rem !important }
 }
 
 @media (prefers-reduced-motion: reduce) {
