@@ -1003,83 +1003,83 @@ document.querySelectorAll('.service-card').forEach(card=>{
 
 (function(){
   const grid = document.getElementById('pricingGrid');
-  const dots = document.querySelectorAll('.pricing-dot');
-  if(!grid) return;
+  const dotsEl = document.getElementById('pricingDots');
+  const prevBtn = document.getElementById('pricingPrev');
+  const nextBtn = document.getElementById('pricingNext');
+  if(!grid || !dotsEl) return;
 
   const cards = Array.from(grid.querySelectorAll('.pricing-card'));
-  const N = cards.length;
+  const dots  = Array.from(dotsEl.querySelectorAll('.pricing-dot'));
+  const N     = cards.length;
   let current = 1; // Empieza en la tarjeta Profesional (featured, índice 1)
   let startX = 0, startY = 0, dragging = false;
 
+  // Misma lógica que el carrusel de testimonios:
+  // cada tarjeta ocupa un % fijo del viewport → el offset = idx * (cardW + gap)
+  // sin necesidad de leer getBoundingClientRect() sobre un elemento ya transformado.
+  const CARD_VW = 82; // ancho de cada tarjeta en vw
+  const CARD_MX = 3;  // margen lateral de cada tarjeta en vw
+
   function isMobile(){ return window.innerWidth <= 768; }
 
-  // Calcula el offset px para centrar la tarjeta `idx`.
-  // getOffset funciona correctamente aunque el grid tenga un transform aplicado,
-  // porque la diferencia card.left - grid.left cancela el transform compartido.
-  function getOffset(idx){
-    const parentW = grid.parentElement ? grid.parentElement.offsetWidth : window.innerWidth;
-    const card = cards[idx];
-    if(!card) return 0;
-    const cardRect = card.getBoundingClientRect();
-    const gridRect = grid.getBoundingClientRect();
-    const cardLeft = cardRect.left - gridRect.left;
-    const cardW    = cardRect.width;
-    return cardLeft - (parentW / 2 - cardW / 2);
+  function getCardPx(){ return window.innerWidth * CARD_VW / 100; }
+  function getGapPx(){  return window.innerWidth * CARD_MX * 2 / 100; }
+
+  function update(animated){
+    if(!isMobile()) return;
+    const offset = current * (getCardPx() + getGapPx());
+
+    grid.style.transition = animated ? 'transform .4s cubic-bezier(.23,1,.32,1)' : 'none';
+    grid.style.transform  = `translateX(-${offset}px)`;
+    if(!animated) requestAnimationFrame(() => { grid.style.transition = ''; });
+
+    cards.forEach((c, i) => {
+      const active = i === current;
+      c.classList.toggle('pc-active', active);
+      c.style.opacity   = active ? '1' : '0.45';
+      c.style.transform = active ? 'scale(1)' : 'scale(0.93)';
+    });
+
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+      d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+
+    if(prevBtn) prevBtn.disabled = current === 0;
+    if(nextBtn) nextBtn.disabled = current >= N - 1;
   }
 
   function goTo(idx, animated){
     if(!isMobile()) return;
-    // Límite estricto: si el índice está fuera del rango, no hace nada.
-    // Esto evita la animación fantasma en el primer/último card.
     if(idx < 0 || idx >= N) return;
     current = idx;
-
-    // NO se resetea a translateX(0) antes de animar: ese reset causaba
-    // que el grid saltara visualmente al inicio y la animación se viera
-    // en dirección contraria al swipe. getOffset no lo necesita (ver arriba).
-    requestAnimationFrame(() => {
-      const offset = getOffset(current);
-      grid.style.transition = animated ? 'transform .4s cubic-bezier(.23,1,.32,1)' : 'none';
-      grid.style.transform  = `translateX(-${offset}px)`;
-
-      cards.forEach((c, i) => {
-        const isActive = i === current;
-        c.classList.toggle('pc-active', isActive);
-        c.style.opacity   = isActive ? '1' : '0.45';
-        c.style.transform = isActive ? 'scale(1)' : 'scale(0.93)';
-      });
-
-      dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    });
+    update(animated);
   }
 
   function setupMobile(){
     if(!isMobile()) return;
-    // El grid es flex-row con las tarjetas en línea
-    // Cada tarjeta ocupa ~88% del container — el track es N*88% aprox
-    grid.style.display        = 'flex';
-    grid.style.flexWrap       = 'nowrap';
-    grid.style.gap            = '0';
-    grid.style.overflow       = 'visible';  // visible para que se vean las laterales
-    grid.style.width          = (N * 88) + 'vw'; // ancho total del track
-    grid.style.maxWidth       = 'none';
-    grid.style.margin         = '0';
-    grid.style.willChange     = 'transform';
-    // Contenedor padre: overflow hidden para ocultar lo que sale
+    grid.style.display    = 'flex';
+    grid.style.flexWrap   = 'nowrap';
+    grid.style.gap        = '0';
+    grid.style.overflow   = 'visible';
+    grid.style.width      = (N * (CARD_VW + CARD_MX * 2)) + 'vw';
+    grid.style.maxWidth   = 'none';
+    grid.style.margin     = '0';
+    grid.style.willChange = 'transform';
     const parent = grid.parentElement;
     if(parent){
-      parent.style.overflow   = 'hidden';
-      parent.style.position   = parent.style.position || 'relative';
+      parent.style.overflow = 'hidden';
+      parent.style.position = parent.style.position || 'relative';
     }
     cards.forEach(c => {
-      c.style.flex      = `0 0 82vw`;
-      c.style.maxWidth  = '82vw';
-      c.style.margin    = '0 3vw';
-      c.style.position  = '';
-      c.style.left      = '';
-      c.style.top       = '';
+      c.style.flex     = `0 0 ${CARD_VW}vw`;
+      c.style.maxWidth = `${CARD_VW}vw`;
+      c.style.margin   = `0 ${CARD_MX}vw`;
+      c.style.position = '';
+      c.style.left     = '';
+      c.style.top      = '';
     });
-    requestAnimationFrame(()=>requestAnimationFrame(()=> goTo(current, false)));
+    requestAnimationFrame(() => requestAnimationFrame(() => goTo(current, false)));
   }
 
   function resetDesktop(){
@@ -1087,12 +1087,17 @@ document.querySelectorAll('.service-card').forEach(card=>{
     const parent = grid.parentElement;
     if(parent){ parent.style.overflow = ''; }
     cards.forEach(c => { c.style.cssText = ''; });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
   }
+
+  // Botones prev/next
+  if(prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1, true));
+  if(nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1, true));
 
   // Dots
   dots.forEach((d, i) => d.addEventListener('click', () => goTo(i, true)));
 
-  // Touch swipe — escuchar en el PADRE (overflow:hidden) para no perder eventos
+  // Touch swipe — escuchar en el padre (overflow:hidden)
   const swipeTarget = grid.parentElement || grid;
   swipeTarget.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
@@ -1103,7 +1108,6 @@ document.querySelectorAll('.service-card').forEach(card=>{
     if(!dragging || !isMobile()) return;
     const dx = e.changedTouches[0].clientX - startX;
     const dy = Math.abs(e.changedTouches[0].clientY - startY);
-    // Solo swipe horizontal (ignora scroll vertical)
     if(Math.abs(dx) > 40 && Math.abs(dx) > dy){
       if(dx < 0) goTo(current + 1, true);
       else        goTo(current - 1, true);
@@ -1122,12 +1126,11 @@ document.querySelectorAll('.service-card').forEach(card=>{
         lastMob = mob;
         mob ? setupMobile() : resetDesktop();
       } else if(mob){
-        goTo(current, false); // recalcular offset si cambió ancho sin cambiar breakpoint
+        goTo(current, false);
       }
     }, 100);
   }, {passive:true});
 
-  // Init
   if(isMobile()) setupMobile();
 })();
 
