@@ -1048,12 +1048,32 @@ padding-left:9%;
 #portfolio{background:var(--navy)}
 .portfolio-header{text-align:center;margin-bottom:3rem}
 .portfolio-header .section-label{justify-content:center}
-.pf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+/* ── PORTFOLIO — Bento grid ── */
+.pf-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr;
+  grid-template-rows:auto auto;
+  gap:1.5rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+/* Tarjeta grande: ocupa las 2 filas de la col izquierda */
+.pf-card:first-child{
+  grid-row:span 2;
+}
+/* Tarjeta "próximamente": ocupa las 2 cols en la última fila */
+.pf-card.pf-coming{
+  grid-column:1 / -1;
+}
 .pf-card{border-radius:20px;overflow:hidden;background:var(--navy-light);border:1px solid var(--glass-border);cursor:pointer;transition:transform .4s,border-color .3s,box-shadow .4s;position:relative}
 .pf-card:hover{transform:translateY(-8px);border-color:rgba(61,155,255,.3);box-shadow:0 25px 60px rgba(0,0,0,.5)}
 .pf-coming{cursor:default;opacity:.5}
 .pf-coming:hover{transform:none;border-color:var(--glass-border);box-shadow:none}
+/* Thumb: la tarjeta grande ocupa más altura visualmente */
 .pf-thumb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.pf-card:first-child .pf-thumb{aspect-ratio:unset;height:320px}
+/* La "próximamente" no necesita imagen tall */
+.pf-card.pf-coming .pf-thumb{aspect-ratio:unset;height:80px}
 .pf-thumb-bg{width:100%;height:100%;position:absolute;inset:0}
 .pf-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,13,26,.8) 0%,transparent 55%);transition:opacity .3s}
 .pf-card:hover .pf-overlay{opacity:.55}
@@ -1061,8 +1081,11 @@ padding-left:9%;
 .pf-play-btn{width:48px;height:48px;border-radius:50%;background:rgba(61,155,255,.1);border:1.5px solid rgba(61,155,255,.3);display:flex;align-items:center;justify-content:center;color:rgba(61,155,255,.85);font-size:1.1rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:2}
 .pf-card:hover .pf-play-btn{transform:translate(-50%,-50%) scale(1)}
 .pf-info{padding:1.2rem 1.4rem 1.4rem;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+/* Info de la tarjeta grande — un poco más de padding */
+.pf-card:first-child .pf-info{padding:1.4rem 1.8rem 1.8rem}
 .pf-cat{font-size:.68rem;color:var(--electric);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:.25rem}
 .pf-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.pf-card:first-child .pf-title{font-size:1.2rem}
 .pf-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
 .pf-link{font-size:.75rem;color:var(--electric);font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:color .3s}
 .pf-link:hover{color:var(--neon)}
@@ -1085,7 +1108,23 @@ padding-left:9%;
 .pf-modal-close:hover{background:rgba(220,38,38,.25);border-color:rgba(220,38,38,.4);color:#fff}
 .pf-vid-progress-wrap:hover .pf-vid-progress-wrap:hover .pf-modal-screen:fullscreen 
 @media(max-width:900px){
-  .pf-grid{grid-template-columns:1fr;max-width:520px}
+  .pf-grid{
+    grid-template-columns:1fr;
+    max-width:560px;
+  }
+  .pf-card:first-child{
+    grid-row:span 1;
+  }
+  .pf-card.pf-coming{
+    grid-column:1;
+  }
+  .pf-card:first-child .pf-thumb{
+    height:auto;
+    aspect-ratio:16/9;
+  }
+  .pf-card:first-child .pf-title{font-size:1rem}
+  .pf-card:first-child .pf-info{padding:1.2rem 1.4rem 1.4rem}
+  .pf-card.pf-coming .pf-thumb{height:60px}
 }
 
 #testimonials{background:var(--navy-mid)}
