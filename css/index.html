@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Básico -->
+<title>WeboNada.Studio — Agencia de Diseño Web y Desarrollo de Software</title>
+<meta name="description" content="Diseño web profesional y desarrollo de software a medida. Webs modernas, rápidas y con diseño personalizado para negocios que quieren crecer. ¿Tienes una web o una webonada?">
+<meta name="msvalidate.01" content="BB3364DEE5FEABE9C631535EB6C05225" />
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://webonada.studio/">
+<link rel="alternate" hreflang="es" href="https://webonada.studio/">
+<link rel="alternate" hreflang="x-default" href="https://webonada.studio/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<!-- Open Graph para redes sociales -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="WeboNada.Studio — Agencia de Diseño Web y Desarrollo de Software">
+<meta property="og:description" content="Diseño web profesional y desarrollo de software a medida. Webs modernas, rápidas y con diseño personalizado para negocios que quieren crecer. ¿Tienes una web o una webonada?">
+<meta property="og:image" content="https://webonada.studio/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://webonada.studio/">
+<meta property="og:locale" content="es_419">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="es_MX">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="WeboNada Studio">
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WeboNada.Studio — Agencia de Diseño Web y Desarrollo de Software">
+<meta name="twitter:description" content="Diseño web profesional y desarrollo de software a medida. Webs modernas, rápidas y con diseño personalizado para negocios que quieren crecer.">
+<meta name="twitter:image" content="https://webonada.studio/og-image.jpg">
+<meta name="twitter:image:alt" content="WeboNada Studio — Agencia de diseño web y desarrollo de software">
+<meta name="twitter:site" content="@webonada">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#050d1a">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "WeboNada Studio",
+  "alternateName": "Webonada",
+  "url": "https://webonada.studio",
+  "logo": "https://webonada.studio/logo.svg",
+  "description": "Diseño web profesional y desarrollo de software a medida. Webs modernas, rápidas y con diseño personalizado para negocios que quieren crecer. ¿Tienes una web o una webonada?",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Worldwide"
+  },
+  "knowsLanguage": "es",
+  "serviceType": ["Desarrollo Web", "Aplicaciones Web a Medida", "Landing Pages", "Rediseño Web", "Automatización"],
+  "sameAs": [
+    "https://www.tiktok.com/@webonada.studio",
+    "https://www.instagram.com/webonada.studio/",
+    "https://www.facebook.com/share/1CfZJgfmAe/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "availableLanguage": ["Spanish", "es"],
+    "contactOption": "TollFree",
+    "areaServed": "Worldwide"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "20",
+    "bestRating": "5"
+  }
+}
+</script>
+
+<!-- Preconnect a dominios de terceros para reducir latencia -->
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://assets.calendly.com">
+<link rel="preconnect" href="https://formspree.io">
+<link rel="dns-prefetch" href="https://ipapi.co">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RBF44JBJ9E"></script>
+<script src="js/analytics.js" defer></script>
+
+<!-- Fuentes Google -->
+<link rel="stylesheet" href="css/main.css">
+<!-- Calendly popup widget — CSS cargado bajo demanda para no bloquear el render -->
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+<body>
+
+<div id="preloader" role="status" aria-label="Cargando WeboNada.Studio">
+  <div class="pre-logo">
+    Web <span class="pre-logo-o"> o </span> Nada
+  </div>
+  <div class="pre-bar-wrap">
+    <div class="pre-bar"></div>
+  </div>
+</div>
+
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<canvas id="particle-canvas" aria-hidden="true" role="presentation"></canvas>
+
+<div id="cookie-banner" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
+  <p>Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio. Al continuar navegando, aceptas nuestra <a href="/privacidad">política de privacidad</a>.</p>
+  <div class="cookie-actions">
+    <button class="cookie-btn-accept" id="cookieAccept">Aceptar</button>
+    <button class="cookie-btn-decline" id="cookieDecline">Rechazar</button>
+  </div>
+</div>
+
+<nav id="navbar" role="navigation" aria-label="Navegación principal">
+  <a href="#" class="logo" aria-label="WeboNada.Studio">
+    <span class="logo-row">Web <span class="logo-o-static">o</span> Nada</span>
+    <span class="logo-sub">.Studio</span>
+  </a>
+
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger"
+      aria-label="Abrir menú de navegación"
+      aria-expanded="false"
+      aria-controls="navDropdown">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-dropdown" id="navDropdown" role="dialog" aria-label="Menú de navegación" aria-modal="true">
+  <div class="nav-dropdown-bg"></div>
+
+  <div class="nav-dropdown-inner" id="navDropdownInner">
+    <a href="#services">Servicios</a>
+    <a href="#benefits">Beneficios</a>
+    <a href="#process">Proceso</a>
+    <a href="#portfolio">Portafolio</a>
+    <!-- Grupo de botones CTA — animado junto -->
+    <div class="nav-cta-group">
+      <button onclick="closeMenu();window.open('https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20solicitar%20mi%20web.','_blank','noopener,noreferrer')" class="nav-cta-primary">
+        Solicitar mi web
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button onclick="closeMenu();openCalendly()" class="nav-cta-secondary">
+        Agendar una consulta
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2v2M12 2v2M2 7h12M3 4h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <button class="eg-trigger-nav" onclick="openNavEasterEgg()">¿No te gusta este diseño?</button>
+  </div>
+
+  <div id="navEasterPanel">
+    <div class="eg-deco-line" style="margin:0 auto"></div>
+    <p style="font-family:var(--font-display);font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;letter-spacing:-1px;line-height:1.15;color:var(--white)">
+      Esta web es nuestra.<br>
+      <span style="background:linear-gradient(135deg,var(--electric),var(--neon),var(--violet-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Hecha a nuestro gusto.</span>
+    </p>
+    <p style="font-size:clamp(.88rem,1.4vw,1rem);color:var(--muted);line-height:1.75;font-weight:300;max-width:420px">
+      La tuya la hacemos al tuyo<br>
+      y al de <strong style="color:var(--white);font-weight:500">tus clientes</strong>.<br>
+      Que es lo que de verdad importa.
+    </p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;width:100%;max-width:320px;margin-top:.2rem">
+      <button onclick="closeNavEasterEgg(true);window.open('https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20solicitar%20mi%20web.','_blank','noopener,noreferrer')" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;font-family:var(--font-display);font-size:.95rem;font-weight:600;box-shadow:0 4px 30px rgba(26,111,255,.4);transition:transform .3s,box-shadow .3s;border:none;cursor:pointer">
+        Solicitar mi web
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button onclick="closeNavEasterEgg(true);openCalendly()" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 2rem;border-radius:50px;background:transparent;color:var(--electric);font-family:var(--font-display);font-size:.95rem;font-weight:600;border:1px solid rgba(61,155,255,.4);cursor:pointer;transition:border-color .3s">
+        Agendar una consulta
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2v2M12 2v2M2 7h12M3 4h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <button onclick="closeNavEasterEgg(false)" style="background:transparent;border:none;color:rgba(139,163,192,.4);font-size:.8rem;cursor:pointer;font-family:var(--font-body);text-decoration:underline;text-underline-offset:3px;transition:color .2s">entendido, volver</button>
+  </div>
+</div>
+
+<main id="main-content">
+
+<section id="web-o-nada" aria-label="Nuestra filosofía">
+  <div class="won-split">
+
+    <svg id="wonDeskSVG" aria-hidden="true" focusable="false" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:11;overflow:hidden" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wonDeskDiagGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="rgba(255,107,53,0)"/>
+          <stop offset="18%"  stop-color="rgba(255,107,53,.85)"/>
+          <stop offset="50%"  stop-color="rgba(255,255,255,.95)"/>
+          <stop offset="82%"  stop-color="rgba(61,155,255,.85)"/>
+          <stop offset="100%" stop-color="rgba(61,155,255,0)"/>
+        </linearGradient>
+        <filter id="wonDeskDiagGlow" x="-20%" y="-200%" width="140%" height="500%">
+          <feGaussianBlur stdDeviation="4" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <!-- Línea va de (0,620) a (1000,480) en el viewBox 1000x1000 -->
+        <!-- Clip superior: encima de la diagonal -->
+        <clipPath id="wonClipTop">
+          <polygon points="0,0 1000,0 1000,480 0,620"/>
+        </clipPath>
+        <!-- Clip inferior: debajo de la diagonal -->
+        <clipPath id="wonClipBot">
+          <polygon points="0,620 1000,480 1000,1000 0,1000"/>
+        </clipPath>
+      </defs>
+
+      <!-- Línea diagonal luminosa — mismas coordenadas que los clips -->
+      <line x1="0" y1="620" x2="1000" y2="480"
+        stroke="url(#wonDeskDiagGrad)"
+        stroke-width="1.5"
+        filter="url(#wonDeskDiagGlow)"/>
+    </svg>
+
+    <div class="won-divider" id="wonDivider" style="display:none"></div>
+
+    <!-- Flash de unión (overlay central) -->
+    <div class="won-union-flash" id="wonUnionFlash"></div>
+
+     <div class="won-half won-left" id="wonLeft">
+      <div class="won-side-label" id="wonLeftLabel">La herramienta</div>
+
+      <div class="won-left-big" id="wonLeftBig">WEB</div>
+
+      <div class="won-left-sub">La web es una herramienta de precisión.  </div>
+
+      <div class="won-left-body">
+        <p>Una web debe ser ápida, elegante y efectiva por diseño. No por accidente. Cada milisegundo cuenta.</p>
+        <p>Eliminamos lo innecesario para que solo quede lo extraordinario. Aquí construimos el estándar.
+          
+      </div>
+
+      <div class="won-left-tag">Eres el referente o no eres nada</div>
+    </div>
+
+    <div class="won-half won-right" id="wonRight">
+      <canvas class="won-noise-canvas" id="wonNoiseCanvas"></canvas>
+
+      <div class="won-side-label">El rechazo</div>
+
+      <div class="won-right-title" id="wonRightTitle">NADA</div>
+
+      <div class="won-right-body">
+        <p>En un mundo saturado de sitios lentos y mediocres, "nada" es el rechazo a lo que no funciona.</p>
+        <p>Si tarda en cargar o confunde al usuario no sirve. En este estudio o es excelente o no es nada.</p>
+      </div>
+
+      <div class="won-right-verdict">
+        Aquí la mediocridad no tiene dirección IP
+      </div>
+    </div>
+
+  </div>
+  <div class="won-mobile">
+    <div class="won-mob-stage">
+
+      <!-- WEB — mitad superior -->
+      <div class="won-mob-top">
+        <p class="won-mob-h1">Diseño de páginas web profesionales</p>
+        <div class="won-mob-word-web">WEB</div>
+        <div class="won-mob-label-web">La herramienta</div>
+        <div class="won-mob-sub-web">Rápida, elegante y efectiva por diseño. Cada milisegundo cuenta.</div>
+      </div>
+
+      <!-- NADA — mitad inferior -->
+      <div class="won-mob-bot">
+        <div class="won-mob-word-nada">NADA</div>
+        <div class="won-mob-label-nada">El rechazo</div>
+        <div class="won-mob-sub-nada">O es excelente o no es nada. La mediocridad no tiene dirección IP.</div>
+      </div>
+
+      <!-- Líneas diagonales luminosas -->
+      <svg class="won-mob-svg" aria-hidden="true" focusable="false" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mobDiagGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="rgba(255,107,53,0)"/>
+            <stop offset="20%"  stop-color="rgba(255,107,53,0.9)"/>
+            <stop offset="50%"  stop-color="rgba(255,255,255,1)"/>
+            <stop offset="80%"  stop-color="rgba(61,155,255,0.9)"/>
+            <stop offset="100%" stop-color="rgba(61,155,255,0)"/>
+          </linearGradient>
+          <linearGradient id="mobDiagGrad2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="rgba(168,85,247,0)"/>
+            <stop offset="20%"  stop-color="rgba(168,85,247,0.9)"/>
+            <stop offset="50%"  stop-color="rgba(0,212,255,1)"/>
+            <stop offset="80%"  stop-color="rgba(168,85,247,0.9)"/>
+            <stop offset="100%" stop-color="rgba(168,85,247,0)"/>
+          </linearGradient>
+          <filter id="mobDiagGlow">
+            <feGaussianBlur stdDeviation="0.8" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Diagonal 1: WEB→NADA, baja de izq a der -->
+        <line x1="0" y1="57" x2="100" y2="48" stroke="url(#mobDiagGrad)" stroke-width="0.4" filter="url(#mobDiagGlow)"/>
+        <!-- Diagonal 2: NADA→FRASE, baja de izq a der más pronunciada -->
+        <line x1="0" y1="78" x2="100" y2="85" stroke="url(#mobDiagGrad2)" stroke-width="0.4" filter="url(#mobDiagGlow)"/>
+      </svg>
+
+      <!-- Tercera franja — frase -->
+      <div class="won-mob-phrase">
+        <p class="won-mob-phrase-text">No hacemos cualquier <br> <span class="accent">WebоNada</span></p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<div class="ufo-separator" aria-hidden="true" id="ufoSeparator">
+  <div class="ufo-star" style="left:8%;top:28%;width:2px;height:2px;animation-delay:.3s"></div>
+  <div class="ufo-star" style="left:22%;top:68%;width:1.5px;height:1.5px;animation-delay:.9s"></div>
+  <div class="ufo-star" style="left:45%;top:20%;width:2px;height:2px;animation-delay:.5s"></div>
+  <div class="ufo-star" style="left:63%;top:72%;width:1.5px;height:1.5px;animation-delay:1.3s"></div>
+  <div class="ufo-star" style="left:80%;top:32%;width:2px;height:2px;animation-delay:.7s"></div>
+  <div class="ufo-star" style="left:91%;top:60%;width:1.5px;height:1.5px;animation-delay:1.8s"></div>
+
+  <div class="ufo-stats-overlay">
+    <h1 class="ufo-h1" id="ufoH1">Desarrollo de páginas web profesionales</h1>
+    <div class="ufo-stats-group">
+      <div class="ufo-stat" id="ufoStat0">
+        <span class="ufo-stat-num">20+</span>
+        <span class="ufo-stat-label">Proyectos</span>
+      </div>
+      <div class="ufo-stat" id="ufoStat1">
+        <span class="ufo-stat-num">98%</span>
+        <span class="ufo-stat-label">Satisfacción</span>
+      </div>
+      <div class="ufo-stat" id="ufoStat2">
+        <span class="ufo-stat-num">4.8★</span>
+        <span class="ufo-stat-label">Valoración</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ufo-ship" id="ufoShip">
+    <div class="ufo-trail"></div>
+    <svg width="80" height="52" viewBox="0 0 80 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="ufoBeam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#00d4ff" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="40" cy="28" rx="32" ry="10" fill="rgba(20,50,120,.5)"  stroke="rgba(61,155,255,.7)"  stroke-width="1"/>
+      <ellipse cx="40" cy="23" rx="20" ry="10" fill="rgba(26,111,255,.65)" stroke="rgba(61,155,255,.8)"  stroke-width="1"/>
+      <ellipse cx="40" cy="18" rx="10" ry="8"  fill="rgba(0,212,255,.15)"  stroke="rgba(0,212,255,.5)"   stroke-width=".8"/>
+      <circle cx="20" cy="28" r="3"   fill="rgba(0,212,255,.9)"   class="ufo-light"/>
+      <circle cx="33" cy="30" r="2.5" fill="rgba(255,180,40,.9)"  class="ufo-light" style="animation-delay:.25s"/>
+      <circle cx="40" cy="31" r="2"   fill="rgba(168,85,247,.9)"  class="ufo-light" style="animation-delay:.5s"/>
+      <circle cx="47" cy="30" r="2.5" fill="rgba(0,212,255,.8)"   class="ufo-light" style="animation-delay:.75s"/>
+      <circle cx="60" cy="28" r="3"   fill="rgba(255,100,100,.8)" class="ufo-light" style="animation-delay:1s"/>
+      <path d="M26,38 L18,52 L62,52 L54,38Z" fill="url(#ufoBeam)" class="ufo-beam-path"/>
+    </svg>
+  </div>
+</div>
+
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-label">Lo que hacemos</div>
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-sub">Soluciones digitales completas para cada etapa de tu negocio.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="svc-icon si-blue">🌐</div><div class="svc-title">Páginas Web Profesionales</div><div class="svc-desc">Sitios web modernos, rápidos y optimizados que representan tu marca y convierten visitantes en clientes reales.</div><div class="svc-link"><a href="https://wa.me/584144507002?text=Hola%2C+vengo+desde+WeboNada.Studio+%F0%9F%91%8B+Me+interesa+una+*P%C3%A1gina+Web+Profesional*.+%C2%BFPodemos+hablar%3F" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem">Preguntar ahora <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+    <div class="service-card reveal" style="transition-delay:.08s"><div class="svc-icon si-violet">⚡</div><div class="svc-title">Aplicaciones Web a Medida</div><div class="svc-desc">Desarrollamos aplicaciones web personalizadas para automatizar procesos, gestionar datos y escalar tu operación.</div><div class="svc-link"><a href="https://wa.me/584144507002?text=Hola%2C+vengo+desde+WeboNada.Studio+%F0%9F%91%8B+Me+interesa+una+*Aplicaci%C3%B3n+Web+a+Medida*.+%C2%BFPodemos+hablar%3F" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem">Preguntar ahora <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+    <div class="service-card reveal" style="transition-delay:.16s"><div class="svc-icon si-cyan">🎯</div><div class="svc-title">Landing Pages para Marketing</div><div class="svc-desc">Páginas de aterrizaje de alta conversión para campañas publicitarias, lanzamientos y captación de leads.</div><div class="svc-link"><a href="https://wa.me/584144507002?text=Hola%2C+vengo+desde+WeboNada.Studio+%F0%9F%91%8B+Me+interesa+una+*Landing+Page+para+Marketing*.+%C2%BFPodemos+hablar%3F" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem">Preguntar ahora <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+    <div class="service-card reveal" style="transition-delay:.24s"><div class="svc-icon si-green">🔄</div><div class="svc-title">Rediseño y Optimización</div><div class="svc-desc">Modernizamos sitios web existentes mejorando velocidad, UX, diseño y posicionamiento en buscadores.</div><div class="svc-link"><a href="https://wa.me/584144507002?text=Hola%2C+vengo+desde+WeboNada.Studio+%F0%9F%91%8B+Me+interesa+el+*Redise%C3%B1o+y+Optimizaci%C3%B3n*+de+mi+sitio+web.+%C2%BFPodemos+hablar%3F" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem">Preguntar ahora <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+    <div class="service-card reveal" style="transition-delay:.32s"><div class="svc-icon si-orange">🔗</div><div class="svc-title">Integraciones y Automatización</div><div class="svc-desc">Conectamos tus herramientas digitales y automatizamos flujos de trabajo para que tu negocio funcione solo.</div><div class="svc-link"><a href="https://wa.me/584144507002?text=Hola%2C+vengo+desde+WeboNada.Studio+%F0%9F%91%8B+Me+interesan+las+*Integraciones+y+Automatizaci%C3%B3n*+para+mi+negocio.+%C2%BFPodemos+hablar%3F" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem">Preguntar ahora <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+    <div class="service-card reveal" style="transition-delay:.4s"><div class="svc-icon si-pink">📱</div><div class="svc-title">Diseño UI/UX</div><div class="svc-desc">Interfaces intuitivas y visualmente atractivas centradas en la experiencia del usuario y la conversión.</div><div class="svc-link"><a href="https://wa.me/584144507002?text=Hola%2C+vengo+desde+WeboNada.Studio+%F0%9F%91%8B+Me+interesa+el+servicio+de+*Dise%C3%B1o+UI%2FUXÇ*.+%C2%BFPodemos+hablar%3F" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem">Preguntar ahora <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M7 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="benefits">
+  <div class="benefits-layout">
+    <div class="benefits-visual reveal">
+      <div class="hex-grid">
+        <div class="hex-cell featured"><span class="icon">🚀</span><span class="label">Velocidad</span></div>
+        <div class="hex-cell"><span class="icon">📱</span><span class="label">Responsive</span></div>
+        <div class="hex-cell featured"><span class="icon">🔍</span><span class="label">SEO</span></div>
+        <div class="hex-cell"><span class="icon">🔒</span><span class="label">Seguro</span></div>
+        <div class="hex-cell featured"><span class="icon">⚡</span><span class="label">Rendimiento</span></div>
+        <div class="hex-cell"><span class="icon">🌐</span><span class="label">Global</span></div>
+        <div class="hex-cell"><span class="icon">📈</span><span class="label">Escalable</span></div>
+        <div class="hex-cell featured"><span class="icon">🎨</span><span class="label">Diseño</span></div>
+        <div class="hex-cell"><span class="icon">🤖</span><span class="label">Automático</span></div>
+      </div>
+    </div>
+    <div class="benefits-text-col reveal" style="transition-delay:.2s">
+      <div class="section-label">Por qué elegirnos</div>
+      <h2 class="section-title">Ventajas que hacen la<br><span style="background:linear-gradient(135deg,var(--electric),var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent">diferencia</span></h2>
+      <p class="section-sub">Cada proyecto que entregamos está diseñado para generar resultados reales para tu negocio.</p>
+      <div class="benefits-list">
+        <div class="benefit-item"><div class="benefit-icon">⚡</div><div class="benefit-text"><h4>Páginas ultra-rápidas</h4><p>Optimizadas para cargar en menos de 2 segundos. Core Web Vitals en verde.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon">📱</div><div class="benefit-text"><h4>100% Responsive</h4><p>Diseño perfecto en móvil, tablet y desktop. El 70% del tráfico es móvil.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon">🔍</div><div class="benefit-text"><h4>SEO básico incluido</h4><p>Estructura semántica, meta tags y optimización técnica desde el inicio.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon">📈</div><div class="benefit-text"><h4>Escalabilidad garantizada</h4><p>Arquitectura preparada para crecer con tu negocio sin rehacer todo.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="process">
+  <div class="process-header reveal">
+    <div class="section-label">Cómo trabajamos</div>
+    <h2 class="section-title">Proceso de Trabajo</h2>
+    <p class="section-sub">De la idea al lanzamiento, cada paso tiene un propósito.</p>
+  </div>
+  <div class="process-timeline" id="procTimeline">
+    <div class="process-spine"><div class="process-spine-fill" id="spineFill"></div></div>
+    <div class="proc-step" data-step="1"><div class="proc-node"><div class="proc-bubble">💬<span class="proc-badge">1</span></div></div><div class="proc-content"><div class="proc-tag"><span class="proc-dot"></span>Paso 01</div><div class="proc-title">Consulta Inicial</div><p class="proc-desc">Nos reunimos contigo para entender tu negocio, tus objetivos y qué problema necesitas resolver.</p></div></div>
+    <div class="proc-step" data-step="2"><div class="proc-node"><div class="proc-bubble">🎨<span class="proc-badge">2</span></div></div><div class="proc-content"><div class="proc-tag"><span class="proc-dot"></span>Paso 02</div><div class="proc-title">Diseño & Propuesta</div><p class="proc-desc">Creamos wireframes, mockups y la propuesta visual. Tú apruebas antes de que empiece el código.</p></div></div>
+    <div class="proc-step" data-step="3"><div class="proc-node"><div class="proc-bubble">⚙️<span class="proc-badge">3</span></div></div><div class="proc-content"><div class="proc-tag"><span class="proc-dot"></span>Paso 03</div><div class="proc-title">Desarrollo</div><p class="proc-desc">Codificamos tu solución con las mejores tecnologías. Actualizaciones constantes para que siempre sepas cómo va.</p></div></div>
+    <div class="proc-step" data-step="4"><div class="proc-node"><div class="proc-bubble">🧪<span class="proc-badge">4</span></div></div><div class="proc-content"><div class="proc-tag"><span class="proc-dot"></span>Paso 04</div><div class="proc-title">Pruebas Exhaustivas</div><p class="proc-desc">Testeamos velocidad, funcionalidad, compatibilidad y UX. Nada sale sin pasar todos los filtros.</p></div></div>
+    <div class="proc-step" data-step="5"><div class="proc-node"><div class="proc-bubble">🚀<span class="proc-badge">5</span></div></div><div class="proc-content"><div class="proc-tag"><span class="proc-dot"></span>Paso 05</div><div class="proc-title">Lanzamiento</div><p class="proc-desc">Publicamos, dejamos todo al 100% y te acompañamos con soporte post-lanzamiento.</p></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-label">Nuestro trabajo</div>
+    <h2 class="section-title">Portafolio</h2>
+    <p class="section-sub" style="margin:0 auto">Proyectos reales que generaron resultados reales.</p>
+  </div>
+
+  <div class="pf-grid">
+
+    <div class="pf-card reveal" onclick="openPfModal('marietic')">
+      <div class="pf-thumb">
+        <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(61,155,255,.15))"></div>
+        <img class="pf-preview-img" src="./videos/poster1.jpg" alt="Marietic Beauty Studio" loading="lazy">
+        <div class="pf-overlay"></div>
+        <span class="pf-cat-tag">Centro Estético</span>
+      </div>
+      <div class="pf-info">
+        <div>
+          <div class="pf-cat">Centro Estético</div>
+          <h3 class="pf-title">Marietic Salúd y Estética</h3>
+          <p class="pf-desc">Catálogo de servicios online con botones de WhatsApp y redes sociales</p>
+        </div>
+        <a href="https://www.marietic.com" target="_blank" rel="noopener noreferrer" class="pf-link" onclick="event.stopPropagation()">Visitar →</a>
+      </div>
+    </div>
+
+    <div class="pf-card reveal" style="transition-delay:.1s" onclick="openPfModal('monstercarr')">
+      <div class="pf-thumb">
+        <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(26,111,255,.25),rgba(0,212,255,.15))"></div>
+        <img class="pf-preview-img" src="./videos/poster2.jpg" alt="MonsterCarr" loading="lazy">
+        <div class="pf-overlay"></div>
+        <span class="pf-cat-tag">Automotriz</span>
+      </div>
+      <div class="pf-info">
+        <div>
+          <div class="pf-cat">Taller Automotriz</div>
+          <h3 class="pf-title">MonsterCarr</h3>
+          <p class="pf-desc">Sitio web para taller de latonería y pintura con presencia digital profesional</p>
+        </div>
+        <a href="https://monstercarr.netlify.app" target="_blank" rel="noopener noreferrer" class="pf-link" onclick="event.stopPropagation()">Visitar →</a>
+      </div>
+    </div>
+
+    <div class="pf-card reveal" style="transition-delay:.1s" onclick="openPfModal('sofia')">
+      <div class="pf-thumb">
+        <div class="pf-thumb-bg" style="background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(255,107,180,.15))"></div>
+        <img class="pf-preview-img" src="./videos/poster3.jpg" alt="Sofia Isabella" loading="lazy">
+        <div class="pf-overlay"></div>
+        <span class="pf-cat-tag">Invitación</span>
+      </div>
+      <div class="pf-info">
+        <div>
+          <div class="pf-cat">Invitación 15 Años </div>
+          <h3 class="pf-title">Sofia Isabella</h3>
+          <p class="pf-desc">Sitio web diseñado para celebrar una noche inolvidable</p>
+        </div>
+        <a href="/proyectos/sofia-isabella/" target="_blank" rel="noopener noreferrer" class="pf-link" onclick="event.stopPropagation()">Visitar →</a>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="pf-modal-bg" id="pfModalBg">
+    <div class="pf-modal" id="pfModal">
+      <div class="pf-modal-bar"></div>
+
+      <div class="pf-modal-screen" id="pfModalScreen">
+                <img id="pfModalImg" src="" alt="" style="width:100%;height:100%;object-fit:contain;display:block;background:#07101f">
+
+      
+      <div class="pf-modal-foot">
+        <div>
+          <div class="pf-modal-title" id="pfModalTitle">Proyecto</div>
+          <div class="pf-modal-meta" id="pfModalMeta">descripción</div>
+        </div>
+        <div style="display:flex;gap:.6rem;align-items:center">
+          <a id="pfModalLink" href="#" target="_blank" rel="noopener noreferrer" class="pf-modal-visit" onclick="event.stopPropagation()">Visitar sitio →</a>
+          <button class="pf-modal-close" id="pfModalCloseBtn" aria-label="Cerrar">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<section id="testimonials">
+  <div class="testimonials-header reveal">
+    <div class="section-label">Lo que dicen</div>
+    <h2 class="section-title">Clientes Satisfechos</h2>
+    <p class="section-sub" style="margin:0 auto">Resultados reales de negocios reales que confiaron en nosotros.</p>
+  </div>
+  <div class="testimonials-carousel" id="testimonialsCarousel" aria-label="Testimonios de clientes" role="region">
+    <div class="testimonials-track" id="testimonialsTrack">
+      <div class="testimonial-card"><div class="stars" aria-label="5 de 5 estrellas">⭐⭐⭐⭐⭐</div><p class="testimonial-text">"Desde que lanzamos nuestra página con WeboNada, los clientes nos encuentran fácilmente y las consultas por WhatsApp se triplicaron. El diseño refleja exactamente la esencia de nuestro centro."</p><div class="testimonial-author"><div class="author-avatar av-violet" aria-hidden="true">MB</div><div><div class="author-name">Marietic Beauty Studio</div><div class="author-role">Centro Estético · marietic.com</div></div></div></div>
+      <div class="testimonial-card"><div class="stars" aria-label="5 de 5 estrellas">⭐⭐⭐⭐⭐</div><p class="testimonial-text">"Nunca pensé que un taller de latonería necesitaba una web hasta que la tuvimos. Ahora los clientes llegan sabiendo exactamente qué hacemos y el trabajo habla por sí solo."</p><div class="testimonial-author"><div class="author-avatar av-blue" aria-hidden="true">MC</div><div><div class="author-name">MonsterCarr</div><div class="author-role">Taller de Latonería y Pintura · monstercarr.netlify.app</div></div></div></div>
+      <div class="testimonial-card"><div class="stars" aria-label="5 de 5 estrellas">⭐⭐⭐⭐⭐</div><p class="testimonial-text">"La plataforma que nos desarrollaron modernizó completamente cómo conectamos con los estudiantes. Ahora los padres agendan sesiones online y el proceso es mucho más profesional."</p><div class="testimonial-author"><div class="author-avatar av-cyan" aria-hidden="true">AP</div><div><div class="author-name">AprendeMás Academy</div><div class="author-role">Plataforma de Refuerzo Académico</div></div></div></div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="carouselPrev" aria-label="Testimonio anterior" disabled>‹</button>
+      <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Seleccionar testimonio">
+        <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Testimonio 1"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonio 2"></button>
+        <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonio 3"></button>
+      </div>
+      <button class="carousel-btn" id="carouselNext" aria-label="Testimonio siguiente">›</button>
+    </div>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<section id="pricing" aria-labelledby="pricing-title">
+  <div class="cta-bg"></div>
+
+  <div class="pricing-header reveal">
+    <div class="section-label">Inversión</div>
+    <h2 class="section-title" id="pricing-title">Rangos de Inversión</h2>
+    <p class="section-sub">Precios orientativos. Cada proyecto es único; solicita una propuesta personalizada gratuita.</p>
+  </div>
+
+  <div class="pricing-grid" id="pricingGrid">
+    <div class="pricing-card" data-plan="0">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="pricing-plan">Esencial</div>
+        <span class="pricing-discount-tag">20% OFF</span>
+      </div>
+      <div class="pricing-price-old">antes $149 USD</div>
+      <div class="pricing-price">$119 <span>USD</span></div>
+      <p class="pricing-desc">Tu primera web seria, sin pagar de más.</p>
+      <ul class="pricing-features">
+        <li>Página web de hasta 5 secciones</li>
+        <li>Diseño responsive mobile-first</li>
+        <li>Formulario de contacto funcional</li>
+        <li>SEO básico y meta tags</li>
+        <li>Integración Google Analytics</li>
+        <li>Entrega en 7–10 días hábiles</li>
+      </ul>
+      <a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20el%20*Plan%20Esencial*%20(%24119%20USD%2C%2020%25%20OFF)." target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-align:center;justify-content:center" onclick="trackCTA && trackCTA('pricing-esencial')">Quiero este plan</a>
+    </div>
+
+    <div class="pricing-card featured" data-plan="1">
+      <div class="pricing-badge">Más Popular</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="pricing-plan">Profesional</div>
+        <span class="pricing-discount-tag">20% OFF</span>
+      </div>
+      <div class="pricing-price-old">antes $399 USD</div>
+      <div class="pricing-price">$319 <span>USD</span></div>
+      <p class="pricing-desc">Un sitio que consigue clientes mientras duermes.</p>
+      <ul class="pricing-features">
+        <li>Todo lo del plan Esencial</li>
+        <li>Landing pages de alta conversión</li>
+        <li>Animaciones e interacciones premium</li>
+        <li>Integración con CRM o email marketing</li>
+        <li>Optimización de velocidad (Core Web Vitals)</li>
+        <li>1 mes de soporte post-lanzamiento</li>
+        <li>Entrega en 14–21 días hábiles</li>
+      </ul>
+      <a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20el%20*Plan%20Profesional*%20(%24319%20USD%2C%2020%25%20OFF)." target="_blank" rel="noopener noreferrer" class="btn-primary" style="text-align:center;justify-content:center;border:none" onclick="trackCTA && trackCTA('pricing-profesional')">Quiero este plan</a>
+    </div>
+
+    <div class="pricing-card" data-plan="2">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="pricing-plan">A Medida</div>
+        <span class="pricing-discount-tag">20% OFF</span>
+      </div>
+      <div class="pricing-price-old">antes $1.500 USD</div>
+      <div class="pricing-price">$1.200+ <span>USD</span></div>
+      <p class="pricing-desc">Cuando tu idea no cabe en una plantilla.</p>
+      <ul class="pricing-features">
+        <li>Aplicación web personalizada</li>
+        <li>Backend, base de datos y API</li>
+        <li>Panel de administración</li>
+        <li>Autenticación de usuarios</li>
+        <li>Automatizaciones e integraciones</li>
+        <li>Escalabilidad en cloud</li>
+        <li>Soporte y mantenimiento continuo</li>
+      </ul>
+      <a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20el%20*Plan%20A%20Medida*%20(desde%20%241.200%20USD%2C%2020%25%20OFF)." target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-align:center;justify-content:center" onclick="trackCTA && trackCTA('pricing-medida')">Quiero este plan</a>
+    </div>
+  </div>
+
+    <div class="carousel-nav" id="pricingNav">
+    <button class="carousel-btn" id="pricingPrev" aria-label="Plan anterior" disabled>‹</button>
+    <div class="pricing-dots" id="pricingDots" aria-label="Seleccionar plan" role="tablist">
+      <button class="pricing-dot" role="tab" aria-selected="false" aria-label="Plan Esencial"></button>
+      <button class="pricing-dot active" role="tab" aria-selected="true" aria-label="Plan Profesional"></button>
+      <button class="pricing-dot" role="tab" aria-selected="false" aria-label="Plan A Medida"></button>
+    </div>
+    <button class="carousel-btn" id="pricingNext" aria-label="Plan siguiente">›</button>
+  </div>
+    <div class="pricing-cta-bottom reveal">
+    <div class="cta-bg"></div>
+    <div class="section-label" style="justify-content:center">¿Listo para empezar?</div>
+    <h2 class="section-title">Tu proyecto merece una<br><span style="background:linear-gradient(135deg,var(--electric),var(--neon),var(--violet-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">solución extraordinaria</span></h2>
+    <p class="section-sub" style="margin:0 auto 2rem">Agenda una consulta gratuita de 30 minutos y descubre cómo podemos transformar tu negocio digital.</p>
+    <div class="cta-actions">
+      <a href="https://calendly.com/webonada/studio" class="btn-primary" onclick="return openCalendly()">Agendar Consulta Gratis <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="btn-secondary" onclick="trackCTA && trackCTA('cta-cotizacion-wa')">Cotizar por WhatsApp</a>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+<section id="contact">
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <div class="section-label">Hablemos</div>
+      <h2 class="section-title">Inicia tu<br><span style="background:linear-gradient(135deg,var(--electric),var(--neon));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Proyecto</span></h2>
+      <p class="section-sub" style="margin-bottom:2rem">Cuéntanos sobre tu proyecto y recibe una propuesta personalizada en 24 horas.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2" fill="#EA4335"/>
+            <path d="M2 6l10 7 10-7" stroke="#fff" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>Email</span>
+          <a href="/cdn-cgi/l/email-protection#1b72757d745b6c7e7974757a7f7a35686f6e7f7274"><span class="__cf_email__" data-cfemail="21484f474e615644434e4f4045400f52555445484e">[email&#160;protected]</span></a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.979-1.404A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="#25D366"/>
+            <path d="M17.006 14.57c-.274-.137-1.617-.797-1.868-.888-.251-.09-.434-.137-.617.137-.183.274-.708.888-.868 1.071-.16.183-.32.206-.594.069-.274-.137-1.157-.426-2.204-1.36-.815-.727-1.365-1.625-1.525-1.899-.16-.274-.017-.423.12-.56.124-.122.274-.32.411-.48.137-.16.183-.274.274-.457.092-.183.046-.343-.023-.48-.069-.137-.617-1.486-.846-2.034-.222-.534-.449-.462-.617-.47-.16-.007-.343-.009-.526-.009-.183 0-.48.069-.731.343-.251.274-.96.938-.96 2.287 0 1.348.983 2.651 1.12 2.834.137.183 1.934 2.952 4.686 4.14.655.283 1.166.452 1.565.578.658.209 1.257.18 1.73.109.527-.079 1.617-.661 1.845-1.3.228-.638.228-1.185.16-1.3-.069-.114-.251-.183-.525-.32z" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>WhatsApp</span>
+          <a href="https://wa.me/584144507002?text=Hola%2C%20me%20interesa%20una%20consulta%20gratuita" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">+58 414 450-7002</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/>
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 1.7.52 3.28 1.41 4.59L12 2z" fill="#4285F4"/>
+            <path d="M12 2l-5.59 11.59C7.72 15.13 9.74 16 12 16s4.28-.87 5.59-2.41L12 2z" fill="#FBBC05"/>
+            <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>Ubicación</span>
+          <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Trabajo 100% remoto</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" stroke="#3d9bff" stroke-width="2"/>
+            <path d="M12 7v5l3 3" stroke="#3d9bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="contact-detail-text">
+          <span>Tiempo de respuesta</span>
+          <a href="#">Menos de 24 horas</a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.2s">
+      <form class="contact-form" id="contactForm" onsubmit="submitForm(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-name">Nombre completo</label>
+            <input id="contact-name" name="nombre" type="text" placeholder="Tu nombre"
+              autocomplete="name" required aria-required="true" minlength="2">
+            <span class="form-field-error" id="err-name"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" placeholder="tu@email.com"
+              autocomplete="email" required aria-required="true">
+            <span class="form-field-error" id="err-email"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contact-phone">Celular</label>
+          <div style="display:flex;gap:.5rem">
+            <select id="contact-phone-code" name="codigo_pais" style="flex:0 0 auto;width:auto;min-width:110px;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:12px;padding:.85rem .8rem;color:var(--white);font-family:var(--font-body);font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s;cursor:pointer" onfocus="this.style.borderColor='rgba(61,155,255,.5)';this.style.boxShadow='0 0 0 3px rgba(61,155,255,.08)'" onblur="this.style.borderColor='';this.style.boxShadow=''">
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+55">🇧🇷 +55</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+58" selected>🇻🇪 +58</option>
+              <option value="+51">🇵🇪 +51</option>
+              <option value="+593">🇪🇨 +593</option>
+              <option value="+598">🇺🇾 +598</option>
+              <option value="+595">🇵🇾 +595</option>
+              <option value="+591">🇧🇴 +591</option>
+              <option value="+502">🇬🇹 +502</option>
+              <option value="+503">🇸🇻 +503</option>
+              <option value="+504">🇭🇳 +504</option>
+              <option value="+505">🇳🇮 +505</option>
+              <option value="+506">🇨🇷 +506</option>
+              <option value="+507">🇵🇦 +507</option>
+              <option value="+509">🇭🇹 +509</option>
+              <option value="+53">🇨🇺 +53</option>
+              <option value="+1787">🇵🇷 +1787</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+39">🇮🇹 +39</option>
+            </select>
+            <input id="contact-phone" name="telefono" type="tel" placeholder="Número de celular"
+              autocomplete="tel-national" style="flex:1"
+              inputmode="numeric" pattern="[0-9\s\-]{6,15}">
+          </div>
+          <span class="form-field-error" id="err-phone"></span>
+        </div>
+        <div class="form-group">
+          <label for="contact-project">Tipo de proyecto</label>
+          <select id="contact-project" name="tipo_proyecto" required aria-required="true">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="web">Página web profesional</option>
+            <option value="app">Aplicación web a medida</option>
+            <option value="landing">Landing page para marketing</option>
+            <option value="rediseno">Rediseño de sitio web</option>
+            <option value="automatizacion">Integración / Automatización</option>
+            <option value="otro">Otro</option>
+          </select>
+          <span class="form-field-error" id="err-project"></span>
+        </div>
+        <div class="form-group">
+          <label for="contact-message">Mensaje</label>
+          <textarea id="contact-message" name="mensaje" rows="5"
+            placeholder="Cuéntanos sobre tu proyecto, objetivos y presupuesto estimado..."
+            minlength="10" required aria-required="true"></textarea>
+          <span class="form-field-error" id="err-message"></span>
+        </div>
+        <button type="submit" class="btn-primary" style="width:fit-content;border:none;display:block;margin:0 auto">
+          Enviar Mensaje
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="form-success" role="alert" style="display:none;padding:1rem;border-radius:12px;background:rgba(0,200,100,.1);border:1px solid rgba(0,200,100,.2);color:#00c864;font-size:.9rem;margin-top:.5rem">
+          ✓ Mensaje enviado. Te contactamos en menos de 24h.
+        </div>
+        <div id="form-error" role="alert" style="display:none;padding:1rem;border-radius:12px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.2);color:#f87171;font-size:.9rem;margin-top:.5rem">
+          ✗ Error al enviar. Por favor intenta de nuevo o escríbenos directamente.
+        </div>
+      </form>
+
+      <div id="form-sent-screen" aria-live="polite" style="display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;gap:1.6rem;min-height:420px">
+        <div id="fss-icon" style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(26,111,255,.12));border:1.5px solid rgba(0,212,255,.35);display:flex;align-items:center;justify-content:center;position:relative;opacity:0;transform:scale(.6);transition:opacity .55s cubic-bezier(.34,1.56,.64,1),transform .55s cubic-bezier(.34,1.56,.64,1)">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <path id="fss-check" d="M8 18l7 7 13-13" stroke="url(#fss-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40" style="transition:stroke-dashoffset .55s cubic-bezier(.4,0,.2,1) .45s"/>
+            <defs><linearGradient id="fss-grad" x1="8" y1="18" x2="28" y2="18" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs>
+          </svg>
+          <div style="position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(0,212,255,.18);animation:fssRing 2.4s ease-in-out infinite"></div>
+        </div>
+        <div style="opacity:0;transform:translateY(18px);transition:opacity .5s ease .35s,transform .5s ease .35s" id="fss-text">
+          <h3 style="font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.04em;margin-bottom:.5rem;background:linear-gradient(135deg,#3d9bff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">¡Mensaje enviado!</h3>
+          <p style="color:rgba(139,163,192,.85);font-size:.92rem;line-height:1.65;max-width:340px;margin:0 auto .2rem">Tu mensaje llegó a nuestro buzón. Te contactamos en <strong style="color:#f0f6ff;-webkit-text-fill-color:#f0f6ff">menos de 24 horas</strong>.</p>
+        </div>
+        <div style="opacity:0;transform:translateY(18px);transition:opacity .5s ease .55s,transform .5s ease .55s" id="fss-actions">
+          <button onclick="resetFormAndShow()" class="btn-secondary" style="display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.8rem;font-size:.9rem;border:none;cursor:pointer;background:transparent;border:1px solid rgba(61,155,255,.4);color:#3d9bff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;border-radius:50px;transition:border-color .3s,color .3s,transform .3s">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M12 7.5A4.5 4.5 0 1 1 7.5 3M7.5 1v4l2.5-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Enviar otro mensaje
+          </button>
+        </div>
+      </div>
+      </div>
+  </div>
+</section>
+
+</main>
+<footer role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo logo-footer" aria-label="WeboNada Studio">
+        <span class="logo-row">Web <span class="logo-o-static">o</span> Nada</span>
+        <span class="logo-sub">.Studio</span>
+      </a>
+      <p>Desarrollo web y software de alta calidad para empresas y emprendedores que quieren crecer en el mundo digital.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/webonada.studio/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram de WeboNada Studio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs><radialGradient id="ig-grad" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs>
+            <rect width="24" height="24" rx="5.5" fill="url(#ig-grad)"/>
+            <circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="1.8" fill="none"/>
+            <circle cx="17.2" cy="6.8" r="1.1" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@webonada.studio" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="TikTok de WeboNada Studio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="24" height="24" rx="5.5" fill="#010101"/>
+            <path d="M16.5 5.5a3.5 3.5 0 003.5 3.5v2.5a6 6 0 01-3.5-1.12V15a5 5 0 11-5-5h.5v2.5H12a2.5 2.5 0 102.5 2.5V4.5h2v1z" fill="#fff"/>
+            <path d="M16.5 5.5a3.5 3.5 0 003.5 3.5" stroke="#69C9D0" stroke-width="1.2" fill="none"/>
+            <path d="M11 15a2.5 2.5 0 102.5 2.5V4.5" stroke="#EE1D52" stroke-width="1.2" fill="none"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/share/1CfZJgfmAe/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook de WeboNada Studio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="24" height="24" rx="5.5" fill="#1877F2"/>
+            <path d="M16 8h-2a1 1 0 00-1 1v2h3l-.5 3H13v7h-3v-7H8v-3h2V9a4 4 0 014-4h2v3z" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#services">Páginas Web</a></li><li><a href="#services">Aplicaciones Web</a></li><li><a href="#services">Landing Pages</a></li><li><a href="#services">Rediseño Web</a></li><li><a href="#services">Automatización</a></li></ul></div>
+    <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#portfolio">Portafolio</a></li><li><a href="#testimonials">Testimonios</a></li><li><a href="#process">Proceso</a></li><li><a href="#web-o-nada">Nuestra Filosofía</a></li><li><a href="#pricing">Precios</a></li></ul></div>
+    <div class="footer-col"><h4>Contacto</h4><ul><li><a href="/cdn-cgi/l/email-protection#771e19111837001215181916131659040302131e18"><span class="__cf_email__" data-cfemail="82ebece4edc2f5e7e0edece3e6e3acf1f6f7e6ebed">[email&#160;protected]</span></a></li><li><a href="#" onclick="return openCalendly()">Agendar llamada</a></li><li><a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="#contact">Solicitar cotización</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 WeboNada.Studio Todos los derechos reservados. · <a href="/privacidad" style="color:inherit;text-decoration:underline">Política de Privacidad</a> · <a href="/cookies" style="color:inherit;text-decoration:underline">Cookies</a></p>
+    <button class="eg-trigger" id="easterTriggerFooter" onclick="openEasterEgg()">¿No te gusta este diseño?</button>
+  </div>
+</footer>
+
+<a href="https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%0AMe%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20gratuita.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener noreferrer" class="float-cta" id="floatCta" aria-label="Contáctanos por WhatsApp" onclick="trackCTA && trackCTA('float-cotizacion')"><svg width="54" height="54" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.5 8.5A10.45 10.45 0 0 0 16 5.5C10.75 5.5 6.5 9.75 6.5 15c0 1.65.43 3.25 1.25 4.67L6.5 26.5l7.05-1.85A10.45 10.45 0 0 0 16 25.5c5.25 0 9.5-4.25 9.5-9.5 0-2.54-.99-4.93-2.78-6.72l.78-.78zM16 23.8c-1.4 0-2.77-.37-3.97-1.08l-.28-.17-2.93.77.78-2.86-.18-.3A8.7 8.7 0 0 1 7.62 15 8.38 8.38 0 0 1 16 6.62 8.38 8.38 0 0 1 24.38 15 8.38 8.38 0 0 1 16 23.38v.42zm4.6-6.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.57c.13.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.14-1.19-.06-.1-.23-.17-.48-.3z" fill="#fff"/></svg></a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js" defer></script>
+<div id="easterEgg" role="dialog" aria-modal="true" aria-label="Easter egg">
+  <div class="eg-deco-line"></div>
+  <h2 class="eg-main-title">
+    Esta web es nuestra.<br>
+    <span>Hecha a nuestro gusto.</span>
+  </h2>
+  <p class="eg-body">
+    La tuya la hacemos al tuyo<br>
+    y al de <strong>tus clientes</strong>.<br>
+    Que es lo que de verdad importa.
+  </p>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;width:100%;max-width:320px">
+    <button class="eg-cta-btn" style="width:100%;justify-content:center" onclick="closeEasterEgg();window.open('https://wa.me/584144507002?text=Hola%2C%20vengo%20desde%20la%20web%20de%20WeboNada.Studio%20%F0%9F%91%8B%20Me%20interesa%20solicitar%20mi%20web.','_blank','noopener,noreferrer')">
+      Solicitar mi web
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="eg-cta-btn" style="width:100%;justify-content:center;background:transparent;border:1px solid rgba(61,155,255,.4);color:var(--electric);box-shadow:none" onclick="closeEasterEgg();openCalendly()">
+      Agendar una consulta
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2v2M12 2v2M2 7h12M3 4h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <button class="eg-close-btn" onclick="closeEasterEgg()">entendido, volver</button>
+</div>
+
+
+<div id="sendEnvelope">
+  <div class="env-mailbox" id="envMailbox">
+    <div class="env-mailbox-body">
+      <div class="env-mailbox-slot"></div>
+      <div class="env-mailbox-flag"></div>
+    </div>
+  </div>
+  <div class="env-scene" id="envScene">
+    <div class="env-trail" id="envTrail"></div>
+    <div class="env-wrap" id="envWrap">
+      <div class="env-letter" id="envLetter">
+        <div class="env-letter-lines">
+          <div class="env-letter-line"></div>
+          <div class="env-letter-line"></div>
+               
+          <div class="env-letter-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="env-envelope" id="envEnvelope">
+      <div class="env-flap"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.j
