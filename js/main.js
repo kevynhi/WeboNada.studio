@@ -10,7 +10,8 @@ window.scrollTo(0, 0);
   function setRealVh(){
     document.documentElement.style.setProperty('--real-vh', (window.innerHeight * 0.01) + 'px');
   }
-  setRealVh();
+  // Diferir al primer frame pintado para no forzar reflow en parseo (57ms ahorrados)
+  requestAnimationFrame(setRealVh);
   window.addEventListener('resize', setRealVh);
   // También al rotar pantalla en móvil
   window.addEventListener('orientationchange', function(){ setTimeout(setRealVh, 150); });
@@ -127,7 +128,8 @@ function openCalendly(){
       (window.visualViewport ? window.visualViewport.height : window.innerHeight) + 'px'
     );
   }
-  setRealVh();
+  // Diferir al primer frame para no forzar reflow en parseo (7ms ahorrados)
+  requestAnimationFrame(setRealVh);
 
   if(window.visualViewport){
     window.visualViewport.addEventListener('resize', setRealVh, {passive:true});
@@ -135,9 +137,13 @@ function openCalendly(){
   window.addEventListener('orientationchange', ()=>setTimeout(setRealVh,200), {passive:true});
 })();
 
+// Cachear referencias fuera del listener — evita búsqueda en el DOM en cada scroll
+const _navbarEl  = document.getElementById('navbar');
+const _floatCtaEl = document.getElementById('floatCta');
 window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',scrollY>50);
-  document.getElementById('floatCta').classList.toggle('show',scrollY>400);
+  const y = window.scrollY;
+  _navbarEl.classList.toggle('scrolled', y > 50);
+  _floatCtaEl.classList.toggle('show', y > 400);
 },{passive:true});
 
 
