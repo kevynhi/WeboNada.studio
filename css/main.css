@@ -946,6 +946,7 @@ padding-left:9%;
     color:rgba(220,235,255,.07);
     -webkit-text-fill-color:rgba(220,235,255,.07);
     text-align:right;
+     margin-top: 60px;
   }
   .won-mob-label-nada{
     font-family:var(--font-display);
