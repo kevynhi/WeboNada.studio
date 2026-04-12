@@ -189,7 +189,7 @@ nav.scrolled .logo-o{ filter:none; transition:none; }
   100%{ transform:translateY(0) rotate(0) scale(1); }
 }
 
-.pf-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;display:block;background:#07101f}
+.pf-preview-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;display:block;background:#07101f}
 
 #navEasterPanel{
   position:absolute;
@@ -900,7 +900,7 @@ padding-left:9%;
     width:fit-content;
     margin:0 auto 60px;
     align-self:center;
-     margin-top: 30px;
+    margin-top: 30px;
   }
   .won-mob-h1::before{
     content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;
@@ -947,7 +947,7 @@ padding-left:9%;
     color:rgba(220,235,255,.07);
     -webkit-text-fill-color:rgba(220,235,255,.07);
     text-align:right;
-     margin-top: 60px;
+    margin-top: 60px;
   }
   .won-mob-label-nada{
     font-family:var(--font-display);
