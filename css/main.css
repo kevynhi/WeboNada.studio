@@ -849,7 +849,7 @@ padding-left:9%;
     justify-content:center;
     align-items:flex-end;
     padding:0 9%;
-    padding-top:60px;
+    padding-top:34%;
   }
 
  
@@ -947,7 +947,7 @@ padding-left:9%;
     color:rgba(220,235,255,.07);
     -webkit-text-fill-color:rgba(220,235,255,.07);
     text-align:right;
-    margin-top: 60px;
+    margin-top: 0;
   }
   .won-mob-label-nada{
     font-family:var(--font-display);
@@ -1412,7 +1412,6 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
     padding-right:8%;
   }
   .won-mob-bot{
-    padding-top:170px;
     padding-left:8%;
     padding-right:8%;
   }
@@ -1490,7 +1489,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 
   /* Hero */
   .won-mob-top{ padding-top:75px; padding-left:7%; padding-right:7% }
-  .won-mob-bot{ padding-top:160px; padding-left:7%; padding-right:7% }
+  .won-mob-bot{ padding-left:7%; padding-right:7% }
   .won-mob-word-web{ font-size:clamp(2.8rem,15vw,4.5rem) }
   .won-mob-word-nada{ font-size:clamp(2.3rem,12vw,3.8rem) }
   .won-mob-phrase-text{ font-size:1.15rem }
@@ -1525,7 +1524,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
     height:calc(100svh - 75px);
   }
   .won-mob-top{ padding-top:68px; padding-left:6%; padding-right:6% }
-  .won-mob-bot{ padding-top:150px; padding-left:6%; padding-right:6% }
+  .won-mob-bot{ padding-left:6%; padding-right:6% }
   .won-mob-h1{ font-size:.78rem; padding:.35rem .9rem; margin-bottom:30px }
   .won-mob-word-web{ font-size:clamp(2.5rem,14vw,3.8rem); letter-spacing:-2px }
   .won-mob-word-nada{ font-size:clamp(2rem,11.5vw,3.2rem); letter-spacing:-2px }
@@ -1604,7 +1603,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
     height:calc(100svh - 68px);
   }
   .won-mob-top{ padding-top:60px; padding-left:5%; padding-right:5% }
-  .won-mob-bot{ padding-top:138px; padding-left:5%; padding-right:5% }
+  .won-mob-bot{ padding-left:5%; padding-right:5% }
   .won-mob-h1{ font-size:.72rem; padding:.3rem .8rem; margin-bottom:26px }
   .won-mob-word-web{ font-size:clamp(2.2rem,13vw,3.2rem); letter-spacing:-2px }
   .won-mob-word-nada{ font-size:clamp(1.8rem,10.5vw,2.7rem); letter-spacing:-1.5px }
