@@ -944,8 +944,8 @@ padding-left:9%;
     font-weight:900;
     letter-spacing:-3px;
     line-height:.95;
-    color:rgba(220,235,255,.07);
-    -webkit-text-fill-color:rgba(220,235,255,.07);
+    color:rgba(220,235,255,.30);
+    -webkit-text-fill-color:rgba(220,235,255,.30);
     text-align:right;
     margin-top: 0;
   }
@@ -955,13 +955,13 @@ padding-left:9%;
     font-weight:600;
     letter-spacing:2.5px;
     text-transform:uppercase;
-    color:rgba(220,235,255,.16);
+    color:rgba(220,235,255,.40);
     margin-bottom:.4rem;
     text-align:right;
   }
   .won-mob-sub-nada{
     font-size:.75rem;
-    color:rgba(139,163,192,.25);
+    color:rgba(139,163,192,.60);
     line-height:1.6;
     font-weight:300;
     margin-top:.5rem;
@@ -1481,7 +1481,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 @media(max-width:430px){
 
   /* Estadísticas UFO — más ajustadas */
-  .ufo-stat-num{ font-size:1rem !important }
+  .ufo-stat-num{ font-size:1.4rem !important }
 
   /* Sección */
   section{ padding:4rem 4.5% }
@@ -1574,7 +1574,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
   /* UFO stats */
   .stat-num{ font-size:1.3rem }
   .stat{ min-width:0 }
-  .ufo-stat-num{ font-size:.95rem !important }
+  .ufo-stat-num{ font-size:1.4rem !important }
   .ufo-stat-label{ font-size:.46rem !important }
 
   /* Nav dropdown */
@@ -1666,7 +1666,7 @@ footer{background:var(--navy);border-top:1px solid var(--glass-border);padding:3
 
   /* UFO stats */
   .stat-num{ font-size:1.2rem }
-  .ufo-stat-num{ font-size:.88rem !important }
+  .ufo-stat-num{ font-size:1.3rem !important }
   .ufo-stat-label{ font-size:.42rem !important }
 
   /* Nav dropdown */
